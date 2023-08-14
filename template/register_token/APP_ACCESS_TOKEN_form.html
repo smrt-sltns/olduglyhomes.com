@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block dropdown %} {% endblock %} 
+
+{% block content %} 
+<div class="preloader"></div>
+
+
+
+<strong>3/3</strong>
+<h2 style="margin-bottom:5px !important; padding-bottom:0px !important;">Save Access Token</h2>
+<hr style="margin-top:0px;">
+<div>
+<ol>
+    <li>
+        Go to 
+        <a href="https://developers.facebook.com/tools/explorer/" style="text-decoration:none;">Tool Explorer</a> 
+        of developers account select "Sentiment App" in "Meta App". 
+    </li>
+    <li>
+        Scroll bottom of the right hand side navigation and find the form saying "Add a Permission". 
+
+    </li>
+    <li>
+        Add all the permission from below list one by one to 'Add a Permission'.<br>
+        ['pages_manage_instant_articles', 'pages_show_list', 'ads_management', 
+    'ads_read', 'business_management', 'leads_retrieval', 'pages_read_engagement', 
+    'pages_manage_metadata', 'pages_read_user_content', 'pages_manage_ads', 
+    'pages_manage_posts', 'pages_manage_engagement'
+    ]
+    </li>
+    <li>
+        Cross check if all the permissions listed above match with Access token permissions. 
+    </li>
+    <li>
+        Click on button 'Generate Access Token' and agree to all Facebook permissions. 
+    </li>
+    <i style="margin-top: 20px;">**If you miss out on any of the permissions please add in the permission and click on "Generate Access Token" again.</i>
+</ol>
+</div>
+<form action="{% url 'save-access-token' %}" method="post">
+    {% csrf_token %} 
+    <input type="text" name="access_token" class="form-control" placeholder="Access Token" required>
+    <button 
+    type="submit" 
+    class="btn btn-primary" 
+    style="margin-top: 20px;
+    width: 400px; background-color: rgb(54, 54, 139);" >Submit</button>
+</form>
+
+<style>
+    .preloader {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background-image: url('http://i.stack.imgur.com/FhHRx.gif');
+        background-repeat: no-repeat;
+        background-color: #FFF;
+        background-position: center;
+    }
+</style>
+<script>
+    $(window).on('load', function () {
+        $('.preloader').fadeOut('slow');
+    });
+</script>
+<script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+{% endblock %}

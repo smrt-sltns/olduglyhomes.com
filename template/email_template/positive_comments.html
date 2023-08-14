@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments made yesterday</title>
+</head>
+<body>
+    <table>
+        <tr>
+          <th>Comment Location</th>
+          <th>Total comment</th>          
+
+        </tr>
+        {% for d in data %}
+        <tr>
+          <td><a href="{{d.url}}">{{d.campaign_name}} <b> | </b> {{d.adset_name}} <b> | </b>{{d.ad_name}}</a></td>
+          <td>{{d.count}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Form</title>
+</head>
+<body>
+    <form id="emailForm" method="post" action="{% url 'confirm-email' %}">
+        {% csrf_token %}
+        <div id="emailFields">
+            <label for="email">Email:</label>
+            <input type="email" name="email[]" required>
+            <br>
+            <label for="confirmEmail">Confirm Email:</label>
+            <input type="email" name="confirm_email[]" required>
+            <br>
+        </div>
+        <button type="button" id="addEmailBtn">Add Email</button>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.getElementById('addEmailBtn').addEventListener('click', function () {
+            var emailFields = document.getElementById('emailFields');
+            var existingEmailFields = emailFields.getElementsByTagName('div').length;
+            if (existingEmailFields < 2) {
+                var newEmailField = document.createElement('div');
+                newEmailField.innerHTML =
+                    '<label for="email">Email:</label>' +
+                    '<input type="email" name="email[]" required>' +
+                    '<br>' +
+                    '<label for="confirmEmail">Confirm Email:</label>' +
+                    '<input type="email" name="confirm_email[]" required>' +
+                    '<br>';
+                emailFields.appendChild(newEmailField);
+            } else {
+                alert("You can only add up to three email fields.");
+            }
+        });
+    </script>
+
+</body>
+</html>

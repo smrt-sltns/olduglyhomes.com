@@ -1,0 +1,33 @@
+[
+    {
+        "campaign_name": "FB Leads M-1",
+        "campaign_id": "23848941501270525",
+        "campaign_status": "ACTIVE",
+        "adsets": [
+            {
+                "adset_name": "Email Marketers",
+                "adset_id": "23848942340370525",
+                "ads": [
+                    {
+                        "ad_name": "V-1",
+                        "ad_id": "23848942340340525",
+                        "status": "ACTIVE",
+                        "eff": "108165061108164_352060986718569",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    }
+                ]
+            },
+            {
+                "adset_name": "SMEs",
+                "adset_id": "23848942340360525",
+                "ads": []
+            },
+            {
+                "adset_name": "Lead G",
+                "adset_id": "23848941501430525",
+                "ads": []
+            }
+        ]
+    }
+]

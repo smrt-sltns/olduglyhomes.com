@@ -1,0 +1,29 @@
+.container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    max-height: 100%;
+    overflow-y: auto;
+    background-color: #343a40;
+    padding: 20px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: white;
+  }
+  
+  li {
+    padding: 5px 0;
+  }
+  
+  .dropdown {
+    /* Add styles for the dropdown */
+    /* For example: */
+    margin-top: 20px;
+    /* Add more styles as needed */
+  }
+  

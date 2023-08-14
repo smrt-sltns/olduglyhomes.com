@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Negative Comments</title>
+</head>
+<body>
+    <!-- number of negative comments found -->
+    <h5>New negative comments</h5>
+    {% if new_negative_comments %}
+    <ul>
+        {% for new in new_negative_comments %}
+        <li>
+            <div class="comment-container">
+            <p><a href="{{new.url}}">{{new.comment}}</a></p>
+            <strong>({{new.campaign_name}}/{{old.adset_name}}/{{old.ad_name}})</strong> 
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %} 
+    <h3>No New Negative comments!</h3>
+    {% endif %}
+    <hr>
+    {% if old_negative_comments %}
+    <h5>Old negative comments</h5>
+    <ul>
+        {% for old in old_negative_comments %}
+        <li>
+            <div class="comment-container" >
+            <p>Comment: <a href="{{old.url}}">{{old.comment}}</a></p>
+            <strong>Location :{{old.campaign_name}}/{{old.adset_name}}/{{old.ad_name}}</strong>
+            </div>
+            
+            
+        </li>
+        <br>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+    <style>
+        a{
+            text-decoration: none;
+        }
+        
+        .comment-container{
+            border-radius: 10px;
+            border: 1px solid black;
+        }
+    </style>
+</body>
+</html>

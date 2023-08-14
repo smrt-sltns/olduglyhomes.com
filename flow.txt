@@ -1,0 +1,38 @@
+admin: admin
+password: admin12
+website : https://smartsolutions.pythonanywhere.com/
+export DJANGO_SETTINGS_MODULE=social_account_main.settings
+
+task : making email automation available for all the users 
+       on sentiment analysis website 
+
+flow: 
+
+
+** important required steps 
+- create abstract user model and add email field null=False, blank=False 
+- save a valid access token from account pages to account ads while creating 
+  a long lived access token for the account page 
+
+
+*access token exceptions 
+- refresh the page token if the page token is expired
+
+**send a email if the user token is expired 
+- take imidiate action on saving new user access token 
+
+
+# note for 2/8/2023 
+- the automation is keeping track on only smart solution 
+  but other ad accounts have active campaign (done)
+
+# note for 4/8/2023
+- get ids of ad, adset and campaign in myads_utils and save to negative log model
+- need to migrate the log models for both negative and positive 
+- start populating data in the log models with mail sent status 
+
+
+# User models and Creds model  
+note: creds has onetoone relation with user models 
+for now the automation checks for all the users 
+later this will be shifted to creds 

@@ -1,0 +1,315 @@
+[
+    {
+        "campaign_name": "Pishori Rice Retail Kenya",
+        "campaign_id": "6359129506382",
+        "campaign_status": "ACTIVE",
+        "adsets": [
+            {
+                "adset_name": "Grocery Women",
+                "adset_id": "6359129510382",
+                "ads": []
+            },
+            {
+                "adset_name": "Home Cook ALL",
+                "adset_id": "6359129510182",
+                "ads": []
+            },
+            {
+                "adset_name": "Restaurant Women",
+                "adset_id": "6359129506182",
+                "ads": []
+            },
+            {
+                "adset_name": "Home Cook Women",
+                "adset_id": "6359129505382",
+                "ads": []
+            },
+            {
+                "adset_name": "Rice Women",
+                "adset_id": "6359129505182",
+                "ads": [
+                    {
+                        "ad_name": "Pishori 1",
+                        "ad_id": "6375493424582",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_222934410679860",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    }
+                ]
+            },
+            {
+                "adset_name": "Recipe ALL",
+                "adset_id": "6359129504982",
+                "ads": []
+            },
+            {
+                "adset_name": "Recipe Women",
+                "adset_id": "6359129504782",
+                "ads": []
+            },
+            {
+                "adset_name": "Rice ALL",
+                "adset_id": "6359129504582",
+                "ads": [
+                    {
+                        "ad_name": "Pishori 1 - Copy",
+                        "ad_id": "6375502056382",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_222937440679557",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    }
+                ]
+            },
+            {
+                "adset_name": "Wholesale Women",
+                "adset_id": "6359129504382",
+                "ads": [
+                    {
+                        "ad_name": "Pishori 1 - Copy",
+                        "ad_id": "6375502055382",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_222937454012889",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    }
+                ]
+            },
+            {
+                "adset_name": "Grocery ALL",
+                "adset_id": "6359129504182",
+                "ads": [
+                    {
+                        "ad_name": "Pishori 1 - Copy",
+                        "ad_id": "6375502056182",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_222937474012887",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    }
+                ]
+            },
+            {
+                "adset_name": "Wholesale ALL",
+                "adset_id": "6359129502182",
+                "ads": [
+                    {
+                        "ad_name": "Pishori 1 - Copy",
+                        "ad_id": "6375502055582",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_222937480679553",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    }
+                ]
+            },
+            {
+                "adset_name": "Restaurant ALL",
+                "adset_id": "6359129501982",
+                "ads": [
+                    {
+                        "ad_name": "Pishori 1 - Copy",
+                        "ad_id": "6375502057982",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_222937470679554",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "campaign_name": "GER - Email - Nairobi",
+        "campaign_id": "6341551027782",
+        "campaign_status": "ACTIVE",
+        "adsets": [
+            {
+                "adset_name": "Wholesale ALL",
+                "adset_id": "6341551028582",
+                "ads": [
+                    {
+                        "ad_name": "Video 2",
+                        "ad_id": "6343940067382",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_166770966296205",
+                        "negative_comments": [],
+                        "positive_comments": [
+                            {
+                                "comment": "",
+                                "id": "166770966296205_481582380764189",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-04-14T14:46:44+0000"
+                            },
+                            {
+                                "comment": "My favorite \u2764\ufe0f",
+                                "id": "166770966296205_977187509972039",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-05-01T09:08:41+0000"
+                            },
+                            {
+                                "comment": "",
+                                "id": "166770966296205_748254490181370",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-05-04T14:37:46+0000"
+                            },
+                            {
+                                "comment": "",
+                                "id": "166770966296205_1260561767913879",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-05-29T07:24:09+0000"
+                            },
+                            {
+                                "comment": "Looking   sweet",
+                                "id": "166770966296205_217035947843991",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-06-11T09:23:35+0000"
+                            },
+                            {
+                                "comment": "Very impressive!",
+                                "id": "166770966296205_1054330838866860",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-06-14T11:01:13+0000"
+                            },
+                            {
+                                "comment": "\"You can message us on Whatsapp at +254 103 903 706 or visit our shop at Wilport View Apartment Building. Shop # 6. Nairobi West. \n\nhttps://maps.app.goo.gl/55b14p8HnhpyuaYw5\nhttps://www.ger-rei.com/store/ger.jpg\nStore hours are Monday - Sat from 10 am - 6 pm\"",
+                                "id": "166770966296205_218137507274769",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-06-21T11:45:26+0000"
+                            },
+                            {
+                                "comment": "My favorite \u2764\ufe0f",
+                                "id": "166770966296205_732489838649122",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-06-24T16:00:34+0000"
+                            },
+                            {
+                                "comment": "My favorite \u2764\ufe0f",
+                                "id": "166770966296205_593010409489212",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-06-25T19:35:59+0000"
+                            },
+                            {
+                                "comment": "Looks delicious \ud83d\ude0b",
+                                "id": "166770966296205_971855320524002",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-06-28T16:44:43+0000"
+                            },
+                            {
+                                "comment": "Delicious \ud83d\ude0b",
+                                "id": "166770966296205_253322153997217",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-06-29T15:01:14+0000"
+                            },
+                            {
+                                "comment": "Looks delicious \ud83d\ude0b",
+                                "id": "166770966296205_281388417892310",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-07-05T16:47:34+0000"
+                            },
+                            {
+                                "comment": "Delicious \ud83d\ude0b",
+                                "id": "166770966296205_792675068973680",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-07-06T13:39:53+0000"
+                            },
+                            {
+                                "comment": "interested",
+                                "id": "166770966296205_2723152901174806",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-07-13T14:55:19+0000"
+                            },
+                            {
+                                "comment": "How much??",
+                                "id": "166770966296205_1343339783268532",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-07-15T08:39:46+0000"
+                            },
+                            {
+                                "comment": "Awesome rice",
+                                "id": "166770966296205_645360104196681",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-07-17T12:31:58+0000"
+                            },
+                            {
+                                "comment": "Hello, do you have kapunga rice?",
+                                "id": "166770966296205_6587005168033941",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-07-27T14:07:13+0000"
+                            },
+                            {
+                                "comment": "Feel nice n yummy \ud83d\ude0b",
+                                "id": "166770966296205_1483279819109754",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-05T06:07:56+0000"
+                            },
+                            {
+                                "comment": "Interested !!",
+                                "id": "166770966296205_254322240756034",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-05T14:21:43+0000"
+                            },
+                            {
+                                "comment": "Do you have maruti rice and how much does it cost",
+                                "id": "166770966296205_834086148381362",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-09T19:23:09+0000"
+                            },
+                            {
+                                "comment": "Wow delicious",
+                                "id": "166770966296205_1001325901180358",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-10T18:26:12+0000"
+                            }
+                        ]
+                    },
+                    {
+                        "ad_name": "Video 1",
+                        "ad_id": "6341551028982",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_157521287221173",
+                        "negative_comments": [],
+                        "positive_comments": [
+                            {
+                                "comment": "",
+                                "id": "157521287221173_882199889511757",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-03-26T11:24:13+0000"
+                            },
+                            {
+                                "comment": "location please",
+                                "id": "157521287221173_311142848003016",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-07-13T14:56:53+0000"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

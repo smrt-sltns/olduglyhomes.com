@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block dropdown %} {% endblock %} 
+{% block content %} 
+<body>
+    <h1>Please choose the accounts you're running ads on.</h1>
+    <hr>
+    <form action="{% url 'set-accountad' %}" method="post">
+        {% csrf_token %}
+        {% for a in adaccounts %}
+        <input type="checkbox" id="{{a.id}}" name="page_account" value="{{a.id}}" >
+        <label for="{{a.id}}"> {{a.name}}</label><br>
+        {%endfor%}
+        <button 
+    type="submit" 
+    class="btn btn-primary" 
+    style="margin-top: 20px;
+    width: 250px; background-color: rgb(54, 54, 139);" >Submit</button>
+    </form>
+    
+</body>
+</html>
+{% endblock %}

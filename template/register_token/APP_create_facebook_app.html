@@ -1,0 +1,48 @@
+{% extends "base.html" %} 
+
+{% block dropdown %} {% endblock %} 
+{% block content %} 
+<strong>1/3</strong>
+<h2>Description</h2>
+<p>The software requires you to set up a Facebook developers account and create a Graph API APP.</p>    
+<p>Follow the below steps to store APP ID and APP SECRET.</p>
+<ol>
+    <li>
+        Go to <a href="https://developers.facebook.com/apps/?show_reminder=true" target="_blank">
+            Developers dashboard</a> and click on 'Create App'.
+    </li>
+    <li>
+        Name your app as "Sentiment APP" and give all the necessary <br> permission to create the app. 
+    </li>
+    <li>
+        Go back to 
+        <a 
+            href="https://developers.facebook.com/apps/?show_reminder=true" 
+            target="_blank">dashboard,
+        </a>
+        <span>Under "Admin Apps" click on "Sentiment APP".</span>
+    </li>
+    <li>
+        On left navigation find Settings >> Basic 
+    </li>
+    <li>
+        Click on "Show" of App Secret and reveal the Secret by providing Facebook password. 
+    </li>
+    <li>
+        Copy App Id and App Secret in a text file.
+    </li>
+    <li>
+        Let's move forward!
+    </li>
+</ol>
+<a 
+class="btn btn-primary" 
+style="width: 400px; background-color: rgb(54, 54, 139);" 
+href="{% url 'save-app-credentials' %}" >Next</a>
+
+<style>
+    a{
+        text-decoration: none;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+
+{% block content %} 
+<div class="container">
+    Your request is recieved at our end. 
+    We will get back to you shortly. 
+    <strong>This process can take up to 2 hours.</strong>
+
+</div>
+
+<style>
+    .container{
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+    }
+</style>
+{% endblock %}
+
+
+<ul class="datalist">
+    {% for comment in c.Comments %}
+    {% if comment.positive_message %}
+    <!-- leaving the margin and padding to be 0 -->
+    <li style="margin:auto; margin:0; padding:0;">
+      {% if comment.is_hidden %}
+      <p style="float:left; left:0; margin-right:10px;">{{comment.positive_message|safe|truncatechars:25}}</p>
+      <strong style="color:rgb(4, 93, 4);"><i>This comment is hidden</i></strong>
+      <a href="{% url 'unhide-comment' adset_id comment.id %}" class="btn btn-warning" style="float:right;">
+        Unhide
+      </a>
+      {%else %}
+      <p style="float:left; left:0; margin-right:10px;">{{comment.positive_message|safe|truncatechars:50}}</p>
+      <a href="{% url 'hide-comment' adset_id comment.id %}" class="btn btn-primary" style="float:right;">
+        Hide
+      </a>
+      {%endif%}
+      <!-- <a href="{% url 'hide-comment' adset_id %}" class="btn btn-danger" style="margin:auto; float:right;  right:0;">return back</a></li> -->
+      <hr>
+  
+      {% endif %}
+  
+    </li>
+    {% endfor %}
+  </ul>
+  <span class="more">View More</span>

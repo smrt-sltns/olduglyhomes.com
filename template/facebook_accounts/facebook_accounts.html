@@ -1,0 +1,69 @@
+<!-- templates/home.html -->
+
+{% extends 'base.html' %}
+
+{% block title %} Please choose an Account {% endblock %}
+{% block content %}
+{% block dropdown %}{%endblock%}
+    <h3>{{campaign_name}}</h3>
+
+    <div class="container">
+        {% for a in accounts %}
+        <div class="box">
+            <p><a href="{% url 'sentiment-graph-post' a.id a.access_token %}" class="account-name">
+                {{a.name}} <span style="padding-left:10px; font-size:medium; color:rgb(0, 0, 0);"></span></a></p>
+            
+        </div> 
+        {% endfor %} 
+        <br>
+    </div>
+
+
+    
+
+
+
+    {% if messages %}
+    {% for message in messages %} 
+    {{message }}
+    {% endfor %}
+    {% endif %} 
+
+    
+
+
+<style>
+.container{
+    background-color: white;
+    justify-content: center;
+    display: block;
+    margin: auto;
+    position: inherit;
+    border: 1px solid black;
+    border-radius: 10px;
+    max-width: 400px;
+    height:100%;
+
+}
+
+.box{
+    max-width:300px;
+    height:50px;
+    box-shadow: 5px 4px rgb(208, 208, 241);
+    border-radius:10px;
+    justify-content: center;
+    text-align: center;
+   
+    margin: auto;
+    margin-top: 20px;
+
+}
+.box .account-name{
+    text-align: center;
+    margin: auto;
+
+    margin-top:15px;
+    text-decoration: none;
+}
+</style>
+{% endblock %}

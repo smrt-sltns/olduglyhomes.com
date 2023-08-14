@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+{% block content %}
+{% block dropdown %} {% endblock %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<div class="top-content" style="margin-left:10px; ">
+  <h2>{{adset_name}}</h2>
+  <hr>
+</div>
+
+<div class="container">
+
+  <div class="row">
+    {% for c in graph_container %}
+
+    <div class="col-sm">
+      <!-- {{c.Comments}} -->
+      
+
+      <div class="graph-container" style="max-width:500px; max-height: 600px; 
+      min-height:400px; min-width:400px;
+      border-radius: 20px;
+      margin-bottom: 200px;
+      box-shadow: 5px 5px 8px rgb(208, 208, 241);">
+          <a class="btn btn-prinamry" onclick="showGraph(1, '{{c.adname}}')">Graph<a> /
+          <a class="btn btn-prinamry" onclick="showGraph(2, '{{c.adname}}')">Picture</a>
+            <div id="graph1 {{c.adname}}">
+              {{c.Graph|safe}}
+            </div>
+            <div id="graph2 {{c.adname}}" class="hide-graph">
+              <img
+                src="{{c.full_picture_url}}"
+                alt="No image available!" style="max-width:500px; max-height:500px; ">
+            </div>
+      </div>
+    </div>
+    <hr>
+
+    <div class="col-sm" style="margin-bottom:100px;">
+      <div class="comment-container" style="max-width:500px; max-height: 600px; 
+      min-height:400px; min-width:400px;">
+      <button class="btn btn-prinamry" onclick="showDiv(1, '{{c.adname}}')">Negative</button>
+      <button class="btn btn-prinamry" onclick="showDiv(2, '{{c.adname}}')">Positive</button>
+      <button class="btn btn-prinamry" onclick="showDiv(3, '{{c.adname}}')">Neutral</button>
+      <div id="div1 {{c.adname}}" >
+        <h5 style="padding-bottom:0; margin-bottom:0;">Negative Comments</h5>
+        <hr>
+        <ul id="dataList1{{c.adname}}">
+          {% for comment in c.Comments %}
+          {% if comment.negative_message %}
+          <!-- leaving the margin and padding to be 0 -->
+          <li class="hidden" style="margin:auto; margin:0; padding:0;">
+            {% if comment.is_hidden %}
+            <p style="float:left; left:0; margin-right:10px;">{{comment.negative_message|safe|truncatechars:25}}</p>
+            <strong style="color:rgb(4, 93, 4);"><i>This comment is hidden</i></strong>
+            <a href="{% url 'post-unhide-comment' adset_id comment.id c.access_token %}" class="btn btn-warning" style="float:right;">
+              Unhide
+            </a>
+            {%else %}
+            <p style="float:left; left:0; margin-right:10px;">{{comment.negative_message|safe|truncatechars:50}}</p>
+            <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-primary" style="float:right;">
+              Hide
+            </a>{%endif%}<hr>{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+        <a onclick="showMoreList(1,'{{c.adname}}')">View more...</a>
+      </div>
+      <div id="div2 {{c.adname}}" class="hide">
+        <h5 style="padding-bottom:0; margin-bottom:0;">Postive Comments</h5>
+        <hr>
+
+
+        <ul id="dataList2{{c.adname}}">
+          {% for comment in c.Comments %}
+          {% if comment.positive_message %}
+          <!-- leaving the margin and padding to be 0 -->
+          <li style="margin:auto; margin:0; padding:0;" class="hidden">
+            {% if comment.is_hidden %}
+            <p style="float:left; left:0; margin-right:10px;">{{comment.positive_message|safe|truncatechars:25}}</p>
+            <strong style="color:rgb(4, 93, 4);"><i>This comment is hidden</i></strong>
+            <a href="{% url 'post-unhide-comment' adset_id comment.id c.access_token %}" class="btn btn-warning" style="float:right;">
+              Unhide
+            </a>
+            {%else %}
+            <p style="float:left; left:0; margin-right:10px;">{{comment.positive_message|safe|truncatechars:50}}</p>
+            <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-primary" style="float:right;">
+              Hide
+            </a>
+            {%endif%}
+            <!-- <a href="{% url 'hide-comment' adset_id %}" class="btn btn-danger" style="margin:auto; float:right;  right:0;">return back</a></li> -->
+            <hr>
+
+            {% endif %}
+
+          </li>
+          {% endfor %}
+        </ul>
+        <a onclick="showMoreList(2,'{{c.adname}}')">View more...</a>
+      </div>
+      <div id="div3 {{c.adname}}" class="hide">
+        <h5 style="padding-bottom:0; margin-bottom:0;">Neutral Comments</h5>
+        <hr>
+
+
+        <ul id="dataList3{{c.adname}}">
+          {% for comment in c.Comments %}
+          {% if comment.neutral_message %}
+          <!-- leaving the margin and padding to be 0 -->
+          <li class="hidden" style="margin:auto; margin:0; padding:0;" class="hidden">
+            {% if comment.is_hidden %}
+            <p style="float:left; left:0; margin-right:10px;">{{comment.neutral_message|safe|truncatechars:25}}</p>
+            <strong style="color:rgb(4, 93, 4);"><i>This comment is hidden</i></strong>
+            <a href="{% url 'post-unhide-comment' adset_id comment.id c.access_token %}" class="btn btn-warning" style="float:right;">
+              Unhide
+            </a>
+            {%else %}
+            <p style="float:left; left:0; margin-right:10px;">{{comment.neutral_message|safe|truncatechars:50}}</p>
+            <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-primary" style="float:right;">
+              Hide
+            </a>
+            {%endif%}
+            <!-- <a href="{% url 'hide-comment' adset_id %}" class="btn btn-danger" style="margin:auto; float:right;  right:0;">return back</a></li> -->
+            <hr>
+
+            {% endif %}
+
+          </li>
+          {% endfor %}
+        </ul>
+        <a onclick="showMoreList(3,'{{c.adname}}')">View more...</a>
+      </div>
+    </div>
+      <!-- <h5 style="padding-bottom:0; margin-bottom:0;">Postive Comments</h5>
+      <hr> -->
+    </div>
+    <hr>
+    {%endfor%}
+  </div>
+</div>
+
+</div>
+
+<script>
+  function showDiv(divNumber, adname) {
+    document.getElementById("div1 " + adname).classList.add("hide");
+    document.getElementById("div2 " + adname).classList.add("hide");
+    document.getElementById("div3 " + adname).classList.add("hide");
+    document.getElementById("div" + divNumber + " " + adname).classList.remove("hide");
+    console.log(divNumber, adname);
+  };
+
+  function showGraph(divNum, adname) {
+    document.getElementById("graph1 " + adname).classList.add("hide-graph");
+    document.getElementById("graph2 " + adname).classList.add("hide-graph");
+    document.getElementById("graph" + divNum + " " + adname).classList.remove("hide-graph");
+    console.log(divNum, adname);
+  };
+
+
+</script>
+<script>
+  function showMoreList(dataListNumber, adname) {  
+    var listData = Array.prototype.slice.call(document.querySelectorAll(`#dataList${dataListNumber}${adname} li:not(.shown)`)).slice(0, 10);
+  for (var i=0; i < listData.length; i++)
+  {
+    listData[i].className  = 'shown';
+  }
+  console.log(listData.length)
+
+}
+</script>
+<style>
+ 
+.hidden:nth-child(n+6){
+  display:none;
+}
+
+  a {
+    cursor: pointer;
+    color: #f00;
+  }
+
+  span {
+    cursor: pointer;
+    color: #f00;
+  }
+</style>
+
+
+
+
+<style>
+  .hide {
+    display: none;
+  }
+
+  .hide-graph {
+    display: none;
+  }
+</style>
+
+{% endblock %}

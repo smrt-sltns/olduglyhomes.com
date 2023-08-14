@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Example</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style/table.css' %}">
+    <style>
+        /* Add custom styles for the dark theme sidebar */
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Navigation -->
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Facebook Sentiment Analysis</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="container sidebar">
+                <ul>
+                    
+                    {% if adaccount_is_set %}
+                    <!-- automation report  -->
+                    <!-- <li class="nav-item dropdown" style="text-decoration:none; color:white;">
+                        <a class="nav-link dropdown-toggle" href="#" id="adAutomationDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false"
+                            >
+                            <i class="fas fa-tachometer-alt"></i>
+                            Ad Account Report 
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="adAutomationDropdown">
+                            <li><a class="dropdown-item" href="#" style="color: black;">
+                                    Negative Comments
+                                </a></li>
+                            <li><a class="dropdown-item" href="#" style="color: black;">
+                                    Positive Comments
+                                </a></li>
+                        </ul>
+                    </li> -->
+                    <!-- ad accounts  -->
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle" data-toggle="collapse" href="#adAccountsDropdown"
+                            aria-expanded="false">
+                            <i class="fas fa-ad"></i>
+                            Ad Accounts
+                        </a>
+                        <ul id="adAccountsDropdown" class="collapse list-unstyled">
+                            {% for a in adaccounts %}
+                            <!-- <li><a class="nav-link" href="{% url 'adset-list' a.ad_account_id a.access_token  %}" > -->
+                            <li><a class="nav-link" href="{% url 'positive_report' a.id  %}" >
+
+                                    {{a.ad_account_name}}
+                                </a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'set-accountad'  %}">
+                            <i class="fas fa-ad"></i>
+                            Save Ad Accounts
+                        </a>
+                    </li>
+                    {%endif%}
+                    <li class="nav-item" >
+                        <a class="nav-link" href="{% url 'account-list' %}" >
+                            <i class="fab fa-facebook"></i>
+                            Facebook Pages
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout'  %}">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </a>
+                    </li>
+                    <!-- Add more elements here as needed -->
+                </ul>
+            </div>
+
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+
+                <div class="message-container" style="margin:auto; justify-content:center; max-width:700px;">
+                    {% if messages %}
+                    {% for message in messages %}
+                    {% if message.tags == "error" %}
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{message.tags}}!</strong> {{message|safe}}
+                    </div>
+                    {% else %}
+                    <div class="alert alert-{{message.tags}} alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{message.tags}}!</strong> {{message|safe}}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                
+                <!-- report table for all the ad accounts -->
+
+                <div class="mx-auto">
+                    {% block content %}
+
+                    {%endblock content %}
+                </div>
+                
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle the sidebar
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

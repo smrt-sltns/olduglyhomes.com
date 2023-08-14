@@ -1,0 +1,51 @@
+{% extends "index_report.html" %}
+{% block content %}
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       {{adaccount.ad_account_name}} Reports
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="{% url 'negative_report' adaccount.id %}">Negative Comments Report</a>
+        <a class="dropdown-item" href="{% url 'positive_report' adaccount.id %}">Positive Comments Report</a>
+        <a class="dropdown-item" href="{% url 'adset-list' adaccount.ad_account_id adaccount.access_token  %}" >Campaigns List</a>
+        <!-- <a class="dropdown-item" href="#">Campaigns List</a> -->
+    </div>
+</div>
+
+<div class="mx-auto">
+    <h3 style="margin-bottom:20px;">Positive Comment Report on {{adaccount.ad_account_name}}!</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Ad Account</th>
+                <th scope="col">Campaign</th>
+                <th scope="col">Adset</th>
+                <th scope="col">Ad</th>
+                <th scope="col">Comment Count</th>
+                <th scope="col">Created time (Facebook)</th>
+                <th scope="col">Automation Runtime</th>
+                <th scope="col">Mail Sent</th>
+                <th scope="col">Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for p in positive_log %}
+            <tr>
+                <th scope="row">{{p.id}}</th>
+                <th scope="row">{{p.adaccount}}</th>
+                <td>{{p.campaign_name}}</td>
+                <td>{{p.adset_name}}</td>
+                <td>{{p.ad_name}}</td>
+                <td>{{p.comment_count}}</td>
+                <td>{{p.created_time}}</td>
+                <td>{{p.automation_runtime}}</td>
+                <td>{{p.is_mail_sent}}</td>
+                <td><a href="https://127.0.0.1:8000/sentiment-graph/{{p.adset_id}}/">link</a></td>
+            </tr>
+            {%endfor %}
+        </tbody>
+    </table>
+</div>
+{%endblock content %}
