@@ -57,8 +57,17 @@ class AccountsAd(models.Model):
 
     def __str__(self):
         return self.ad_account_name
-    
 
+
+
+class ContactUs(models.Model):
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    phone = models.CharField(max_length=100, null=True, blank=True)
+    message = models.CharField(max_length=600, null=True, blank=True)
+    
+    def __str__(self):
+        return self.user.email
+    
 
 class IgnoredComments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -72,6 +81,8 @@ class IgnoredComments(models.Model):
      
     def __str__(self):
         return "{}, {}".format(self.user.usename, self.comment)
+
+
 
     
 

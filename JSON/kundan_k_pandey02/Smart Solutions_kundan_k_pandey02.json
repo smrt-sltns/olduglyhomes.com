@@ -1,62 +1,32 @@
 [
     {
         "campaign_name": "Pishori Rice Retail Kenya",
-        "campaign_id": "6359129506382",
+        "campaign_id": "6418103810582",
         "campaign_status": "ACTIVE",
         "adsets": [
             {
-                "adset_name": "Grocery Women",
-                "adset_id": "6359129510382",
-                "ads": []
-            },
-            {
-                "adset_name": "Home Cook ALL",
-                "adset_id": "6359129510182",
-                "ads": []
-            },
-            {
-                "adset_name": "Restaurant Women",
-                "adset_id": "6359129506182",
-                "ads": []
-            },
-            {
-                "adset_name": "Home Cook Women",
-                "adset_id": "6359129505382",
-                "ads": []
-            },
-            {
-                "adset_name": "Rice Women",
-                "adset_id": "6359129505182",
+                "adset_name": "Restaurant ALL",
+                "adset_id": "6418103825982",
                 "ads": [
                     {
-                        "ad_name": "Pishori 1",
-                        "ad_id": "6375493424582",
+                        "ad_name": "Pishori 1 - Copy",
+                        "ad_id": "6418103817382",
                         "status": "ACTIVE",
-                        "eff": "114113634875896_222934410679860",
+                        "eff": "114113634875896_222937470679554",
                         "negative_comments": [],
                         "positive_comments": []
                     }
                 ]
             },
             {
-                "adset_name": "Recipe ALL",
-                "adset_id": "6359129504982",
-                "ads": []
-            },
-            {
-                "adset_name": "Recipe Women",
-                "adset_id": "6359129504782",
-                "ads": []
-            },
-            {
-                "adset_name": "Rice ALL",
-                "adset_id": "6359129504582",
+                "adset_name": "Wholesale ALL",
+                "adset_id": "6418103825182",
                 "ads": [
                     {
                         "ad_name": "Pishori 1 - Copy",
-                        "ad_id": "6375502056382",
+                        "ad_id": "6418103818982",
                         "status": "ACTIVE",
-                        "eff": "114113634875896_222937440679557",
+                        "eff": "114113634875896_222937480679553",
                         "negative_comments": [],
                         "positive_comments": []
                     }
@@ -64,11 +34,11 @@
             },
             {
                 "adset_name": "Wholesale Women",
-                "adset_id": "6359129504382",
+                "adset_id": "6418103824782",
                 "ads": [
                     {
                         "ad_name": "Pishori 1 - Copy",
-                        "ad_id": "6375502055382",
+                        "ad_id": "6418103810182",
                         "status": "ACTIVE",
                         "eff": "114113634875896_222937454012889",
                         "negative_comments": [],
@@ -78,11 +48,11 @@
             },
             {
                 "adset_name": "Grocery ALL",
-                "adset_id": "6359129504182",
+                "adset_id": "6418103824582",
                 "ads": [
                     {
                         "ad_name": "Pishori 1 - Copy",
-                        "ad_id": "6375502056182",
+                        "ad_id": "6418103810382",
                         "status": "ACTIVE",
                         "eff": "114113634875896_222937474012887",
                         "negative_comments": [],
@@ -91,28 +61,28 @@
                 ]
             },
             {
-                "adset_name": "Wholesale ALL",
-                "adset_id": "6359129502182",
+                "adset_name": "Rice Women",
+                "adset_id": "6418103816982",
                 "ads": [
                     {
-                        "ad_name": "Pishori 1 - Copy",
-                        "ad_id": "6375502055582",
+                        "ad_name": "Pishori 1",
+                        "ad_id": "6418103818782",
                         "status": "ACTIVE",
-                        "eff": "114113634875896_222937480679553",
+                        "eff": "114113634875896_222934410679860",
                         "negative_comments": [],
                         "positive_comments": []
                     }
                 ]
             },
             {
-                "adset_name": "Restaurant ALL",
-                "adset_id": "6359129501982",
+                "adset_name": "Rice ALL",
+                "adset_id": "6418103816782",
                 "ads": [
                     {
                         "ad_name": "Pishori 1 - Copy",
-                        "ad_id": "6375502057982",
+                        "ad_id": "6418103820382",
                         "status": "ACTIVE",
-                        "eff": "114113634875896_222937470679554",
+                        "eff": "114113634875896_222937440679557",
                         "negative_comments": [],
                         "positive_comments": []
                     }

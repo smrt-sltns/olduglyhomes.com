@@ -8,11 +8,12 @@ import urllib.request
 import json
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
+from django.conf import settings
 import requests 
 import plotly.offline as opy
 import plotly.graph_objs as go
 from access_token import USER_LONGLIVED_ACCESS_TOKEN
-from .models import Creds, AccountPages
+from .models import Creds, AccountPages, AccountsAd
 from .sentiment_graph import get_sentiment_graph
 from .utils import (
     get_account_name, get_account_post_list,
@@ -197,13 +198,37 @@ def save_account_pages(user):
             acc_page.has_access_token = True
             page_objects.append(acc_page)
         print("saved {} with Id {}".format(p['name'], p['id']))
-    return AccountPages.objects.bulk_create(page_objects)
+        if len(page_objects) != 0:
+            AccountPages.objects.bulk_create(page_objects)
 
 
 # Landing page to set up api keys 
 def description(request):
     return render(request, "register_token/APP_create_facebook_app.html")
 
+@custom_login_required
+def contact_us(request):
+    if request.method == "POST":
+        message = request.POST['message']
+        phone = request.POST['phone']
+        print(message, "\n", phone)
+        #note save the contact made in db
+        #send an email to user with contact confirmation (template)
+        #send an email to self (template)
 
-def display_table(request):
-    return render(request, "table.html")
+        return render(request, "contact_us.html")
+    else:
+        return render(request, "contact_us.html")
+
+
+
+# @custom_login_required
+# def token_expired(request):
+#     if request.method == "POST":
+#         access_token = request.POST['access_token'] # user access token 
+#         user = request.user
+#         #renew user token with page token and also update tokens for adaccounts 
+
+#         return redirect("home")
+#     else:
+#         return render(request, "register_token/token_expired.html")

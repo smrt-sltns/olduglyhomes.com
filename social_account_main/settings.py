@@ -46,6 +46,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # social django middleware 
     'social_django.middleware.SocialAuthExceptionMiddleware',
+    # Custom middleware if User token is expired 
+    "facebook.middleware.TokenExpiredMiddleware",
 ]
 
 ROOT_URLCONF = 'social_account_main.urls'
@@ -198,6 +200,8 @@ EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'contact@ger-rei.com'
 EMAIL_HOST_PASSWORD = 'Ohappydays@1'
 
+CONTACT_US_EMAIL = "kundan.k.pandey03@gmail.com" # we listen to users on this email
+
 
 CACHES = {
     'default': {
@@ -227,7 +231,7 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_BEAT_SCHEDULE = {
       'add-every-1-day': {
         'task': 'social_account_main.celery_task.every_1_day',
-        'schedule': timedelta(minutes=5),
+        'schedule': timedelta(minutes=10),
         'args': '',
         'options': {
             'expires': 60.0,

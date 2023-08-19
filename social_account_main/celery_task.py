@@ -18,13 +18,13 @@ import urllib.request
 import datetime
 
 from facebook.models import AccountsAd
+from facebook.token_expired import renew_access_token
 from access_token import LONGLIVED_ACCESS_TOKEN
 from .emails import (negative_comment_today, positive_comments_send_email, save_ads, 
                     save_campaings, save_comments, negative_comments_send_email)
 from .myads_utils import email_to_file_name
 from automation.models import LogNegativeComments, LogPositiveComments
-from .token_renew import renew_access_token
-# from access_token import 
+
 
 
 # Set the default Django settings module for the 'celery' program.
@@ -32,8 +32,15 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'social_account_main.settings')
 app = Celery('social_account_main')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
+
 ad_account = "act_296865963" # smart solutions account 
 
+
+
+
+@app.task(bind=True)
+def do_stuff(self):
+    print(f'Request: {self.request!r}')
 
 @shared_task
 def wraped_comments(file_name,account_id, token):
@@ -73,14 +80,6 @@ def LOG_positive_comments(user_id, account_id, data, is_mail_sent):
             is_mail_sent = is_mail_sent
         )
         positive_log.save()
-
-
-
-
-
-@app.task(bind=True)
-def do_stuff(self):
-    print(f'Request: {self.request!r}')
 
 
 #every 2 hours 
@@ -167,12 +166,3 @@ def negative_comments_today_send_email(user_id): #
                 data=data, is_mail_sent=is_mail_sent)
             print("NEGATIVE LOG SAVED!")
 
-
-
-
-
-
-
-
-
-   

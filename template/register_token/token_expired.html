@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Your user access token has expired!</h2>
+    <form action="{% url 'token_expired' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="access_token">
+        <button type="submit">Renew Access Tokne</button>
+    </form>
+    <a class="btn btn-primary" href="{% url 'contact_us' %}" style="width:300px;">Contact Us</a>
+</body>
+</html>

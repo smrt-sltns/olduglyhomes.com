@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views2, views, myads, confirm_email, home
+from . import views2, views, myads, confirm_email, home, token_expired
 
 
 urlpatterns = [
@@ -27,6 +27,9 @@ urlpatterns = [
     path("unhide_comments/<account_id>/<comment_id>/<account_access_token>", views.Post_unhide_comment, name="post-unhide-comment"),
     path("description", views.description, name='description'),
 
+    #token expired 
+    path("token-expired", token_expired.token_expired, name='token_expired'),
+
     # save credentials 
     path("save-app-creds/", views.save_app_credentials, name="save-app-credentials"),
     path("save-access-token/", views.save_access_token, name="save-access-token"),
@@ -34,8 +37,10 @@ urlpatterns = [
     #confirm email 
     path("confirm-email/", confirm_email.confirm_email, name="confirm-email" ),
 
-    # test 
-    path("table/", views.display_table, name="display-table"),
+    #contact us 
+    path("contact-us/", views.contact_us, name="contact_us"),
+
+
 
     # views2
     path('get-context2', views2.social_auth_data, name='get-context2'), 

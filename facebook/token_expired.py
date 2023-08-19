@@ -1,0 +1,80 @@
+from django.shortcuts import redirect, render 
+from .models import AccountPages, AccountsAd, Creds
+from .utils import PageAndAccountToken, get_long_lived_access_token
+from .decorator import custom_login_required
+# from social_account_main.token_renew import renew_access_token
+from django.utils import timezone
+from django.contrib.auth.models import User
+from datetime import timedelta
+from .views import save_account_pages
+
+
+
+
+
+@custom_login_required
+def token_expired(request):
+    if request.method == "POST":
+        access_token = request.POST['access_token'] # user access token 
+        user = request.user
+        #renew user token with page token and also update tokens for adaccounts 
+        longlived_access_token = get_long_lived_access_token(
+            api_key=user.creds.APP_ID, 
+            api_secret=user.creds.APP_SECRET,
+            access_token=access_token)
+        print("longlived access token: ",longlived_access_token)
+        cred = Creds.objects.get(user_id=request.user.id)
+        cred.LONGLIVED_ACCESS_TOKEN = longlived_access_token
+        cred.save()
+        renew_access_token(user_id = request.user.id, date_required=False)
+
+        return redirect("home")
+    else:
+        return render(request, "register_token/token_expired.html")
+    
+
+
+def is_datefield_one_month_old(obj):
+    current_date = timezone.now().date()
+    if obj.has_ad_accounts:
+        difference = current_date - obj.create_date
+        # Calculate the number of days in a month (approximately)
+        days_in_month = 30.44  # Average days in a month
+        if difference >= timedelta(days=days_in_month):
+            status = True
+        else:
+            status = False
+    else: 
+        status = False
+    print(status)
+    return status
+
+
+def renew_access_token(user_id, date_required=True):
+    user = User.objects.get(id=user_id)
+    cred = Creds.objects.get(user=user)
+    if date_required:
+        status = is_datefield_one_month_old(cred)
+    else:
+        status = True
+    if status:
+        token = cred.LONGLIVED_ACCESS_TOKEN
+        api_key = cred.APP_ID
+        api_secret = cred.APP_SECRET
+        long_lived_token = get_long_lived_access_token(api_key=api_key, api_secret=api_secret,access_token=token)
+        cred.ACCESS_TOKEN = token 
+        cred.LONGLIVED_ACCESS_TOKEN = long_lived_token # renew access token for creds models
+        cred.create_date = timezone.now().date()
+        cred.save()  
+        print(f"Renewed Access token for {user.email}")
+        save_account_pages(user=user) # renew access token for all the pages 
+
+        adaccounts = AccountsAd.objects.filter(user=user)
+        for ad in adaccounts:
+            page_token = ad.page_associated.longlived_access_token
+            ad_token = ad.access_token
+            if page_token != ad_token:
+                ad.access_token = page_token # changing access token of the ad account 
+                ad.save()
+                print(f"Access token of {ad.ad_account_name} is changed!" )
+    
