@@ -57,7 +57,7 @@ def adset_list_campaign(request, campaign_id):
     adsets = get_adsets_from_campaign(campaign_id=campaign_id, access_token=access_token)
     campaign_name = get_single_campaign(campaign_id=campaign_id, access_token=access_token)
     all_campaigns = request.session['all_campaigns']
-    print(all_campaigns)
+    # print(all_campaigns)
     adaccount_is_set = False
     adaccounts = AccountsAd.objects.all().filter(user=request.user)
     if len(adaccounts) == 0:
@@ -86,15 +86,15 @@ def sentiment_graph(request, adset_id):
     try:
         graph_container = []
         ad_id_list = get_ad_id_list(campaign_id=adset_id, access_token=access_token)
-        print("ad id list ", ad_id_list)
+        # print("ad id list ", ad_id_list)
         adset_name = get_adset_name(adset_id=adset_id, access_token=access_token)
-        print("adset name", adset_name)
+        # print("adset name", adset_name)
 
         for ad_id in ad_id_list:
             name, eff = get_ad_name_and_effective_object_story_id(ad_id=ad_id, access_token=access_token)
-            print("name and eff ", name,eff)
+            # print("name and eff ", name,eff)
             comment_len = comment_count(eff, access_token=access_token)
-            print("comment length ", comment_len)
+            # print("comment length ", comment_len)
             if comment_len > 2:
                 graph = get_sentiment_graph(effective_object_story_id=eff, post_title=name, access_token=access_token)
                 graph_container.append(graph)
@@ -122,7 +122,7 @@ def Hide_comment(request, adset_id, comment_id):
         'is_hidden': 'true',
         'access_token': access_token
     }
-    print("comment and access token \n",comment_id,"\n", request.session['page_access_token'])
+    # print("comment and access token \n",comment_id,"\n", request.session['page_access_token'])
     response = requests.post(url, data=data)
     if response.status_code == 200:
         comment_message = comment_info(comment_id, access_token=access_token)

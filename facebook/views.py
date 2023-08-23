@@ -30,8 +30,6 @@ def get_accounts(request):
     url = f"https://graph.facebook.com/v16.0/me/accounts?access_token={access_token}"
     accounts_json = json.loads(urllib.request.urlopen(url).read())
     accounts = accounts_json['data']
-    # for a in accounts:
-        # print(f"{a['name']}: {a['id']} : {a['access_token']}\n")
     context = {
         "accounts":accounts
     }

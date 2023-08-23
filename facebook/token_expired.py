@@ -7,6 +7,10 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from datetime import timedelta
 from .views import save_account_pages
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage, get_connection, send_mail, send_mass_mail
+from django.conf import settings
+import smtplib
 
 
 
@@ -77,4 +81,28 @@ def renew_access_token(user_id, date_required=True):
                 ad.access_token = page_token # changing access token of the ad account 
                 ad.save()
                 print(f"Access token of {ad.ad_account_name} is changed!" )
-    
+
+
+def remove_old_access_token(request):
+    cred = Creds.objects.get(user=request.user)
+    cred.has_access_token = False
+    cred.save()
+    return redirect("home")
+
+
+def send_mail_token_expired(user_email):
+    data = "Your User Access Token is expired!"
+    msg_html = render_to_string('email_template/token_expired.html', 
+                                    {'data': data})
+    try:
+        send_mail(
+            'Access Token Expired',
+            "Please renew your Access Token!",
+            settings.EMAIL_HOST_USER,
+            # ['kundan.k.pandey02@gmail.com', "georgeyoumansjr@gmail.com","coboaccess2@gmail.com"],
+            [user_email,],
+            html_message=msg_html,)
+        mail_sent = True
+        print("MAIL SENT. User Access Token expired!")
+    except smtplib.SMTPException as e:
+        print(e)

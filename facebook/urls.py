@@ -10,7 +10,7 @@ urlpatterns = [
 
     #myads
     path("adsets/<account_id>/<access_token>", myads.adset_list, name="adset-list"),
-    path('adset/<campaign_id>/valid-access/', myads.adset_list_campaign, name="adset-list-campaign"),
+    path('adsets/<campaign_id>/valid-access/', myads.adset_list_campaign, name="adset-list-campaign"),
     path("set-ad-accounts/", myads.set_accountad, name="set-accountad"),
     path('sentiment-graph/<adset_id>/', myads.sentiment_graph, name='sentiment-graph' ),
     path("hide_comments/<adset_id>", myads.Hide_comment, name="hide-comment"),
@@ -28,7 +28,8 @@ urlpatterns = [
     path("description", views.description, name='description'),
 
     #token expired 
-    path("token-expired", token_expired.token_expired, name='token_expired'),
+    path("token-expired", token_expired.token_expired, name='token-expired'),
+    path("remove_old_access_token", token_expired.remove_old_access_token, name="remove-old-access-token"),
 
     # save credentials 
     path("save-app-creds/", views.save_app_credentials, name="save-app-credentials"),
