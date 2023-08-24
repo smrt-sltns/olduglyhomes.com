@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token expired!</title>
+</head>
+<body>
+    <h3>User Access Token is expired for user : {{user.email}}</h3> 
+    <div class="more-info">
+        <h3>User Info:</h3>  
+        <p>Id : {{user.id}}</p>
+        <p>Email : {{user.email}}</p>   
+        <p>Username : {{user.username}}</p>
+        <p>Has access token {{user.creds.has_access_token}}</p>
+        <p>Ad account setup status : {{user.creds.has_ad_accounts}}</p>
+
+    </div>
+</body>
+</html>

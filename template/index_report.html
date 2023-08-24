@@ -31,7 +31,7 @@
             <div class="container sidebar">
                 <ul>
                     
-                    {% if adaccount_is_set %}
+                    {% if request.user.creds.has_ad_accounts %}
                     <!-- automation report  -->
                     <!-- <li class="nav-item dropdown" style="text-decoration:none; color:white;">
                         <a class="nav-link dropdown-toggle" href="#" id="adAutomationDropdown" role="button" data-toggle="dropdown"

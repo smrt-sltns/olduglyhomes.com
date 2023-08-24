@@ -2,7 +2,7 @@ from django.shortcuts import redirect
 from .models import Creds, AccountPages, AccountsAd
 import requests
 import json 
-from .token_expired import send_mail_token_expired
+from .token_expired import send_mail_token_expired, send_mail_token_limit_reached
 
 
 #middleware for these prefix 
@@ -39,7 +39,7 @@ class TokenExpiredMiddleware:
                 limit, expired = test_user_access_token(request)
                 if limit:
                     print("user token limit reached")
-
+                    send_mail_token_limit_reached(request.user.email)
                 if expired:
                     send_mail_token_expired(request.user.email)
                     print("user token is expired")

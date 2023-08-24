@@ -1,0 +1,34 @@
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore the virtual environment directory
+venv/
+env/
+
+# Ignore local development settings
+*.sqlite3
+*.log
+*.pot
+
+# Ignore media and static files
+media/
+static/
+**migrations/
+JSON/
+
+# Ignore environment variables file
+.env
+
+# Ignore generated IDE configuration files
+.idea/
+.vscode/
+
+# Ignore the local database
+db.sqlite3
+
+#test files 
+test.py
+flow.txt
+install.txt

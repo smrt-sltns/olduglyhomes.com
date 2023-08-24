@@ -53,7 +53,7 @@
 
 
     <div class="row-container">
-        {% if adaccount_is_set %}
+        {% if request.user.creds.has_ad_accounts %}
         <div class="ad-col">
        
                 {% for a in adaccounts %}

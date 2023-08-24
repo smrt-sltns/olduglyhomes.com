@@ -21,13 +21,13 @@ def get_sentiment_graph(effective_object_story_id="114113634875896_1426412420425
         comment_polarity = TextBlob(d['message']).sentiment.polarity
         comments.append(d['message'])
         status = d['is_hidden']
-        if comment_polarity < 0.0:
+        if comment_polarity < 0.0 and d['message'] != "":
             negative_sentiment += 1
             comment_list.append({"negative_message": d['message'], "id":d['id'], "is_hidden":status,"created_time":get_date(d['created_time'])})
-        elif comment_polarity > 0.0:
+        elif comment_polarity > 0.0 and d['messa'] != "":
             comment_list.append({"positive_message": d['message'], "id":d['id'], "is_hidden":status,"created_time":get_date(d['created_time'])})
             positive_sentiment += 1
-        elif comment_polarity == 0.0:
+        elif comment_polarity == 0.0 and d['mess'] != "":
             comment_list.append({"neutral_message": d['message'], "id":d['id'], "is_hidden":status,"created_time":get_date(d['created_time'])})
             neutral_sentiment += 1
     value = [negative_sentiment,  positive_sentiment, neutral_sentiment]

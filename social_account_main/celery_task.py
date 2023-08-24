@@ -42,6 +42,22 @@ ad_account = "act_296865963" # smart solutions account
 def do_stuff(self):
     print(f'Request: {self.request!r}')
 
+
+@shared_task
+def send_mail_token(title, message, email_temaplate, user_email:list, **kwargs):
+    msg_html = render_to_string(email_temaplate, kwargs)
+    try:
+        send_mail(
+            title,
+            message,
+            settings.EMAIL_HOST_USER,
+            [user_email,],
+            html_message=msg_html,
+            )
+    except Exception as e:
+        print(e)
+        pass 
+
 @shared_task
 def wraped_comments(file_name,account_id, token):
     save_campaings(file_name,account_id=account_id, token=token)
