@@ -17,7 +17,7 @@ def save_campaings(file_name="JSON/active_campaigns.json",account_id="act_296865
     all_campaigns_url = f"https://graph.facebook.com/v16.0/{account_id}/campaigns?fields=id,name,effective_status&access_token={token}"
     all_campaigns = json.loads(urllib.request.urlopen(all_campaigns_url).read())
     for c in all_campaigns['data']:
-        if c['effective_status'] == "ACTIVE":
+        if c['effective_status'] == "ACTIVE" or c['effective_status'] == "PAUSED":
             campaigns = {
                 "campaign_name": c['name'], 
                 "campaign_id": c['id'],  
@@ -37,6 +37,7 @@ def save_ads(file_name, token=LONGLIVED_ACCESS_TOKEN):
     data = []
     for c in active_campaing_list:
         adsets_url = f"https://graph.facebook.com/v16.0/{c['campaign_id']}/adsets?fields=name,id&access_token={token}"
+        print(adsets_url)
         adsets = json.loads(urllib.request.urlopen(adsets_url).read())
         for adset in adsets['data']:
             adset_id = adset['id']

@@ -29,6 +29,8 @@ urlpatterns = [
 
     #token expired 
     path("token-expired", token_expired.token_expired, name='token-expired'),
+    path("token-expired-page", token_expired.token_expired_page, name="token-expired-page"),
+    path("token-limit-reached", token_expired.token_limit_reached, name="token-limit-reached"),
     path("remove_old_access_token", token_expired.remove_old_access_token, name="remove-old-access-token"),
 
     # save credentials 
@@ -49,6 +51,9 @@ urlpatterns = [
     path('get_page_access_token', views2.get_post_and_comments_accounts, name='get-page-access-token'),
     path('get-account-posts/<page_id>/<page_access_token>',views2.get_posts, name='get-posts'),
     path('get-context', views2.user_social_data, name='get-context'),
+
+    #will be removed (only for testing)
+    path("exhaust_api_call/", token_expired.exhaust_api_call, name="exhaust_api_call"),
 
 ]
 

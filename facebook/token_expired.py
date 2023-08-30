@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render 
 from django.http import HttpResponse
-from .utils import PageAndAccountToken, get_long_lived_access_token, get_permission_list
+from .utils import PageAndAccountToken, get_long_lived_access_token, get_permission_list, get_all_campaigns
 from .models import Creds, AccountPages, AccountsAd
 from .decorator import custom_login_required
 # from social_account_main.token_renew import renew_access_token
@@ -36,7 +36,26 @@ def token_expired(request):
         return redirect("home")
     else:
         return render(request, "register_token/token_expired.html")
-    
+
+
+
+
+def token_expired_page(request):
+    renew =  request.GET.get("renew", None)
+    if renew != None:
+        user_id = request.user.id 
+        renew_access_token(user_id=user_id, date_required=False)
+        return redirect("home")
+        # return HttpResponse("renew query params used in html")
+    else:
+        return render(request, "register_token/token_expired_page.html")
+
+@custom_login_required
+def token_limit_reached(request):
+    return render(request, "register_token/token_limit_reached.html")
+
+
+
 
 
 def is_datefield_one_month_old(obj):
@@ -98,20 +117,6 @@ def send_mail_token_expired(user_email):
                                     {'user': user})
     self_html = render_to_string("email_template/token_expired_self.html", {"user":user})
     mail_sent = False
-    # send_mail_token(
-    #     user_email=[user_email],
-    #     title="Access Token Expired!",
-    #     message="Please renew your Access Token!",
-    #     email_template="email_template/token_expired.html",
-    #     user={'username':user.username}
-    #     )
-    # send_mail_token.delay(
-    #     user_email=CONTACT_EMAILS,
-    #     title='Access Token Expired',
-    #     message=f"Access Token of the user {user.email} has Expired!",
-    #     email_template="email_template/token_expired_self.html",
-    #     user={'username ':user.username}
-    #     )
     try:
         send_mail(
             'Access Token Expired',
@@ -139,7 +144,7 @@ def send_mail_token_limit_reached(user_email):
     mail_sent = False
     try:
         send_mail(
-            'Access Token Limit reachec',
+            'Access Token Limit reached',
             "You have exhausted you Facebook API call limit!",
             settings.EMAIL_HOST_USER,
             [user_email,],
@@ -149,12 +154,15 @@ def send_mail_token_limit_reached(user_email):
     except smtplib.SMTPException as e:
         print(e)
 
+
+#remove this in production 
+
 def exhaust_api_call(request):
     user = User.objects.get(id=4)
-    token = user.creds.LONGLIVED_ACCESS_TOKEN
+    token = "EAAHUhP0dyaEBO3Xly6zKa1QhyZCR7UCCrf34QGp3X4IeESMAFKUsZCDA9GCFx5KYtloFIiYbk8Jo6pllZCsOZBRa8hnw1PSjnxtb8vNk1s6hQyMOV3TkTueaSTboNUGgWeqOCjOFUQfp9FbuX7qSCkS3jfnTVEFZAiUoDNVb8KW8EwO2wNP5qO6q1rACd9Uqdkh3Rm0hqWEp9"
     for i in range(10000):
         try:
-            permissions = get_permission_list(token=token)
+            permissions = get_all_campaigns(ad_id="act_296865963",token=token)
             print(permissions)
         except Exception as e:
             return HttpResponse("User access token is exhausted!")

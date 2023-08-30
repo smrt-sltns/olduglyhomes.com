@@ -98,7 +98,8 @@ def pages_associated_with_adaccounts(token, ad_account_id="act_296865963"):
 def get_all_campaigns(ad_id, token):
     # get all the campaign from smart solutio business account.
     url = f"https://graph.facebook.com/v16.0/{ad_id}/campaigns?effective_status=%5B%22ACTIVE%22%2C%22PAUSED%22%5D&fields=name%2Cobjective&access_token={token}"
-    campaigns = fetch(url)
+    campaigns = fetch(url, print_response=False)
+    # print(campaigns)
     return (campaigns['data'][0]['id'], campaigns['data'][0]['name'])
 
 

@@ -8,7 +8,7 @@
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="{% url 'negative_report' adaccount.id %}">Negative Comments Report</a>
         <a class="dropdown-item" href="{% url 'positive_report' adaccount.id %}">Positive Comments Report</a>
-        <a class="dropdown-item" href="{% url 'adset-list' adaccount.ad_account_id adaccount.access_token  %}" >Campaigns List</a>
+        <a class="dropdown-item" href="{% url 'adset-list' adaccount.ad_account_id adaccount.page_associated.longlived_access_token %}" >Campaigns List</a>
     </div>
 </div>
 

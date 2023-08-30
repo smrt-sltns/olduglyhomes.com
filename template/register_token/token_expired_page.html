@@ -1,0 +1,16 @@
+{% extends "index_report.html" %}
+{% block content %}
+    <h2>Page Access token Expired!</h2>
+    <p>We have some error fetching your facebook page information. <br>
+    Please click on the 'Renew Access Token' button and we fix this for you. </p>
+    <a href="{% url 'token-expired-page' %}?renew=true" class="btn btn-warning">Renew Access Token</a>
+    <a class="btn btn-primary" href="{% url 'contact_us' %}" style="width:300px;">Contact Us</a>
+{% endblock content %}
+<!-- 
+<div class="container">
+    <h2>Page Access token Expired!</h2>
+    <p>We have some error fetching your facebook page information. <br>
+    Please click on the 'Renew Access Token' button and we fix this for you. </p>
+    <a href="" class="btn btn-warning">Renew Access Token</a>
+    <a href="{% url 'contact_us' %}" class="btn btn-primary"></a>
+</div> -->
