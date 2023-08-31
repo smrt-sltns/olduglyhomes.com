@@ -2,7 +2,7 @@
 {%block content %}
 <!-- message container -->
 <div class="message">
-    <h3>You have reached you api call limit for now. Please wait for 30 mins before making more requests.  </h3>
-    <a class="btn btn-primary" href="{% url 'contact_us' %}">Contact Us</a>
+    <h3>We found that you have made too many api call recently. Your access token limit is reached. Please wait for 30 mins before making more requests.  </h3>
+    <a class="btn btn-warning" href="{% url 'contact_us' %}">Contact Us</a>
 </div>
 {%endblock content %}

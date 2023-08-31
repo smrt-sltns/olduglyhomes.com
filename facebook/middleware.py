@@ -16,9 +16,7 @@ url_path_for_fb = [
     "/account-analysis/",
     
 ]
-url_path_for_fb_user = [
-   
-]
+
 # facebook sends specific subcodes for token expire and limit reached
 error_codes_limit_reached = [4, 17, 32, 613] 
 error_code_expired = [190]
