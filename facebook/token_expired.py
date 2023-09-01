@@ -14,8 +14,10 @@ from django.conf import settings
 import smtplib
 
 
-CONTACT_EMAILS = ["kundan.k.pandey02@gmail.com", "kundanpandey.dev@gmail.com"]
-
+CONTACT_EMAILS = [ "kundanpandey.dev@gmail.com", "georgeyoumansjr@gmail.com","coboaccess2@gmail.com"]
+# ['kundan.k.pandey02@gmail.com',
+                #  
+                # ],
 
 @custom_login_required
 def token_expired(request):
@@ -31,30 +33,28 @@ def token_expired(request):
         cred = Creds.objects.get(user_id=request.user.id)
         cred.LONGLIVED_ACCESS_TOKEN = longlived_access_token
         cred.save()
-        renew_access_token(user_id = request.user.id, date_required=False)
-
+        renew_access_token(user_id = request.user.id, date_required=False) #take user token and renew all the token related to the user 
         return redirect("home")
     else:
         return render(request, "register_token/token_expired.html")
 
 
 
-
+@custom_login_required
 def token_expired_page(request):
     renew =  request.GET.get("renew", None)
     if renew != None:
         user_id = request.user.id 
         renew_access_token(user_id=user_id, date_required=False)
         return redirect("home")
-        # return HttpResponse("renew query params used in html")
     else:
         return render(request, "register_token/token_expired_page.html")
+
+
 
 @custom_login_required
 def token_limit_reached(request):
     return render(request, "register_token/token_limit_reached.html")
-
-
 
 
 
@@ -122,7 +122,7 @@ def send_mail_token_expired(user_email):
             'Access Token Expired',
             "Please renew your Access Token!",
             settings.EMAIL_HOST_USER,
-            [user_email,],
+            [user_email, ],
             html_message=user_html,)
         send_mail(
             'Access Token Expired',
@@ -154,17 +154,4 @@ def send_mail_token_limit_reached(user_email):
     except smtplib.SMTPException as e:
         print(e)
 
-
-#remove this in production 
-
-def exhaust_api_call(request):
-    user = User.objects.get(id=4)
-    token = "EAAHUhP0dyaEBO3Xly6zKa1QhyZCR7UCCrf34QGp3X4IeESMAFKUsZCDA9GCFx5KYtloFIiYbk8Jo6pllZCsOZBRa8hnw1PSjnxtb8vNk1s6hQyMOV3TkTueaSTboNUGgWeqOCjOFUQfp9FbuX7qSCkS3jfnTVEFZAiUoDNVb8KW8EwO2wNP5qO6q1rACd9Uqdkh3Rm0hqWEp9"
-    for i in range(10000):
-        try:
-            permissions = get_all_campaigns(ad_id="act_296865963",token=token)
-            print(permissions)
-        except Exception as e:
-            return HttpResponse("User access token is exhausted!")
-    return HttpResponse("made 10000 api calls to exhaust the user access token")
 

@@ -43,17 +43,12 @@ urlpatterns = [
     #contact us 
     path("contact-us/", views.contact_us, name="contact_us"),
 
-
-
     # views2
     path('get-context2', views2.social_auth_data, name='get-context2'), 
     path('get-context3', views2.get_pages, name='get-context3'), 
     path('get_page_access_token', views2.get_post_and_comments_accounts, name='get-page-access-token'),
     path('get-account-posts/<page_id>/<page_access_token>',views2.get_posts, name='get-posts'),
     path('get-context', views2.user_social_data, name='get-context'),
-
-    #will be removed (only for testing)
-    path("exhaust_api_call/", token_expired.exhaust_api_call, name="exhaust_api_call"),
 
 ]
 
