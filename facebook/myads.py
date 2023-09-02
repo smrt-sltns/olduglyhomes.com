@@ -175,6 +175,7 @@ def set_accountad(request):
                     ad_object.user = user
                     ad_object.ad_account_name = ad_name
                     ad_object.ad_account_id = ad_id
+                    ad_object.access_token = page_.longlived_access_token
                     ad_object.save()
                     if not creds.has_ad_accounts:
                         creds.has_ad_accounts = True

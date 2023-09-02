@@ -5,7 +5,7 @@
 
     <h3>{{campaign_name}}</h3>
 
-    <div class="container">
+    <div class="account-box adset-box">
         {% for a in adsets %}
         <div class="box">
             <p><a href="{% url 'sentiment-graph' a.id %}" class="account-name">
@@ -13,45 +13,5 @@
             
         </div> 
         {% endfor %} 
-        <br>
     </div>
-
-
-    
-
-
-<style>
-.container{
-    background-color: white;
-    justify-content: center;
-    display: block;
-    margin: auto;
-    position: inherit;
-    border: 1px solid black;
-    border-radius: 10px;
-    max-width: 400px;
-    height:100%;
-
-}
-
-.box{
-    max-width:300px;
-    height:50px;
-    box-shadow: 5px 4px rgb(208, 208, 241);
-    border-radius:10px;
-    justify-content: center;
-    text-align: center;
-   
-    margin: auto;
-    margin-top: 20px;
-
-}
-.box .account-name{
-    text-align: center;
-    margin: auto;
-
-    margin-top:15px;
-    text-decoration: none;
-}
-</style>
 {% endblock %}

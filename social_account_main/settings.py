@@ -232,7 +232,11 @@ CELERY_BEAT_SCHEDULE = {
 
       'add-every-1-day': {
         'task': 'social_account_main.celery_task.every_1_day',
+<<<<<<< HEAD
         'schedule': timedelta(minutes=10),
+=======
+        'schedule': timedelta(days=1),
+>>>>>>> d003d06 (frontend)
         'args': '',
         'options': {
             'expires': 60.0,
@@ -242,7 +246,7 @@ CELERY_BEAT_SCHEDULE = {
 
       'add-every-2-hours': {
         'task': 'social_account_main.celery_task.every_2_hours',
-        'schedule': timedelta(minutes=5),
+        'schedule': timedelta(hours=2),
         'args': '',
         'options': {
             'expires': 60.0,

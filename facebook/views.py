@@ -119,18 +119,20 @@ def save_app_credentials(request):
         app_secret = request.POST['app_secret']
         if app_id == "" or app_secret == "":
             messages.error(request, "Please provide valid details.")
-            return render(request, "APP_ID_form.html")
+            return render(request, "register_token/APP_ID_form.html")
         # if len(app_id) != 15 or len(app_secret) != 32:
         #     print("Please check your creadentials again")
         #     return render(request, "APP_ID_form.html")
-   
-        creds = Creds()
-        creds.APP_ID = app_id
-        creds.APP_SECRET = app_secret 
-        creds.has_app_key = True
-        creds.user = request.user
-        creds.save() 
-        print(app_id, " ", app_secret)
+        try:
+            creds = Creds()
+            creds.APP_ID = app_id
+            creds.APP_SECRET = app_secret 
+            creds.has_app_key = True
+            creds.user = request.user
+            creds.save() 
+            print(app_id, " ", app_secret)
+        except:
+            pass
         return render(request, "register_token/APP_ACCESS_TOKEN_form.html")
     return render(request, "register_token/APP_ID_form.html")
 
@@ -140,6 +142,12 @@ def save_access_token(request):
         access_token = request.POST['access_token']
         print(access_token)
         permission_list = get_permission_list(token=access_token)
+        # try:
+        #     permission_list = get_permission_list(token=access_token)
+        # except Exception as e:  # handle 400 from facebook
+        #     print(e)
+        #     pass
+        #     return redirect('save-access-token')  # redirect user to access token page
         missing_permissions = [a for a in valid_permission_list if a not in permission_list]
         print("VALID PERMISSIONS   ::::: {}".format(valid_permission_list))
         print("MISSING PERMISSIONS ::::: {}".format(missing_permissions))

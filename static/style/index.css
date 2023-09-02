@@ -1,27 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root{
+  --pimary-color: #700505;
+  --white-color: #ffffff;
+  --black-color: #000000;
+  --light-color: #f8f9fa;
+}
+::sse
+body{
+  font-family: 'Noto Sans', sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Mulish', sans-serif;
+  font-weight: 800;
+}
+a{
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+}
 img {
-    border: 3px solid #282c34;
+  max-width: 100%;
+  display: block;
+}
+input[type="checkbox"]{
+  accent-color: var(--pimary-color);
+  width: 20px;
+  height: 20px;
+}
+input[type="checkbox"]+label {
+  top: -5px;
+  position: relative;
+}
+#header{
+  background-color: var(--pimary-color);
+}
+.landing-content h1{
+  color: var(--pimary-color);
+}
+.btn-primary{
+  background-color: var(--pimary-color);
+  border-color: var(--pimary-color) !important;
+  border-radius: 50px;
+}
+.btn-primary:hover{
+  background-color: var(--light-color);
+  color: var(--pimary-color) !important;
+}
+.api-btn{
+  width: 100%;
+  max-width: 400px;
+}
+.username{
+  font-size: 16px;
+  color: var(--white-color);
+}
+.dashboard-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+.set-ad-accounts, .fb-accounts{
+  padding: 50px;
+  border-radius: 25px;
+}
+.set-ad-accounts{
+  background-color: var(--light-color);
+  border: 1px solid var(--pimary-color);
+}
+.set-ad-accounts a{
+  color: var(--pimary-color) !important;
+}
+.fb-accounts{
+  background-color: var(--pimary-color);
+}
+.fb-accounts a{
+  color: var(--white-color) !important;
+}
+#sidebar{
+  position: fixed;
+  top: 56px;
+  left: 0;
+  height: calc(100vh - 56px);
+  background-color: #e5e5e5;
+  width: 250px;
+  padding: 20px;
+  transition: .3s;
+  overflow: hidden;
+}
+#sidebar.hide{
+  width: 0px;
+  padding: 0;
+}
+#sidebar *{
+  color: var(--pimary-color);
+}
+#sidebar .nav-link:hover{
+  background-color: var(--pimary-color);
+  color: var(--white-color);
+}
+#sidebar .nav-link:hover i{
+  color: var(--white-color);
+}
+#main-content{
+  width: calc(100% - 250px);
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+  margin-left: auto;
+  padding: 20px;
+  transition: .3s;
+}
+#sidebar.hide+#main-content{
+  width: 100%;
+}
+#main-content .dropdown{
+  position: absolute;
+  top: -67px;
+  right: 20px;
+}
+#main-content .dropdown .btn-secondary{
+  background-color: var(--white-color);
+  color: var(--pimary-color);
+}
+.content-title{
+  color: var(--pimary-color);
+  font-size: 30px;
+  font-weight: 800;
+}
+thead{
+  background-color: var(--pimary-color);
+  color: var(--white-color);
+}
+.account-box{
+  background-color: white;
+  justify-content: center;
+  display: block;
+  margin: auto;
+  position: inherit;
+  border: 1px solid black;
+  border-radius: 10px;
+  max-width: 400px;
+  height:100%;
+}
+.account-box .account-name{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width:300px;
+  height:50px;
+  box-shadow: 5px 4px rgb(208, 208, 241);
+  border-radius:10px;
+  text-align: center;
+  margin: 20px auto 0;
+  text-decoration: none;
+}
+.account-box .account-name:hover{
+  background-color: var(--pimary-color);
+  color: var(--white-color);
+}
+.sidebar-toggler{
+  background-color: transparent;
+  border: none;
+  outline: none !important;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sidebar-toggler:hover, .sidebar-toggler.active{
+  background-color: var(--white-color);
+}
+.sidebar-toggler:hover svg, .sidebar-toggler.active svg{
+  fill: var(--primary-color);
+}
+.table-container{
+  position: relative;
+  overflow-x: auto;
+}
+@media screen and (max-width: 768px){
+  #main-content .dropdown {
+    position: relative;
+    top: -15px;
+    left: 0px;
   }
-  .container-fluid {
-    height: 100vh;
-    background-color: #282c34;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .content-title{
+    font-size: 25px;
   }
-  .container-fluid > div {
-    width: 85%;
-    min-width: 300px;
-    max-width: 500px;
-  }
-  .card {
-    width: 100%;
-  }
-  .social-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .btn a, .btn a:hover {
-    color: white;
-    text-decoration: none ;
-  }
+}

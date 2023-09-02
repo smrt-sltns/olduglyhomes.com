@@ -1,15 +1,13 @@
 {% extends 'base.html' %}
 {% block title %} Sign in {% endblock %}
 {% block content %}
-<div class="row">
-    <div class="col-md-8 mx-auto social-container my-2 order-md-1">
-
-        <button class="btn btn-primary mb-2 " >
-            <a href="{% url 'social:begin' 'facebook' %}" style="color:white; text-decoration:none;">Login with Facebook</a>
-        </button>
-
-        <h4>{{user.email}}</h4>
-    </div>
-</div> 
+<section class="authentication">
+    <div class="container">
+        <div class="text-center mx-auto my-2">
+                <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-primary btn-lg mb-2 px-4">Login with Facebook</a>
+            <h4>{{user.email}}</h4>
+        </div>
+    </div> 
 </div>
+</section>
 {% endblock %}

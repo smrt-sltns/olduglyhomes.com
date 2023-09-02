@@ -12,37 +12,39 @@
     </div>
 </div>
 
-<div class="mx-auto">
-    <h3 style="margin-bottom:20px;">Negative Comment Report on {{adaccount.ad_account_name}} !</h3>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Campaign</th>
-                <th scope="col">Adset</th>
-                <th scope="col">Ad</th>
-                <th scope="col">Comment Text</th>
-                <th scope="col">Created time (Facebook)</th>
-                <th scope="col">Automation Runtime</th>
-                <th scope="col">Mail Sent</th>
-                <th scope="col">Link</th>
-            </tr>
-        </thead>
-        <tbody>
-            {%for p in negative_log %}
-            <tr>
-                <th scope="row">{{p.id}}</th>
-                <td>{{p.campaign_name}}</td>
-                <td>{{p.adset_name}}</td>
-                <td>{{p.ad_name}}</td>
-                <td>{{p.comment}}</td>
-                <td>{{p.created_time}}</td>
-                <td>{{p.automation_runtime}}</td>
-                <td>{{p.is_mail_sent}}</td>
-                <td><a href="https://127.0.0.1:8000/sentiment-graph/{{p.adset_id}}/">link</a></td>
-            </tr>
-            {%endfor %}
-        </tbody>
-    </table>
+<div class="inner-content">
+    <h3 class="content-title">Negative Comment Report on {{adaccount.ad_account_name}} !</h3>
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Campaign</th>
+                    <th scope="col">Adset</th>
+                    <th scope="col">Ad</th>
+                    <th scope="col">Comment Text</th>
+                    <th scope="col">Created time (Facebook)</th>
+                    <th scope="col">Automation Runtime</th>
+                    <th scope="col">Mail Sent</th>
+                    <th scope="col">Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for p in negative_log %}
+                <tr>
+                    <th scope="row">{{p.id}}</th>
+                    <td>{{p.campaign_name}}</td>
+                    <td>{{p.adset_name}}</td>
+                    <td>{{p.ad_name}}</td>
+                    <td>{{p.comment}}</td>
+                    <td>{{p.created_time}}</td>
+                    <td>{{p.automation_runtime}}</td>
+                    <td>{{p.is_mail_sent}}</td>
+                    <td><a href="https://127.0.0.1:8000/sentiment-graph/{{p.adset_id}}/">link</a></td>
+                </tr>
+                {%endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {%endblock content %}
