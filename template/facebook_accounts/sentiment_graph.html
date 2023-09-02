@@ -51,13 +51,13 @@
           <!-- leaving the margin and padding to be 0 -->
           <li class="hidden" style="margin:auto; margin:0; padding:0;">
             {% if comment.is_hidden %}
-            <p style="float:left; left:0; margin-right:10px;">{{comment.negative_message|safe|truncatechars:25}}</p>
+            <p style="float:left; left:0; margin-right:10px;">{{comment.negative_message|safe|truncatechars:25}} {{comment.created_time}}</p>
             <strong style="color:rgb(4, 93, 4);"><i>This comment is hidden</i></strong>
             <a href="{% url 'post-unhide-comment' adset_id comment.id c.access_token %}" class="btn btn-warning" style="float:right;">
               Unhide
             </a>
             {%else %}
-            <p style="float:left; left:0; margin-right:10px;">{{comment.negative_message|safe|truncatechars:50}}</p>
+            <p style="float:left; left:0; margin-right:10px;">{{comment.negative_message|safe|truncatechars:50}} {{comment.created_time}}</p>
             <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-primary" style="float:right;">
               Hide
             </a>{%endif%}<hr>{% endif %}
@@ -77,13 +77,13 @@
           <!-- leaving the margin and padding to be 0 -->
           <li style="margin:auto; margin:0; padding:0;" class="hidden">
             {% if comment.is_hidden %}
-            <p style="float:left; left:0; margin-right:10px;">{{comment.positive_message|safe|truncatechars:25}}</p>
+            <p style="float:left; left:0; margin-right:10px;">{{comment.positive_message|safe|truncatechars:25}} {{comment.created_time}}</p>
             <strong style="color:rgb(4, 93, 4);"><i>This comment is hidden</i></strong>
             <a href="{% url 'post-unhide-comment' adset_id comment.id c.access_token %}" class="btn btn-warning" style="float:right;">
               Unhide
             </a>
             {%else %}
-            <p style="float:left; left:0; margin-right:10px;">{{comment.positive_message|safe|truncatechars:50}}</p>
+            <p style="float:left; left:0; margin-right:10px;">{{comment.positive_message|safe|truncatechars:35}} {{comment.created_time}}</p>
             <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-primary" style="float:right;">
               Hide
             </a>
@@ -109,13 +109,13 @@
           <!-- leaving the margin and padding to be 0 -->
           <li class="hidden" style="margin:auto; margin:0; padding:0;" class="hidden">
             {% if comment.is_hidden %}
-            <p style="float:left; left:0; margin-right:10px;">{{comment.neutral_message|safe|truncatechars:25}}</p>
+            <p style="float:left; left:0; margin-right:10px;">{{comment.neutral_message|safe|truncatechars:25}} {{comment.created_time}}</p>
             <strong style="color:rgb(4, 93, 4);"><i>This comment is hidden</i></strong>
             <a href="{% url 'post-unhide-comment' adset_id comment.id c.access_token %}" class="btn btn-warning" style="float:right;">
               Unhide
             </a>
             {%else %}
-            <p style="float:left; left:0; margin-right:10px;">{{comment.neutral_message|safe|truncatechars:50}}</p>
+            <p style="float:left; left:0; margin-right:10px;">{{comment.neutral_message|safe|truncatechars:25}} {{comment.created_time}}</p>
             <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-primary" style="float:right;">
               Hide
             </a>

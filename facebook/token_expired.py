@@ -101,6 +101,8 @@ def renew_access_token(user_id, date_required=True):
                 ad.access_token = page_token # changing access token of the ad account 
                 ad.save()
                 print(f"Access token of {ad.ad_account_name} is changed!" )
+    else:
+        print("ACCESS TOKEN STATUS : ", status)
 
 
 def remove_old_access_token(request):
@@ -112,7 +114,6 @@ def remove_old_access_token(request):
 
 def send_mail_token_expired(user_email):
     user = User.objects.get(email=user_email)
-    data = "Your User Access Token is expired!"
     user_html = render_to_string('email_template/token_expired.html', 
                                     {'user': user})
     self_html = render_to_string("email_template/token_expired_self.html", {"user":user})
@@ -128,7 +129,6 @@ def send_mail_token_expired(user_email):
             'Access Token Expired',
             f"Access Token of the user {user.email} has Expired!",
             settings.EMAIL_HOST_USER,
-            # ['kundan.k.pandey02@gmail.com', "georgeyoumansjr@gmail.com","coboaccess2@gmail.com"],
             CONTACT_EMAILS,
             html_message=self_html,)
         mail_sent = True

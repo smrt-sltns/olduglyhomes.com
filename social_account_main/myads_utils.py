@@ -13,11 +13,10 @@ from datetime import datetime
 def save_campaings(file_name="JSON/active_campaigns.json",account_id="act_296865963", token=LONGLIVED_ACCESS_TOKEN):
     data = []
     campaigns = {}
-    print("Saving active campaings")
     all_campaigns_url = f"https://graph.facebook.com/v16.0/{account_id}/campaigns?fields=id,name,effective_status&access_token={token}"
     all_campaigns = json.loads(urllib.request.urlopen(all_campaigns_url).read())
     for c in all_campaigns['data']:
-        if c['effective_status'] == "ACTIVE" or c['effective_status'] == "PAUSED":
+        if c['effective_status'] == "ACTIVE":# or c['effective_status'] == "PAUSED":
             campaigns = {
                 "campaign_name": c['name'], 
                 "campaign_id": c['id'],  
@@ -28,7 +27,7 @@ def save_campaings(file_name="JSON/active_campaigns.json",account_id="act_296865
     with open(file_name, 'w') as json_file:
         json_objects = json.dumps(data, indent=4)
         json_file.write(json_objects)
-    print("Done!")
+    print(file_name, "Saved!")
 
 
 # save adsets and ads from the campaigs 
@@ -37,7 +36,6 @@ def save_ads(file_name, token=LONGLIVED_ACCESS_TOKEN):
     data = []
     for c in active_campaing_list:
         adsets_url = f"https://graph.facebook.com/v16.0/{c['campaign_id']}/adsets?fields=name,id&access_token={token}"
-        print(adsets_url)
         adsets = json.loads(urllib.request.urlopen(adsets_url).read())
         for adset in adsets['data']:
             adset_id = adset['id']
@@ -130,13 +128,6 @@ def Comment_made_yesterday(created_time:str):
     else: 
         result = False
     return result 
-
-
-# def get_grouped_list(data):
-#     print(data)
-#     grouped_list = [(
-#         el, data.count(el)) for el in data] 
-#     print([*set(grouped_list)])
 
 
 def negative_comment_today(file_name):

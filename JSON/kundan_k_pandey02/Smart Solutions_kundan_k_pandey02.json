@@ -1,152 +1,779 @@
 [
     {
-        "campaign_name": "Pishori Rice Retail Kenya - Limit",
-        "campaign_id": "6418107388782",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
         "campaign_name": "Pishori Rice Retail Kenya",
         "campaign_id": "6418103810582",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "Shae Butter Video Retail Kenya",
-        "campaign_id": "6399293996182",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "Shae Butter Retail Kenya - Limit",
-        "campaign_id": "6397643048982",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "Shae Butter Retail Kenya",
-        "campaign_id": "6397640158982",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "Long Grain Retail Kenya",
-        "campaign_id": "6383180762182",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "Long Grain Retail Kenya - Limit",
-        "campaign_id": "6383180189782",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "SfM - Awareness - Multi Africa",
-        "campaign_id": "6343500707382",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "SAP - Awareness - Multi Africa",
-        "campaign_id": "6343028320982",
-        "campaign_status": "PAUSED",
-        "adsets": []
+        "campaign_status": "ACTIVE",
+        "adsets": [
+            {
+                "adset_name": "Restaurant ALL",
+                "adset_id": "6418103825982",
+                "ads": [
+                    {
+                        "ad_name": "Pishori Video 1 - Copy",
+                        "ad_id": "6420312481782",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_260872170219417",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Pishori 2 - Copy",
+                        "ad_id": "6420312481582",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_260869133553054",
+                        "negative_comments": [],
+                        "positive_comments": [
+                            {
+                                "comment": "How much 10kg?",
+                                "id": "260869133553054_1248383396558729",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T11:35:16+0000"
+                            },
+                            {
+                                "comment": "Where are you located",
+                                "id": "260869133553054_1462027454617778",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T12:56:05+0000"
+                            },
+                            {
+                                "comment": "Am told there's nothing like pure pishori from kirinyagans! They blend with sindano! Can you vouch that this is 100% mwea pishori rice! I will board if you can vouch publicly...",
+                                "id": "260869133553054_1006053023927181",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T14:36:14+0000"
+                            },
+                            {
+                                "comment": "Pls the prices",
+                                "id": "260869133553054_270334625770478",
+                                "is_hidden": true,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T11:28:57+0000"
+                            },
+                            {
+                                "comment": "Send one at kibwezi town",
+                                "id": "260869133553054_850214979784363",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T12:53:29+0000"
+                            },
+                            {
+                                "comment": "Location please",
+                                "id": "260869133553054_679393980896664",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T14:26:12+0000"
+                            },
+                            {
+                                "comment": "How much 10kg",
+                                "id": "260869133553054_6790262457703154",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-28T10:56:47+0000"
+                            },
+                            {
+                                "comment": "Where are you located plz",
+                                "id": "260869133553054_678706944132138",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-28T11:30:20+0000"
+                            },
+                            {
+                                "comment": "Ngapi 25 kg",
+                                "id": "260869133553054_632313138739288",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-09-02T11:39:10+0000"
+                            }
+                        ]
+                    },
+                    {
+                        "ad_name": "Pishori 1 - Copy",
+                        "ad_id": "6418103817382",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_222937470679554",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    }
+                ]
+            },
+            {
+                "adset_name": "Wholesale ALL",
+                "adset_id": "6418103825182",
+                "ads": [
+                    {
+                        "ad_name": "Pishori Video 1 - Copy",
+                        "ad_id": "6420312478382",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_260872170219417",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Pishori 2 - Copy",
+                        "ad_id": "6420312478582",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_260869133553054",
+                        "negative_comments": [],
+                        "positive_comments": [
+                            {
+                                "comment": "How much 10kg?",
+                                "id": "260869133553054_1248383396558729",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T11:35:16+0000"
+                            },
+                            {
+                                "comment": "Where are you located",
+                                "id": "260869133553054_1462027454617778",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T12:56:05+0000"
+                            },
+                            {
+                                "comment": "Am told there's nothing like pure pishori from kirinyagans! They blend with sindano! Can you vouch that this is 100% mwea pishori rice! I will board if you can vouch publicly...",
+                                "id": "260869133553054_1006053023927181",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T14:36:14+0000"
+                            },
+                            {
+                                "comment": "Pls the prices",
+                                "id": "260869133553054_270334625770478",
+                                "is_hidden": true,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T11:28:57+0000"
+                            },
+                            {
+                                "comment": "Send one at kibwezi town",
+                                "id": "260869133553054_850214979784363",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T12:53:29+0000"
+                            },
+                            {
+                                "comment": "Location please",
+                                "id": "260869133553054_679393980896664",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T14:26:12+0000"
+                            },
+                            {
+                                "comment": "How much 10kg",
+                                "id": "260869133553054_6790262457703154",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-28T10:56:47+0000"
+                            },
+                            {
+                                "comment": "Where are you located plz",
+                                "id": "260869133553054_678706944132138",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-28T11:30:20+0000"
+                            },
+                            {
+                                "comment": "Ngapi 25 kg",
+                                "id": "260869133553054_632313138739288",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-09-02T11:39:10+0000"
+                            }
+                        ]
+                    },
+                    {
+                        "ad_name": "Pishori 1 - Copy",
+                        "ad_id": "6418103818982",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_222937480679553",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    }
+                ]
+            },
+            {
+                "adset_name": "Wholesale Women",
+                "adset_id": "6418103824782",
+                "ads": [
+                    {
+                        "ad_name": "Pishori Video 1 - Copy",
+                        "ad_id": "6420312481382",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_260872170219417",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Pishori 2 - Copy",
+                        "ad_id": "6420312480782",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_260869133553054",
+                        "negative_comments": [],
+                        "positive_comments": [
+                            {
+                                "comment": "How much 10kg?",
+                                "id": "260869133553054_1248383396558729",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T11:35:16+0000"
+                            },
+                            {
+                                "comment": "Where are you located",
+                                "id": "260869133553054_1462027454617778",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T12:56:05+0000"
+                            },
+                            {
+                                "comment": "Am told there's nothing like pure pishori from kirinyagans! They blend with sindano! Can you vouch that this is 100% mwea pishori rice! I will board if you can vouch publicly...",
+                                "id": "260869133553054_1006053023927181",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T14:36:14+0000"
+                            },
+                            {
+                                "comment": "Pls the prices",
+                                "id": "260869133553054_270334625770478",
+                                "is_hidden": true,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T11:28:57+0000"
+                            },
+                            {
+                                "comment": "Send one at kibwezi town",
+                                "id": "260869133553054_850214979784363",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T12:53:29+0000"
+                            },
+                            {
+                                "comment": "Location please",
+                                "id": "260869133553054_679393980896664",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T14:26:12+0000"
+                            },
+                            {
+                                "comment": "How much 10kg",
+                                "id": "260869133553054_6790262457703154",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-28T10:56:47+0000"
+                            },
+                            {
+                                "comment": "Where are you located plz",
+                                "id": "260869133553054_678706944132138",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-28T11:30:20+0000"
+                            },
+                            {
+                                "comment": "Ngapi 25 kg",
+                                "id": "260869133553054_632313138739288",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-09-02T11:39:10+0000"
+                            }
+                        ]
+                    },
+                    {
+                        "ad_name": "Pishori 1 - Copy",
+                        "ad_id": "6418103810182",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_222937454012889",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    }
+                ]
+            },
+            {
+                "adset_name": "Grocery ALL",
+                "adset_id": "6418103824582",
+                "ads": [
+                    {
+                        "ad_name": "Pishori Video 1 - Copy",
+                        "ad_id": "6420312478982",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_260872170219417",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Pishori 2 - Copy",
+                        "ad_id": "6420312478782",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_260869133553054",
+                        "negative_comments": [],
+                        "positive_comments": [
+                            {
+                                "comment": "How much 10kg?",
+                                "id": "260869133553054_1248383396558729",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T11:35:16+0000"
+                            },
+                            {
+                                "comment": "Where are you located",
+                                "id": "260869133553054_1462027454617778",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T12:56:05+0000"
+                            },
+                            {
+                                "comment": "Am told there's nothing like pure pishori from kirinyagans! They blend with sindano! Can you vouch that this is 100% mwea pishori rice! I will board if you can vouch publicly...",
+                                "id": "260869133553054_1006053023927181",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T14:36:14+0000"
+                            },
+                            {
+                                "comment": "Pls the prices",
+                                "id": "260869133553054_270334625770478",
+                                "is_hidden": true,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T11:28:57+0000"
+                            },
+                            {
+                                "comment": "Send one at kibwezi town",
+                                "id": "260869133553054_850214979784363",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T12:53:29+0000"
+                            },
+                            {
+                                "comment": "Location please",
+                                "id": "260869133553054_679393980896664",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T14:26:12+0000"
+                            },
+                            {
+                                "comment": "How much 10kg",
+                                "id": "260869133553054_6790262457703154",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-28T10:56:47+0000"
+                            },
+                            {
+                                "comment": "Where are you located plz",
+                                "id": "260869133553054_678706944132138",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-28T11:30:20+0000"
+                            },
+                            {
+                                "comment": "Ngapi 25 kg",
+                                "id": "260869133553054_632313138739288",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-09-02T11:39:10+0000"
+                            }
+                        ]
+                    },
+                    {
+                        "ad_name": "Pishori 1 - Copy",
+                        "ad_id": "6418103810382",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_222937474012887",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    }
+                ]
+            },
+            {
+                "adset_name": "Rice Women",
+                "adset_id": "6418103816982",
+                "ads": [
+                    {
+                        "ad_name": "Pishori Video 1",
+                        "ad_id": "6420311150582",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_260872170219417",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Pishori 2",
+                        "ad_id": "6420311150382",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_260869133553054",
+                        "negative_comments": [],
+                        "positive_comments": [
+                            {
+                                "comment": "How much 10kg?",
+                                "id": "260869133553054_1248383396558729",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T11:35:16+0000"
+                            },
+                            {
+                                "comment": "Where are you located",
+                                "id": "260869133553054_1462027454617778",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T12:56:05+0000"
+                            },
+                            {
+                                "comment": "Am told there's nothing like pure pishori from kirinyagans! They blend with sindano! Can you vouch that this is 100% mwea pishori rice! I will board if you can vouch publicly...",
+                                "id": "260869133553054_1006053023927181",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T14:36:14+0000"
+                            },
+                            {
+                                "comment": "Pls the prices",
+                                "id": "260869133553054_270334625770478",
+                                "is_hidden": true,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T11:28:57+0000"
+                            },
+                            {
+                                "comment": "Send one at kibwezi town",
+                                "id": "260869133553054_850214979784363",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T12:53:29+0000"
+                            },
+                            {
+                                "comment": "Location please",
+                                "id": "260869133553054_679393980896664",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T14:26:12+0000"
+                            },
+                            {
+                                "comment": "How much 10kg",
+                                "id": "260869133553054_6790262457703154",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-28T10:56:47+0000"
+                            },
+                            {
+                                "comment": "Where are you located plz",
+                                "id": "260869133553054_678706944132138",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-28T11:30:20+0000"
+                            },
+                            {
+                                "comment": "Ngapi 25 kg",
+                                "id": "260869133553054_632313138739288",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-09-02T11:39:10+0000"
+                            }
+                        ]
+                    },
+                    {
+                        "ad_name": "Pishori 1",
+                        "ad_id": "6418103818782",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_222934410679860",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    }
+                ]
+            },
+            {
+                "adset_name": "Rice ALL",
+                "adset_id": "6418103816782",
+                "ads": [
+                    {
+                        "ad_name": "Pishori Video 1 - Copy",
+                        "ad_id": "6420312481182",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_260872170219417",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Pishori 2 - Copy",
+                        "ad_id": "6420312480982",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_260869133553054",
+                        "negative_comments": [],
+                        "positive_comments": [
+                            {
+                                "comment": "How much 10kg?",
+                                "id": "260869133553054_1248383396558729",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T11:35:16+0000"
+                            },
+                            {
+                                "comment": "Where are you located",
+                                "id": "260869133553054_1462027454617778",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T12:56:05+0000"
+                            },
+                            {
+                                "comment": "Am told there's nothing like pure pishori from kirinyagans! They blend with sindano! Can you vouch that this is 100% mwea pishori rice! I will board if you can vouch publicly...",
+                                "id": "260869133553054_1006053023927181",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-24T14:36:14+0000"
+                            },
+                            {
+                                "comment": "Pls the prices",
+                                "id": "260869133553054_270334625770478",
+                                "is_hidden": true,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T11:28:57+0000"
+                            },
+                            {
+                                "comment": "Send one at kibwezi town",
+                                "id": "260869133553054_850214979784363",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T12:53:29+0000"
+                            },
+                            {
+                                "comment": "Location please",
+                                "id": "260869133553054_679393980896664",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-25T14:26:12+0000"
+                            },
+                            {
+                                "comment": "How much 10kg",
+                                "id": "260869133553054_6790262457703154",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-28T10:56:47+0000"
+                            },
+                            {
+                                "comment": "Where are you located plz",
+                                "id": "260869133553054_678706944132138",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-28T11:30:20+0000"
+                            },
+                            {
+                                "comment": "Ngapi 25 kg",
+                                "id": "260869133553054_632313138739288",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-09-02T11:39:10+0000"
+                            }
+                        ]
+                    },
+                    {
+                        "ad_name": "Pishori 1 - Copy",
+                        "ad_id": "6418103820382",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_222937440679557",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    }
+                ]
+            }
+        ]
     },
     {
         "campaign_name": "GER - Email - Nairobi",
         "campaign_id": "6341551027782",
         "campaign_status": "ACTIVE",
-        "adsets": []
-    },
-    {
-        "campaign_name": "SAP - Traffic - Multi",
-        "campaign_id": "6340238090382",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "TGT - Awareness - Multi",
-        "campaign_id": "6340215771382",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "Kapunga Rice Retail Kenya - Limit",
-        "campaign_id": "6338868866982",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "Svboost Traffic - Mix - Canada + Tennessee + India",
-        "campaign_id": "6338735959182",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "Job Focus Nairobi - FB & IG",
-        "campaign_id": "6336944895382",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "TGT - Traffic - Ghana - YT - Copy",
-        "campaign_id": "6334538497182",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "TGT - Traffic - Tanzania - YT - Copy",
-        "campaign_id": "6334537799982",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "TGT - Traffic - Zambia - YT",
-        "campaign_id": "6334471375382",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "TGT - Traffic - Congo - YT",
-        "campaign_id": "6334460788182",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "TGT - Traffic - Tanzania - YT",
-        "campaign_id": "6334449887582",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "TGT - Traffic - South African - YT",
-        "campaign_id": "6334449887182",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "TGT - Traffic - Ghana - YT",
-        "campaign_id": "6334372564382",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "TGT - Traffic - Kenya - YT",
-        "campaign_id": "6334368231982",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "Kapunga Rice Retail Kenya - Copy",
-        "campaign_id": "6334360269582",
-        "campaign_status": "PAUSED",
-        "adsets": []
-    },
-    {
-        "campaign_name": "Kapunga Rice Retail Kenya - Retarget",
-        "campaign_id": "6333745327382",
-        "campaign_status": "PAUSED",
-        "adsets": []
+        "adsets": [
+            {
+                "adset_name": "Wholesale ALL",
+                "adset_id": "6341551028582",
+                "ads": [
+                    {
+                        "ad_name": "Video 2",
+                        "ad_id": "6343940067382",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_166770966296205",
+                        "negative_comments": [],
+                        "positive_comments": [
+                            {
+                                "comment": "",
+                                "id": "166770966296205_481582380764189",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-04-14T14:46:44+0000"
+                            },
+                            {
+                                "comment": "My favorite \u2764\ufe0f",
+                                "id": "166770966296205_977187509972039",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-05-01T09:08:41+0000"
+                            },
+                            {
+                                "comment": "",
+                                "id": "166770966296205_748254490181370",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-05-04T14:37:46+0000"
+                            },
+                            {
+                                "comment": "",
+                                "id": "166770966296205_1260561767913879",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-05-29T07:24:09+0000"
+                            },
+                            {
+                                "comment": "Looking   sweet",
+                                "id": "166770966296205_217035947843991",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-06-11T09:23:35+0000"
+                            },
+                            {
+                                "comment": "Very impressive!",
+                                "id": "166770966296205_1054330838866860",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-06-14T11:01:13+0000"
+                            },
+                            {
+                                "comment": "\"You can message us on Whatsapp at +254 103 903 706 or visit our shop at Wilport View Apartment Building. Shop # 6. Nairobi West. \n\nhttps://maps.app.goo.gl/55b14p8HnhpyuaYw5\nhttps://www.ger-rei.com/store/ger.jpg\nStore hours are Monday - Sat from 10 am - 6 pm\"",
+                                "id": "166770966296205_218137507274769",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-06-21T11:45:26+0000"
+                            },
+                            {
+                                "comment": "My favorite \u2764\ufe0f",
+                                "id": "166770966296205_732489838649122",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-06-24T16:00:34+0000"
+                            },
+                            {
+                                "comment": "My favorite \u2764\ufe0f",
+                                "id": "166770966296205_593010409489212",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-06-25T19:35:59+0000"
+                            },
+                            {
+                                "comment": "Looks delicious \ud83d\ude0b",
+                                "id": "166770966296205_971855320524002",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-06-28T16:44:43+0000"
+                            },
+                            {
+                                "comment": "Delicious \ud83d\ude0b",
+                                "id": "166770966296205_253322153997217",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-06-29T15:01:14+0000"
+                            },
+                            {
+                                "comment": "Looks delicious \ud83d\ude0b",
+                                "id": "166770966296205_281388417892310",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-07-05T16:47:34+0000"
+                            },
+                            {
+                                "comment": "Delicious \ud83d\ude0b",
+                                "id": "166770966296205_792675068973680",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-07-06T13:39:53+0000"
+                            },
+                            {
+                                "comment": "interested",
+                                "id": "166770966296205_2723152901174806",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-07-13T14:55:19+0000"
+                            },
+                            {
+                                "comment": "How much??",
+                                "id": "166770966296205_1343339783268532",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-07-15T08:39:46+0000"
+                            },
+                            {
+                                "comment": "Awesome rice",
+                                "id": "166770966296205_645360104196681",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-07-17T12:31:58+0000"
+                            },
+                            {
+                                "comment": "Hello, do you have kapunga rice?",
+                                "id": "166770966296205_6587005168033941",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-07-27T14:07:13+0000"
+                            },
+                            {
+                                "comment": "Feel nice n yummy \ud83d\ude0b",
+                                "id": "166770966296205_1483279819109754",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-05T06:07:56+0000"
+                            },
+                            {
+                                "comment": "Interested !!",
+                                "id": "166770966296205_254322240756034",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-05T14:21:43+0000"
+                            },
+                            {
+                                "comment": "Do you have maruti rice and how much does it cost",
+                                "id": "166770966296205_834086148381362",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-09T19:23:09+0000"
+                            },
+                            {
+                                "comment": "Wow delicious",
+                                "id": "166770966296205_1001325901180358",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-10T18:26:12+0000"
+                            },
+                            {
+                                "comment": "My favourite is kapunga.",
+                                "id": "166770966296205_1034158664694123",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-20T10:13:37+0000"
+                            },
+                            {
+                                "comment": "Need one",
+                                "id": "166770966296205_1042974433741890",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-22T18:00:16+0000"
+                            }
+                        ]
+                    },
+                    {
+                        "ad_name": "Video 1",
+                        "ad_id": "6341551028982",
+                        "status": "ACTIVE",
+                        "eff": "114113634875896_157521287221173",
+                        "negative_comments": [],
+                        "positive_comments": [
+                            {
+                                "comment": "",
+                                "id": "157521287221173_882199889511757",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-03-26T11:24:13+0000"
+                            },
+                            {
+                                "comment": "location please",
+                                "id": "157521287221173_311142848003016",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-07-13T14:56:53+0000"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     }
 ]

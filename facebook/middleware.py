@@ -17,9 +17,9 @@ url_path_for_fb = [
     
 ]
 
-# facebook sends specific subcodes for token expire and limit reached
-error_codes_limit_reached = [4, 17, 32, 613] 
-error_code_expired = [190]
+
+error_codes_limit_reached = [4, 17, 32, 613] # limit reached subtoken
+error_code_expired = [190] # access token expired subtoken 
 
 #condition for token to give 400 response 
 # api response limit is exauhsted --done
@@ -59,10 +59,10 @@ class TokenExpiredMiddleware:
 def test_user_access_token(request):
     access_token = Creds.objects.get(user=request.user).LONGLIVED_ACCESS_TOKEN
     url = f"https://graph.facebook.com/v16.0/me/accounts?access_token={access_token}"
-    user_token_expired = False
-    user_token_limit_reached = False
-    page_token_expired = False
-    page_token_limit_reached = False
+    user_token_expired = user_token_limit_reached = page_token_expired = page_token_limit_reached = False
+    # user_token_limit_reached = False
+    # page_token_expired = False
+    # page_token_limit_reached = False
     try:
         response = requests.get(url)
         response.raise_for_status()  # Raise an exception for HTTP errors

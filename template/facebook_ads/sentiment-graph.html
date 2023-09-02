@@ -120,7 +120,7 @@
               Unhide
             </a>
             {%else %}
-            <p style="float:left; left:0; margin-right:10px;">{{comment.neutral_message|safe|truncatechars:50}} {{comment.created_time}}</p>
+            <p style="float:left; left:0; margin-right:10px;">{{comment.neutral_message|safe|truncatechars:25}} {{comment.created_time}}</p>
             <a href="{% url 'hide-comment' adset_id comment.id %}" class="btn btn-primary" style="float:right;">
               Hide
             </a>

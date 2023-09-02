@@ -99,7 +99,6 @@ def get_all_campaigns(ad_id, token):
     # get all the campaign from smart solutio business account.
     url = f"https://graph.facebook.com/v16.0/{ad_id}/campaigns?effective_status=%5B%22ACTIVE%22%2C%22PAUSED%22%5D&fields=name%2Cobjective&access_token={token}"
     campaigns = fetch(url, print_response=False)
-    # print(campaigns)
     return (campaigns['data'][0]['id'], campaigns['data'][0]['name'])
 
 
@@ -114,7 +113,6 @@ def get_adset_name(adset_id="6345796776582", access_token=LONGLIVED_ACCESS_TOKEN
 # fix on the account_id 
 def get_campaign_name_and_id(account_id="act_296865963", access_token=LONGLIVED_ACCESS_TOKEN):
     campaign_url = f"https://graph.facebook.com/v16.0/{account_id}/campaigns?fields=id,name,effective_status&access_token={access_token}"
-    # print(campaign_url)
     campaigns_json = json.loads(urllib.request.urlopen(campaign_url).read())
     active_campaign = []
     inactive_campaign = []
@@ -124,14 +122,11 @@ def get_campaign_name_and_id(account_id="act_296865963", access_token=LONGLIVED_
         else:
             inactive_campaign.append(cam)
     all_campaign = active_campaign + inactive_campaign    # print(campaigns_json['data'])
-    # return campaigns_json['data']
-    # return active_campaign
     return all_campaign
 
 def get_single_campaign(campaign_id=6338868866982, access_token=LONGLIVED_ACCESS_TOKEN):
     campaign_url = f"https://graph.facebook.com/v16.0/{campaign_id}?fields=name&access_token={access_token}"
     campaigns_json = json.loads(urllib.request.urlopen(campaign_url).read())
-    # print(campaigns_json['name'])
     return campaigns_json['name']
 
 def get_adsets_from_campaign(campaign_id, access_token):
@@ -220,13 +215,12 @@ def get_account_post_list(account_id, account_access_token):
     post_id = []
     for a in read_url['data'][:20]:
         post_id.append(a['id'])
-    # print(post_id)
+
     return post_id
 
 
 def get_post_photos(post_id,page_access_token):
     url = f"https://graph.facebook.com/v16.0/{post_id}?fields=id,full_picture&access_token={page_access_token}"
-    # print(url)
     read_url = json.loads(urllib.request.urlopen(url).read())
     full_picture = read_url['full_picture']
     return full_picture
@@ -236,7 +230,6 @@ def get_post_comment_count(post_id, account_access_token):
     url = f"https://graph.facebook.com/v16.0/{post_id}/comments?summary=true&access_token={account_access_token}&limit=100"
     read_url = json.loads(urllib.request.urlopen(url).read())
     comment_count = read_url['summary']['total_count']
-    # print(comment_count)
     return comment_count
 
 
@@ -249,7 +242,6 @@ def get_post_name_from_commentid(commentid, account_data):
         d_id = split_id(d['id'], 1)
         if d_id == comment_id:
             post_name = d['message']
-            # return d_id 
     if d_id:
         return post_name
     else:
@@ -265,5 +257,4 @@ def get_account_name(acc_id, access_token):
                         acc_id,
                         access_token,)
     account_info = json.loads(urlopen(account_url).read())
-    # print(account_info)
     return account_info['name']

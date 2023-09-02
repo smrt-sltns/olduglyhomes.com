@@ -5,16 +5,6 @@ from facebook.models import AccountsAd
 
 
 
-# users can add up to three emails 
-# class EmailModel(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     email = models.EmailField(null=False, blank=False, unique=True)
-#     email_count = models.IntegerField(default=1)
-#     is_email_confirmed = models.BooleanField(default=False)
-#     def __str__(self):
-#         return f"{self.email}, {self.user.username}"
-    
-
 #logic building 
 #each negative comments needs to be saved even if an ad has multiple of them 
 class LogNegativeComments(models.Model):
@@ -43,17 +33,9 @@ class LogNegativeComments(models.Model):
     def __str__(self):
         title = f" {self.comment} | {self.ad_name} | {self.campaign_name} ( {self.user.username})"
         return title 
-    
-    # def save(self, *args, **kwargs):
-    #     if not self.automation_runtime:
-    #         self.automation_runtime = timezone.now()
-    #     super(LogNegativeComments, self).save(*args, **kwargs)
 
 
-"""
-flow of positive comment log 
 
-"""
 class LogPositiveComments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     adaccount = models.ForeignKey(AccountsAd, on_delete=models.CASCADE)
@@ -75,11 +57,9 @@ class LogPositiveComments(models.Model):
 
     class Meta: 
         verbose_name_plural = "Log Positive Comments"
+
+
     def __str__(self):
         title = f"{self.user.username}, {self.comment_count} | {self.created_time}"
         return title 
 
-    # def save(self, *args, **kwargs):
-    #     if not self.automation_runtime:
-    #         self.automation_runtime = timezone.now()
-    #     super(LogPositiveComments, self).save(*args, **kwargs)
