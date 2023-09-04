@@ -6,6 +6,7 @@ __pycache__/
 # Ignore the virtual environment directory
 venv/
 env/
+.env
 
 # Ignore local development settings
 *.sqlite3
@@ -16,10 +17,9 @@ env/
 media/
 static/
 **migrations/
-JSON/
 
-# Ignore environment variables file
-.env
+
+
 
 # Ignore generated IDE configuration files
 .idea/
