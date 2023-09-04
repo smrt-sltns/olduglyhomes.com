@@ -1,0 +1,12 @@
+---
+deployment:
+ tasks:
+ - export DEPLOYPATH=/home/tnhlabs/Sentiment_analysis_and_automation/
+ - /bin/cp -R automation $DEPLOYPATH
+ - /bin/cp -R facebook $DEPLOYPATH
+ - /bin/cp -R JSON $DEPLOYPATH
+ - /bin/cp -R social_account_main $DEPLOYPATH
+ - /bin/cp -R template $DEPLOYPATH
+ - /bin/cp requirements.txt $DEPLOYPATH
+ - /bin/cp manage.py $DEPLOYPATH
+ - /bin/cp requirements.txt $DEPLOYPATH
