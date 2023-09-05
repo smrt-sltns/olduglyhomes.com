@@ -1,7 +1,7 @@
 ---
 deployment:
  tasks:
- - export DEPLOYPATH=/home/tnhlabs/Sentiment_analysis_and_automation/
+ - export DEPLOYPATH=/home/tnhlabs/olduglyhomes.com/
  - /bin/cp -R automation $DEPLOYPATH
  - /bin/cp -R facebook $DEPLOYPATH
  - /bin/cp -R JSON $DEPLOYPATH
