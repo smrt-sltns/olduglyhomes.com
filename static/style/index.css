@@ -11,7 +11,6 @@
   --black-color: #000000;
   --light-color: #f8f9fa;
 }
-::sse
 body{
   font-family: 'Noto Sans', sans-serif;
 }
@@ -25,7 +24,7 @@ a{
   text-decoration: none;
 }
 img {
-  max-width: 100%;
+  max-width: 100% !important;
   display: block;
 }
 input[type="checkbox"]{
@@ -36,6 +35,29 @@ input[type="checkbox"]{
 input[type="checkbox"]+label {
   top: -5px;
   position: relative;
+}
+tbody tr{
+  transition: .3s;
+}
+tbody tr:nth-child(even), tbody tr:hover{
+  background-color: var(--white-color);
+}
+tbody tr td:first-child, tbody tr th:first-child{
+  color: var(--pimary-color);
+}
+table a{
+  background-color: var(--pimary-color);
+  color: var(--white-color);
+  padding: 3px 15px;
+  border-radius: 25px;
+  font-size: 16px;
+  border: 1px solid var(--pimary-color);
+}
+table a:hover{
+  color: var(--pimary-color);
+  background-color: var(--white-color);
+  text-decoration: none;
+  border-color: var(--pimary-color);
 }
 #header{
   background-color: var(--pimary-color);
@@ -48,8 +70,8 @@ input[type="checkbox"]+label {
   border-color: var(--pimary-color) !important;
   border-radius: 50px;
 }
-.btn-primary:hover{
-  background-color: var(--light-color);
+.btn-primary:hover, .btn-primary:focus{
+  background-color: var(--light-color) !important;
   color: var(--pimary-color) !important;
 }
 .api-btn{
@@ -186,6 +208,119 @@ thead{
   position: relative;
   overflow-x: auto;
 }
+.contact-section{
+  height: 100vh;
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+}
+.contact-container{
+  height: 100vh;
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--white-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+}
+.contact-title{
+  font-size: 30px;
+  color: var(--pimary-color);
+  margin-bottom: 20px;
+}
+.contact-content form{
+  width: 100%;
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contact-content input, .contact-content textarea{
+  border: 1px solid rgb(177, 177, 177);
+  min-height: 35px;
+  outline: none;
+  border-radius: 25px;
+  padding: 5px 20px;
+  margin-bottom: 10px;
+  width: 100% !important;
+}
+.contact-content input:focus, .contact-content textarea:focus{
+  border-color: var(--pimary-color);
+}
+.contact-content button{
+  font-size: 16px;
+  padding: 8px 30px;
+  border-radius: 25px;
+  color: var(--white-color);
+  background-color: var(--pimary-color);
+  border: 1px solid var(--pimary-color);
+  transition: .3s;
+  box-shadow: 0px 5px 10px -1px rgba(0,0,0,0.4);
+-webkit-box-shadow: 0px 5px 10px -1px rgba(0,0,0,0.4);
+-moz-box-shadow: 0px 5px 10px -1px rgba(0,0,0,0.4);
+}
+.contact-content button:hover{
+  color: var(--pimary-color);
+  background-color: var(--white-color);
+  cursor: pointer;
+}
+.comment-success, .comment-failed{
+  background-color: #078507;
+  color: var(--white-color);
+  padding: 2px 10px;
+  font-size: 12px;
+  border-radius: 15px;
+}
+.comment-failed{
+  background-color: #ff0000;
+}
+.dropdown-item:focus, .dropdown-item:hover{
+  background-color: var(--pimary-color);
+  color: var(--white-color);
+}
+.message-container .alert-info {
+  color: #ffffff;
+  background-color: #c1a9a9;
+  border-color: #c1a9a9;
+}
+.graph-btn, .picture-btn{
+  background-color: var(--pimary-color) !important;
+  color: var(--white-color) !important;
+  border-radius: 25px;
+  margin: 0 5px;
+  padding: 3px 10px;
+  font-size: 15px;
+}
+.theme-btn{
+  background-color: var(--pimary-color) !important;
+  color: var(--white-color) !important;
+}
+.graph-comment-box .theme-btn{
+  margin-bottom: 20px;
+}
+.graph-box-title{
+  color: var(--pimary-color);
+}
+.graph-comment-box li{
+  list-style: none;
+}
+.graph-list li{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.graph-list p{
+  margin-bottom: 0;
+}
+.btn.focus, .btn:focus {
+  box-shadow: 0 0 0 0.2rem rgb(112 5 5 / 26%);
+}
+.graph-container{
+  border-radius: 20px;
+  margin-bottom: 50px;
+  box-shadow: 5px 5px 8px rgb(208, 208, 241);
+}
 @media screen and (max-width: 768px){
   #main-content .dropdown {
     position: relative;
@@ -194,5 +329,13 @@ thead{
   }
   .content-title{
     font-size: 25px;
+  }
+}
+@media screen and (max-width: 577px){
+  .graph-chart .plotly-graph-div{
+    transform: translateX(-20%) scale(.6);
+  }
+  .graph-container{
+    box-shadow: none;
   }
 }

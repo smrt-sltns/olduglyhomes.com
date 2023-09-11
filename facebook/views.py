@@ -204,8 +204,8 @@ def save_account_pages(user):
             acc_page.has_access_token = True
             page_objects.append(acc_page)
         print("saved {} with Id {}".format(p['name'], p['id']))
-        if len(page_objects) != 0:
-            AccountPages.objects.bulk_create(page_objects)
+    if len(page_objects) != 0:
+        AccountPages.objects.bulk_create(page_objects)
 
 
 # Landing page to set up api keys 

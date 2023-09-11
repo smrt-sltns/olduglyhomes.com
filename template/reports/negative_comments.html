@@ -39,7 +39,7 @@
                     <td>{{p.comment}}</td>
                     <td>{{p.created_time}}</td>
                     <td>{{p.automation_runtime}}</td>
-                    <td>{{p.is_mail_sent}}</td>
+                    <td><span class="comment-{% if p.is_mail_sent %}success{% else %}failed{% endif %}">{{p.is_mail_sent}}</span></td>
                     <td><a href="https://127.0.0.1:8000/sentiment-graph/{{p.adset_id}}/">link</a></td>
                 </tr>
                 {%endfor %}

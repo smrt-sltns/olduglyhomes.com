@@ -32,7 +32,7 @@ class Creds(models.Model):
 # store all the Facebook pages credentials and access token with permissions 
 class AccountPages(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    page_id = models.CharField(max_length=100, null=True, blank=True, unique=True)
+    page_id = models.CharField(max_length=100, null=True, blank=True,)
     page_name = models.CharField(max_length=50, null=True, blank=True)
     page_access_token = models.CharField(max_length=400, null=True, blank=True)
     longlived_access_token = models.CharField(max_length=400, null=True, blank=True)
