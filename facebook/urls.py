@@ -52,5 +52,3 @@ urlpatterns = [
 
 ]
 
-
-# https://kokes.github.io/blog/2018/02/04/facebook-downloading.html

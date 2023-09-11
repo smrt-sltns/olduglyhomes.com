@@ -1,35 +1,42 @@
-# Ignore compiled Python files
+# Ignore Python bytecode files
 __pycache__/
-*.pyc
-*.pyo
 
-# Ignore the virtual environment directory
+# Ignore the virtual environment directory (if you're using one)
 venv/
-env/
-
-# Ignore local development settings
-*.sqlite3
-*.log
-*.pot
-
-# Ignore media and static files
-media/
-static/
-**migrations/
-JSON/
-
-# Ignore environment variables file
 .env
 
-# Ignore generated IDE configuration files
-.idea/
-.vscode/
+# Ignore database files (SQLite)
+*.sqlite3
 
-# Ignore the local database
-db.sqlite3
+# Ignore log files
+*.log
 
-#test files 
-test.py
+#django
+**migrations/
+static/
 flow.txt
 install.txt
+test.py
 
+
+# Ignore sensitive or secret information (you should store these in environment variables)
+.env
+
+# Ignore IDE and editor-specific files
+.vscode/
+.idea/
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore compiled Python files
+*.pyc
+
+# Ignore local settings file (you should have a production-ready settings file)
+local_settings.py
+
+# Ignore backup and temporary files
+*~
+*.swp
+*.bak
+*.tmp

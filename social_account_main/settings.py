@@ -15,7 +15,11 @@ SECRET_KEY = 'django-insecure-acj1g@4&c&pkah!1il$ooqm669#s@!4bag*_lw66cga8_mzqhn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "www.olduglyhomes.com",
+    "olduglyhomes.com",
+    "localhost"
+]
 
 
 # Application definition
@@ -220,12 +224,9 @@ CELERY_CACHE_BACKEND = 'django-cache'
 
 CELERY_CACHE_BACKEND = 'default'
 
-
 CELERY_TIMEZONE = "Asia/Kolkata"
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
-
-
 
 # celery beat to run task every x time 
 CELERY_BEAT_SCHEDULE = {
