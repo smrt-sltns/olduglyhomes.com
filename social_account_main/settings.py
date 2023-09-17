@@ -13,12 +13,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-acj1g@4&c&pkah!1il$ooqm669#s@!4bag*_lw66cga8_mzqhn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "www.olduglyhomes.com",
     "olduglyhomes.com",
-    "localhost"
+    "localhost",
+    "69.48.163.14"
 ]
 
 
@@ -162,7 +163,6 @@ AUTHENTICATION_BACKENDS = (
  
     'social_core.backends.twitter.TwitterOAuth',
     'social_core.backends.github.GithubOAuth2',
-
     'django.contrib.auth.backends.ModelBackend',
 )
 
