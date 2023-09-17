@@ -2,6 +2,7 @@ from pathlib import Path
 from decouple import config
 import os 
 from datetime import timedelta
+import logging.config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -111,6 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+LOGGING_CONFIG = 'logging.config.dictConfig'
+
 
 LOGGING = {
     "version": 1,
