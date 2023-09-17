@@ -113,55 +113,52 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGGING_CONFIG = 'logging.config.dictConfig'
 
+LOGGING_DIR = os.path.join(BASE_DIR, 'logs')  # Directory to store log files
+
+if not os.path.exists(LOGGING_DIR):
+    os.makedirs(LOGGING_DIR)
 
 LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
         },
-        "file": {
-            "class": "logging.FileHandler",
-            "filename": os.path.join(BASE_DIR, "logs/debug.log"),
-            "formatter": "verbose",
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(LOGGING_DIR, 'debug.log'),
+            'formatter': 'verbose',
         },
         'celery': {
+            'level': 'INFO',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, "logs/celery.log"),
+            'filename': os.path.join(LOGGING_DIR, 'celery.log'),
             'formatter': 'verbose',
         },
     },
-    "formatters": {
-        "verbose": {
-            "format": "{asctime} {levelname} {name} {message}",
-            "style": "{",
-        },
-    },
-    "loggers": {
-        "django": {
-            "handlers": [
-                "console",
-                "file",
-            ],  
-            "level": "INFO",
-        },
-        "asgi": {
-            "handlers": ["console", "file"],  
-            "level": "INFO",
-            "propagate": False,
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
         },
         'celery': {
-            'handlers': ['celery','file'],
+            'handlers': ['celery'],
             'level': 'INFO',
-            'propagate': False
+            'propagate': False,
         },
     },
 }
-
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
