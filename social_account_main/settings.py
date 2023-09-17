@@ -111,6 +111,52 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+        "file": {
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, "logs/debug.log"),
+            "formatter": "verbose",
+        },
+        'celery': {
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, "logs/celery.log"),
+            'formatter': 'verbose',
+        },
+    },
+    "formatters": {
+        "verbose": {
+            "format": "{asctime} {levelname} {name} {message}",
+            "style": "{",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": [
+                "console",
+                "file",
+            ],  
+            "level": "INFO",
+        },
+        "asgi": {
+            "handlers": ["console", "file"],  
+            "level": "INFO",
+            "propagate": False,
+        },
+        'celery': {
+            'handlers': ['celery','file'],
+            'level': 'INFO',
+            'propagate': False
+        },
+    },
+}
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
