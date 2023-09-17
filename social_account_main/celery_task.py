@@ -31,6 +31,15 @@ from automation.models import LogNegativeComments, LogPositiveComments
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'social_account_main.settings')
 app = Celery('social_account_main')
 app.config_from_object('django.conf:settings', namespace='CELERY')
+
+from celery.signals import setup_logging
+
+@setup_logging.connect
+def config_loggers(*args, **kwargs):
+    from logging.config import dictConfig
+    from django.conf import settings
+    dictConfig(settings.LOGGING)
+
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
 ad_account = "act_296865963" # smart solutions account 
