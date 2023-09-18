@@ -6,7 +6,7 @@ venv/
 .env
 
 # Ignore database files (SQLite)
-*.sqlite3
+db.sqlite3
 
 # Ignore log files
 *.log
@@ -21,6 +21,9 @@ flow.txt
 install.txt
 test.py
 
+
+#celery-beat
+celerybeat-schedule.db
 
 # Ignore sensitive or secret information (you should store these in environment variables)
 .env
