@@ -20,7 +20,8 @@ ALLOWED_HOSTS = [
     "www.olduglyhomes.com",
     "olduglyhomes.com",
     "localhost",
-    "69.48.163.14"
+    "69.48.163.14",
+    "127.0.0.1",
 ]
 
 

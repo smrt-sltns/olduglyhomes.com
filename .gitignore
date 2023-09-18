@@ -20,6 +20,7 @@ static/
 flow.txt
 install.txt
 test.py
+url_endpoints.py
 
 
 # Ignore sensitive or secret information (you should store these in environment variables)
