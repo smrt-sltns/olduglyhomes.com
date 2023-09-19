@@ -1,96 +1,5 @@
 [
     {
-        "campaign_name": "Pishori Rice Retail Kenya",
-        "campaign_id": "6418103810582",
-        "campaign_status": "ACTIVE",
-        "adsets": [
-            {
-                "adset_name": "Restaurant ALL",
-                "adset_id": "6418103825982",
-                "ads": [
-                    {
-                        "ad_name": "Pishori 1 - Copy",
-                        "ad_id": "6418103817382",
-                        "status": "ACTIVE",
-                        "eff": "114113634875896_222937470679554",
-                        "negative_comments": [],
-                        "positive_comments": []
-                    }
-                ]
-            },
-            {
-                "adset_name": "Wholesale ALL",
-                "adset_id": "6418103825182",
-                "ads": [
-                    {
-                        "ad_name": "Pishori 1 - Copy",
-                        "ad_id": "6418103818982",
-                        "status": "ACTIVE",
-                        "eff": "114113634875896_222937480679553",
-                        "negative_comments": [],
-                        "positive_comments": []
-                    }
-                ]
-            },
-            {
-                "adset_name": "Wholesale Women",
-                "adset_id": "6418103824782",
-                "ads": [
-                    {
-                        "ad_name": "Pishori 1 - Copy",
-                        "ad_id": "6418103810182",
-                        "status": "ACTIVE",
-                        "eff": "114113634875896_222937454012889",
-                        "negative_comments": [],
-                        "positive_comments": []
-                    }
-                ]
-            },
-            {
-                "adset_name": "Grocery ALL",
-                "adset_id": "6418103824582",
-                "ads": [
-                    {
-                        "ad_name": "Pishori 1 - Copy",
-                        "ad_id": "6418103810382",
-                        "status": "ACTIVE",
-                        "eff": "114113634875896_222937474012887",
-                        "negative_comments": [],
-                        "positive_comments": []
-                    }
-                ]
-            },
-            {
-                "adset_name": "Rice Women",
-                "adset_id": "6418103816982",
-                "ads": [
-                    {
-                        "ad_name": "Pishori 1",
-                        "ad_id": "6418103818782",
-                        "status": "ACTIVE",
-                        "eff": "114113634875896_222934410679860",
-                        "negative_comments": [],
-                        "positive_comments": []
-                    }
-                ]
-            },
-            {
-                "adset_name": "Rice ALL",
-                "adset_id": "6418103816782",
-                "ads": [
-                    {
-                        "ad_name": "Pishori 1 - Copy",
-                        "ad_id": "6418103820382",
-                        "status": "ACTIVE",
-                        "eff": "114113634875896_222937440679557",
-                        "negative_comments": [],
-                        "positive_comments": []
-                    }
-                ]
-            }
-        ]
-    },
-    {
         "campaign_name": "GER - Email - Nairobi",
         "campaign_id": "6341551027782",
         "campaign_status": "ACTIVE",
@@ -259,6 +168,13 @@
                                 "is_hidden": false,
                                 "is_ignored": false,
                                 "created_time": "2023-08-20T10:13:37+0000"
+                            },
+                            {
+                                "comment": "Need one",
+                                "id": "166770966296205_1042974433741890",
+                                "is_hidden": false,
+                                "is_ignored": false,
+                                "created_time": "2023-08-22T18:00:16+0000"
                             }
                         ]
                     },
