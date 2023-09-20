@@ -16,7 +16,7 @@ staticfiles/
 
 #django
 **migrations/
-static/
+#static/
 flow.txt
 install.txt
 test.py
