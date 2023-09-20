@@ -5,6 +5,8 @@ from .decorator import custom_login_required
 from .models import Creds, AccountPages, AccountsAd
 
 
+
+
 # Create your views here.
 def login(request):
   return render(request, 'login.html')
