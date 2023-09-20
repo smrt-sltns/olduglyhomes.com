@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from facebook.models import Creds, AccountPages,AccountsAd
 from .models import LogNegativeComments, LogPositiveComments
-
+from django.conf import settings 
 
 
 def negative_report(request, ad_id):
@@ -12,6 +12,7 @@ def negative_report(request, ad_id):
     negativelog = LogNegativeComments.objects.all().filter(adaccount=adaccount).order_by('-automation_runtime')
     context = {
         # "all_campaigns":all_campaigns,
+        "base_url": settings.BASE_URL,
         "adaccount_is_set": adaccount_is_set,
         "negative_log": negativelog,
         "adaccount":adaccount,
@@ -28,6 +29,7 @@ def positive_report(request, ad_id):
     postivelog = LogPositiveComments.objects.all().filter(adaccount=adaccount).order_by('-automation_runtime')
     context = {
         # "all_campaigns":all_campaigns,
+        "base_url": settings.BASE_URL,
         "adaccount_is_set": adaccount_is_set,
         "positive_log": postivelog,
         "adaccount":adaccount,
