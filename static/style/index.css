@@ -11,6 +11,10 @@
   --black-color: #000000;
   --light-color: #f8f9fa;
 }
+::selection{
+  background-color: var(--pimary-color);
+  color: var(--white-color);
+}
 body{
   font-family: 'Noto Sans', sans-serif;
 }
@@ -61,6 +65,10 @@ table a:hover{
 }
 #header{
   background-color: var(--pimary-color);
+}
+.navbar-brand a{
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 .landing-content h1{
   color: var(--pimary-color);
@@ -337,5 +345,14 @@ thead{
   }
   .graph-container{
     box-shadow: none;
+  }
+  .navbar-brand a{
+    letter-spacing: 0px;
+  }
+  .navbar-brand{
+    margin-right: 0px;
+  }
+  button.btn.btn-outline-white.dropdown-toggle {
+      font-size: 14px;
   }
 }
