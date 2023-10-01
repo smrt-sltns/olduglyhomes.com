@@ -28,16 +28,18 @@
       <!-- {{c.Comments}} -->
       
 
-      <div class="graph-container pt-3">
-          <a class="btn btn-sm btn-prinamry graph-btn" onclick="showGraph(1, '{{c.adname}}')">Graph<a> /
-          <a class="btn btn-sm btn-prinamry picture-btn" onclick="showGraph(2, '{{c.adname}}')">Picture</a>
-            <div id="graph1 {{c.adname}}" class="graph-chart mt-3">
+      <div class="graph-container">
+          <div class="graph-btns">
+            <a class="btn btn-prinamry graph-btn border-right" onclick="showGraph(1, '{{c.adname}}')">Graph</a>
+              <a class="btn btn-prinamry picture-btn" onclick="showGraph(2, '{{c.adname}}')">Picture</a>
+          </div>
+            <div id="graph1 {{c.adname}}" class="graph-chart py-3">
               {{c.Graph|safe}}
             </div>
             <div id="graph2 {{c.adname}}" class="hide-graph">
               <img
                 src="{{c.full_picture_url}}"
-                alt="No image available!" style="max-width:500px; max-height:500px; ">
+                alt="No image available!" class="graph-img">
             </div>
       </div>
     </div>
@@ -45,9 +47,11 @@
 
     <div class="col-lg-6 col-12">
       <div class="comment-container graph-comment-box">
-      <button class="btn btn-prinamry theme-btn" onclick="showDiv(1, '{{c.adname}}')">Negative</button>
-      <button class="btn btn-prinamry theme-btn" onclick="showDiv(2, '{{c.adname}}')">Positive</button>
-      <button class="btn btn-prinamry theme-btn" onclick="showDiv(3, '{{c.adname}}')">Neutral</button>
+      <div class="graph-tabs-btns align-items-center btn-group mb-3">
+        <button class="btn px-4 py-2 btn-warning" onclick="showDiv(1, '{{c.adname}}')">Negative</button>
+        <button class="btn px-4 py-2 btn-success btn-graph" onclick="showDiv(2, '{{c.adname}}')">Positive</button>
+        <button class="btn px-4 py-2 theme-btn mb-0" onclick="showDiv(3, '{{c.adname}}')">Neutral</button>
+      </div>
       <div id="div1 {{c.adname}}" >
         <h5 class="graph-box-title">Negative Comments</h5>
         <hr>
@@ -64,13 +68,13 @@
             </a>
             {%else %}
             <p>{{comment.negative_message|safe|truncatechars:50}} {{comment.created_time}}</p>
-            <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-primary" style="float:right;">
+            <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-danger px-3 btn-sm rounded-pill" style="float:right;">
               Hide
             </a>{%endif%}<hr>{% endif %}
           </li>
           {% endfor %}
         </ul>
-        <a onclick="showMoreList(1,'{{c.adname}}')">View more...</a>
+        <a onclick="showMoreList(1,'{{c.adname}}')" class="my-2">View more...</a>
       </div>
       <div id="div2 {{c.adname}}" class="hide">
         <h5 class="graph-box-title">Postive Comments</h5>
@@ -90,7 +94,7 @@
             </a>
             {%else %}
             <p>{{comment.positive_message|safe|truncatechars:35}} {{comment.created_time}}</p>
-            <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-primary" style="float:right;">
+            <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-danger px-3 btn-sm rounded-pill" style="float:right;">
               Hide
             </a>
             {%endif%}
@@ -102,7 +106,7 @@
           <hr>
           {% endfor %}
         </ul>
-        <a onclick="showMoreList(2,'{{c.adname}}')">View more...</a>
+        <a onclick="showMoreList(2,'{{c.adname}}')" class="my-2">View more...</a>
       </div>
       <div id="div3 {{c.adname}}" class="hide">
         <h5 class="graph-box-title">Neutral Comments</h5>
@@ -119,7 +123,7 @@
             </a>
             {%else %}
             <p>{{comment.neutral_message|safe|truncatechars:25}} {{comment.created_time}}</p>
-            <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-primary" style="float:right;">
+            <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-danger px-3 btn-sm rounded-pill" style="float:right;">
               Hide
             </a>
             {%endif%}
@@ -131,7 +135,7 @@
           <hr>
           {% endfor %}
         </ul>
-        <a onclick="showMoreList(3,'{{c.adname}}')">View more...</a>
+        <a onclick="showMoreList(3,'{{c.adname}}')" class="my-2">View more...</a>
       </div>
     </div>
       <!-- <h5 style="padding-bottom:0; margin-bottom:0;">Postive Comments</h5>

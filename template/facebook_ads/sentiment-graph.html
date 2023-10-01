@@ -9,37 +9,37 @@
 </div>
 
 <div class="container">
-
-  <div class="row">
+  <div class="row mb-5">
     {% for c in graph_container %}
 
-    <div class="col-sm">
+    <div class="col-lg-6 col-12">
       <!-- {{c.Comments}} -->
       
 
-      <div class="graph-container" style="max-width:500px; max-height: 600px; 
-      border-radius: 20px;
-      margin-bottom: 200px;
-      box-shadow: 5px 5px 8px rgb(208, 208, 241);">
-          <a class="btn btn-prinamry" onclick="showGraph(1, '{{c.adname}}')">Graph<a> 
-          <!-- <a class="btn btn-prinamry" onclick="showGraph(2, '{{c.adname}}')">Picture</a> -->
-            <div id="graph1 {{c.adname}}">
+      <div class="graph-container">
+        <div class="graph-btns">
+            <a class="btn btn-prinamry graph-btn border-right" onclick="showGraph(1, '{{c.adname}}')">Graph<a> 
+            <!-- <a class="btn btn-prinamry picture-btn" onclick="showGraph(2, '{{c.adname}}')">Picture</a> -->
+          </div>
+            <div id="graph1 {{c.adname}}" class="graph-chart py-3">
               {{c.Graph|safe}}
             </div>
             <div id="graph2 {{c.adname}}" class="hide-graph">
               <img
                 src="https://scontent.fpnq9-1.fna.fbcdn.net/v/t39.30808-6/313112381_199436665782083_7965339444834071481_n.jpg?stp=dst-jpg_p720x720&_nc_cat=109&ccb=1-7&_nc_sid=730e14&_nc_ohc=rTVnDAolGaoAX8xhd9O&_nc_ht=scontent.fpnq9-1.fna&edm=AJfPMC4EAAAA&oh=00_AfA3PcwRJNNl3hRfy9nSx_G1xDsxy9taGqnnpbVweoE-Cw&oe=645E2A21"
-                alt="No image available" style="max-width:500px; max-height:500px; ">
+                alt="No image available" class="graph-img">
             </div>
       </div>
     </div>
     <hr>
 
-    <div class="col-sm" style="margin-bottom:100px;">
-
-      <button class="btn btn-prinamry" onclick="showDiv(1, '{{c.adname}}')">Negative</button>
-      <button class="btn btn-prinamry" onclick="showDiv(2, '{{c.adname}}')">Positive</button>
-      <button class="btn btn-prinamry" onclick="showDiv(3, '{{c.adname}}')">Neutral</button>
+    <div class="col-lg-6 col-12">
+      <div class="comment-container graph-comment-box">
+      <div class="graph-tabs-btns align-items-center btn-group mb-3">
+        <button class="btn px-4 py-2 btn-warning" onclick="showDiv(1, '{{c.adname}}')">Negative</button>
+        <button class="btn px-4 py-2 btn-success btn-graph" onclick="showDiv(2, '{{c.adname}}')">Positive</button>
+        <button class="btn px-4 py-2 theme-btn mb-0" onclick="showDiv(3, '{{c.adname}}')">Neutral</button>
+      </div>
       <div id="div1 {{c.adname}}">
         <h5 style="padding-bottom:0; margin-bottom:0;">Negative Comments</h5>
         <hr>
@@ -107,7 +107,6 @@
         <h5 style="padding-bottom:0; margin-bottom:0;">Neutral Comments</h5>
         <hr>
 
-
         <ul id="dataList3{{c.adname}}">
           {% for comment in c.Comments %}
           {% if comment.neutral_message %}
@@ -139,6 +138,7 @@
       </div>
       <!-- <h5 style="padding-bottom:0; margin-bottom:0;">Postive Comments</h5>
       <hr> -->
+      </div>
     </div>
     <hr>
     {%endfor%}

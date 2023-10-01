@@ -14,11 +14,13 @@
   <title>Smart Solutions</title>
 </head>
 
-<body>
+<body class="bg-light">
   <header id="header" class="py-2">
     <div class="container">
       <nav class="navbar navbar-light navbar-fixed-top justify-content-between">
-        <span class="navbar-brand mb-0 h1"><a href="{% url 'home' %}" class="text-white">Smart Solutions</a> </span>
+        <span class="navbar-brand mb-0 h1"><a href="{% url 'home' %}" class="text-white">
+          <img src="{% static 'image/smartysync-logo.png' %}" alt="Smartysync" width="70px">
+        </a> </span>
         {% block dropdown %}
         <div class="dropdown">
         <button type="button" class="btn btn-outline-white dropdown-toggle" data-toggle="dropdown">
@@ -51,8 +53,8 @@
 
     
   <section class="landing-section">
-      <div class="landing-content text-center px-sm-5 py-5 px-3 mx-2 my-5 bg-light">
-        <h1>{% block title %}{% endblock %}</h1>
+      <div class="landing-content text-center px-sm-5 py-5 px-3 mx-2">
+        <h1 class="mb-4">{% block title %}{% endblock %}</h1>
         <!-- Display messages if the comment is hidden successfully -->
         <div class="message-container" >
           {% if messages %}
