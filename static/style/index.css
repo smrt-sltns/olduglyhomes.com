@@ -425,9 +425,17 @@ thead{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+}
+.graph-list li hr{
+  width: 100%;
+  margin: 10px 0;
 }
 .graph-list p{
   margin-bottom: 0;
+}
+.view-more-btn{
+  display: block;
 }
 .btn.focus, .btn:focus {
   box-shadow: 0 0 0 0.2rem rgb(112 5 5 / 26%);
@@ -485,5 +493,21 @@ thead{
   .username{
     font-size: 14px;
     padding: 5px 10px;
+  }
+  .graph-chart{
+    max-width: 300px;
+  }
+  .navbar .username{
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .dropdown-menu{
+    left: 70%;
+    transform: translateX(-50%);
+  }
+}
+@media screen and (max-width: 450px){
+  .dropdown-menu{
+    left: -7%;
   }
 }
