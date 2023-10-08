@@ -1,21 +1,28 @@
 <!-- templates/home.html -->
 
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %} Please choose an Account {% endblock %}
 {% block content %}
 {% block dropdown %}{%endblock%}
     <h3>{{campaign_name}}</h3>
 
-    <div class="account-box">
-        {% for a in accounts %}
-        <div class="box">
-            <a href="{% url 'sentiment-graph-post' a.id a.access_token %}" class="account-name">
-                {{a.name}} 
-            </a>
-        </div> 
-        {% endfor %} 
-        <br>
+    <div class="add-account-container">
+        <div class="account-box">
+            <div class="accounts-list">
+                {% for a in accounts %}
+                <div class="box">
+                    <a href="{% url 'sentiment-graph-post' a.id a.access_token %}" class="account-name">
+                        {{a.name}} 
+                    </a>
+                </div> 
+                {% endfor %} 
+            </div>
+        </div>
+        <div class="account-img">
+            <img src="{% static 'image/please-add-account.png' %}" alt="Please add account">
+        </div>
     </div>
     {% if messages %}
     {% for message in messages %} 

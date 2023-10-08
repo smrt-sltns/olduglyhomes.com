@@ -1,17 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 {% block title %} Please choose an AD {% endblock %}
 {% block content %}
 
     <h3>{{campaign_name}}</h3>
 
-    <div class="account-box adset-box">
-        {% for a in adsets %}
-        <div class="box">
-            <p><a href="{% url 'sentiment-graph' a.id %}" class="account-name">
-                {{a.name}} <span style="padding-left:10px; font-size:medium; color:rgb(0, 0, 0);">[{{a.ad_count}}]</span></a></p>
-            
-        </div> 
-        {% endfor %} 
+    <div class="add-account-container">
+        <div class="account-box">
+            <div class="accounts-list adset-box">
+                {% for a in adsets %}
+                <div class="box">
+                    <p><a href="{% url 'sentiment-graph' a.id %}" class="account-name">
+                        {{a.name}} <span style="padding-left:10px; font-size:medium; color:rgb(0, 0, 0);">[{{a.ad_count}}]</span></a></p>
+                    
+                </div> 
+                {% endfor %} 
+            </div>
+        </div>
+        <div class="account-img">
+            <img src="{% static 'image/please-add-account.png' %}" alt="Please add account">
+        </div>
     </div>
 {% endblock %}

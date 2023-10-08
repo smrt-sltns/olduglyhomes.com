@@ -1,0 +1,97 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>404 &#9866; PAGE NOT FOUND</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        :root{
+            --pimary-color: #700505;
+            --white-color: #ffffff;
+            --black-color: #000000;
+            --light-color: #f8f9fa;
+        }
+        ::selection{
+            background-color: var(--pimary-color);
+            color: var(--white-color);
+        }
+        body{
+            font-family: 'Noto Sans', sans-serif;
+        }
+        h1,h2,h3,h4,h5,h6{
+            font-family: 'Mulish', sans-serif;
+            font-weight: 800;
+        }
+        .not-found{
+            height: 100vh;
+            width: 100%;
+            background-color: var(--light-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .not-found-content h1{
+            color: var(--pimary-color);
+            font-size: 150px;
+            font-weight: 900;
+        }
+        .not-found-content h3{
+            font-size: 30px;
+            color: var(--black-color);
+        }
+        .not-found-content p{
+            font-size: 18px;
+            margin: 20px auto;
+            width: 100%;
+            max-width: 600px;
+        }
+        .not-found-content a{
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            background-color: var(--pimary-color);
+            color: var(--white-color);
+            text-decoration: none;
+            border: 1px solid var(--pimary-color);
+        }
+        .not-found-content a:hover{
+            background-color: var(--white-color);
+            color: var(--pimary-color);
+        }
+        @media (max-width: 600px){
+            .not-found-content h1{
+                font-size: 100px;
+            }
+            .not-found-content h3{
+                font-size: 20px;
+            }
+            .not-found-content a{
+                font-size: 16px;
+                padding: 8px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="not-found">
+        <div class="not-found-content">
+            <h1>OOP!</h1>
+            <h3>404 &#9866; PAGE NOT FOUND</h3>
+            <p>The page you are looking for might had been removed or had its name changed or temporarily unavailable.</p>
+            <a href="/">GO TO HOMEPAGE</a>
+        </div>
+    </div>
+</body>
+</html>
