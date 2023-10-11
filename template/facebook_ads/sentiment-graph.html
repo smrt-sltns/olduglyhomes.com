@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block content %}
 
 
@@ -10,15 +12,24 @@
 
 <div class="container">
   <div class="row mb-5">
-    {% for c in graph_container %}
+    {% if no_comments %}
+    <div class="comments-container">
+      <h2>We couldn't find any comments in this Ad Group! &#x1F611;</h2>
+      <p>We tried to get comments for any ads you have been running 
+        on this ad group, but we couldn't find any. We will inform you as soon as there 
+        is a comment on this Ad Group.
+      </p>
+    </div>
+      {%endif%}
 
+    {% for c in graph_container %}
     <div class="col-lg-6 col-12">
       <!-- {{c.Comments}} -->
       
 
       <div class="graph-container">
         <div class="graph-btns">
-            <a class="btn btn-prinamry graph-btn border-right" onclick="showGraph(1, '{{c.adname}}')">Graph<a> 
+            <a class="btn btn-prinamry graph-btn border-right active" onclick="showGraph(1, '{{c.adname}}')">Graph<a> 
             <!-- <a class="btn btn-prinamry picture-btn" onclick="showGraph(2, '{{c.adname}}')">Picture</a> -->
           </div>
             <div id="graph1 {{c.adname}}" class="graph-chart py-3">
@@ -173,6 +184,8 @@
 
 }
 </script>
+<script src="{% static 'js/index.js' %}"></script>
+
 
 <!-- css for ul  -->
 <style>

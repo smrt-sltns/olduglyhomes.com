@@ -291,6 +291,10 @@ thead{
   margin: 0;
   padding: 14px 20px;
 }
+.graph-btns .btn.active{
+  background-color: var(--black-color) !important;
+  color: var(--white-color) !important;
+}
 .graph-img{
   max-height: 450px;
   margin: 50px auto 0;
@@ -449,6 +453,20 @@ thead{
   margin-left: auto;
   margin-right: 10px;
 }
+.comments-container {
+  text-align: center;
+  margin: 20px 0;
+  padding: 30px;
+  border-radius: 25px;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 30px 5px rgb(0 0 0 / 4%);
+  -moz-box-shadow: 0px 0px 30px 5px rgb(0 0 0 / 4%);
+  box-shadow: 0px 0px 30px 5px rgb(0 0 0 / 4%);
+}
+.comments-container h2{
+  color: var(--pimary-color);
+  font-size: 35px;
+}
 @media screen and (max-width: 1200px){
   .account-img img {
     max-width: 400px !important;
@@ -461,6 +479,9 @@ thead{
   }
   .account-img{
     order: -1;
+  }
+  .comments-container h2{
+    font-size: 30px;
   }
 }
 @media screen and (max-width: 768px){
@@ -504,6 +525,9 @@ thead{
   .dropdown-menu{
     left: 70%;
     transform: translateX(-50%);
+  }
+  .comments-container h2{
+    font-size: 25px;
   }
 }
 @media screen and (max-width: 450px){

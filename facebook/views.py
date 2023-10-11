@@ -8,6 +8,7 @@ import urllib.request
 import json
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.mail import EmailMessage, get_connection, send_mail, send_mass_mail
 from django.conf import settings
 import requests 
 import plotly.offline as opy
@@ -61,6 +62,10 @@ def sentiment_graph_posts(request, account_id, account_access_token):
                 "adset_id":account_id, 
                 # "random_number": random_number
             }
+    if len(graph_container) ==0:
+            messages.info(request, "We couldn't find any comment in this Facebook account!")
+            context.update({"no_comments":True})
+
     return render(request, "facebook_accounts/sentiment_graph.html", context)
 
 
@@ -203,7 +208,7 @@ def save_account_pages(user):
                                                 access_token=p['access_token'])
             acc_page.has_access_token = True
             page_objects.append(acc_page)
-        print("saved {} with Id {}".format(p['name'], p['id']))
+        # print("saved {} with Id {}".format(p['name'], p['id']))
     if len(page_objects) != 0:
         AccountPages.objects.bulk_create(page_objects)
 
@@ -215,9 +220,21 @@ def description(request):
 @custom_login_required
 def contact_us(request):
     if request.method == "POST":
+        user = request.user
         message = request.POST['message']
         phone = request.POST['phone']
-        print(message, "\n", phone)
+        # print(message, "\n", phone)
+        send_mail(
+            'Message from Sentiment App user.',
+            f"""Message from Sentiment App user!\n
+            User details: 
+            Username: {user.username}\n
+            Email: {user.email}\n
+            Contact: {phone}\n
+            Message: {message}""",
+            settings.EMAIL_HOST_USER,
+            # ['kundan.k.pandey02@gmail.com', "georgeyoumansjr@gmail.com","coboaccess2@gmail.com"],
+            ['kundan.k.pandey02@gmail.com',"georgeyoumansjr@gmail.com","coboaccess2@gmail.com",],)
         #note save the contact made in db
         #send an email to user with contact confirmation (template)
         #send an email to self (template)
