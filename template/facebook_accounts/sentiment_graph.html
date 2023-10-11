@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block content %}
 {% block dropdown %} {% endblock %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -22,6 +24,19 @@
 <div class="container">
 
   <div class="row mb-5">
+    {% if no_comments %}
+    <div class="comments-container">
+      <!-- heading -->
+      <h2>This Facebook page has no comments. &#x1F611;</h2>
+      <!-- description -->
+      <p>We looked into past 100 posts you have made on this account 
+        to see if there are comments. We couldn't find any comments to create sentiment 
+        analysis graphs and that's why this page is empty. 
+      </p>
+    </div>
+      {%endif %}
+
+
     {% for c in graph_container %}
 
     <div class="col-lg-6 col-12">
@@ -30,7 +45,7 @@
 
       <div class="graph-container">
           <div class="graph-btns">
-            <a class="btn btn-prinamry graph-btn border-right" onclick="showGraph(1, '{{c.adname}}')">Graph</a>
+            <a class="btn btn-prinamry graph-btn border-right active" onclick="showGraph(1, '{{c.adname}}')">Graph</a>
               <a class="btn btn-prinamry picture-btn" onclick="showGraph(2, '{{c.adname}}')">Picture</a>
           </div>
             <div id="graph1 {{c.adname}}" class="graph-chart py-3">
@@ -177,6 +192,8 @@
 
 }
 </script>
+<script src="{% static 'js/index.js' %}"></script>
+
 <style>
  
 .hidden:nth-child(n+6){

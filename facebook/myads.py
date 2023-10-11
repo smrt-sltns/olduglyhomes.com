@@ -95,6 +95,9 @@ def sentiment_graph(request, adset_id):
             "adset_name":adset_name,
             "adset_id":adset_id, 
         }
+        if len(graph_container) ==0:
+            messages.info(request, "No comments found in this AD Group!")
+            context.update({"no_comments":True})
         return render(request, "facebook_ads/sentiment-graph.html", context)
     except Exception as e:
         print(e)
