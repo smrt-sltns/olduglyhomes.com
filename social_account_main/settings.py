@@ -299,6 +299,5 @@ CELERY_BEAT_SCHEDULE = {
             'expires': 60.0,
         },
       }
-      
 
 }
