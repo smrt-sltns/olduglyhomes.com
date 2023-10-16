@@ -445,9 +445,33 @@ thead{
   box-shadow: 0 0 0 0.2rem rgb(112 5 5 / 26%);
 }
 .graph-container{
+  position: relative;
   border-radius: 20px;
   margin-bottom: 50px;
+  box-shadow: 5px 5px 8px rgb(255, 255, 255);
+}
+.graph-info-button{
+  padding: 0;
+  border: none;
+  outline: none;
+  font-size: 30px;
+  background-color: transparent;
+}
+.graph-info-message{
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  padding: 5px 10px;
+  background-color: white;
+  border-radius: 10px;
   box-shadow: 5px 5px 8px rgb(208, 208, 241);
+  visibility: visible;
+  opacity: 0;
+  transform: .3s;
+}
+.graph-info-button:hover + .graph-info-message{
+  visibility: visible;
+  opacity: 1;
 }
 .navbar .dropdown {
   margin-left: auto;

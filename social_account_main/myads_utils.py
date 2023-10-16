@@ -49,12 +49,13 @@ def save_ads(file_name, token=LONGLIVED_ACCESS_TOKEN):
                     eff = a['creative']['effective_object_story_id']
                     if status == "ACTIVE":
                         ads.append({"ad_name": a['name'], "ad_id": a['id'], "status":status, 
-                                    "eff":eff, "negative_comments":[] })
+                                    "eff":eff, "negative_comments":[], "positive_comments":[] })
                 c['adsets'].append({"adset_name": adset_name, "adset_id": adset_id, "ads": ads})
         data.append(c)
     with open(file_name, 'w') as json_file:
         json_objects = json.dumps(data, indent=4)
         json_file.write(json_objects)
+    print("ads saved")
 
 
 # get comments from the api 
