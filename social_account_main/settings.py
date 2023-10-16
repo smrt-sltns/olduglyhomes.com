@@ -281,27 +281,23 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 # celery beat to run task every x time 
 CELERY_BEAT_SCHEDULE = {
 
-    #   'add-every-1-day': {
-    #     'task': 'social_account_main.celery_task.every_1_day',
-    #     'schedule': timedelta(days=1),
-    #     # 'schedule': 200.0,
-
-    #     'args': '',
-    #     'options': {
-    #         'expires': 60.0,
-    #     },
-    #   },
+      'add-every-1-day': {
+        'task': 'social_account_main.celery_task.every_1_day',
+        'schedule': timedelta(days=1),
+        'args': '',
+        'options': {
+            'expires': 60.0,
+        },
+      },
 
 
       'add-every-2-hours': {
         'task': 'social_account_main.celery_task.every_2_hours',
-        # 'schedule': timedelta(hours=2),
-          'schedule': 300.0,
+        'schedule': timedelta(hours=2),
         'args': '',
         'options': {
             'expires': 60.0,
         },
       }
-      
 
 }
