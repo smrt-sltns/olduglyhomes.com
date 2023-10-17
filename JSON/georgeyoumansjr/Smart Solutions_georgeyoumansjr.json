@@ -34,24 +34,138 @@
         "campaign_status": "ACTIVE",
         "adsets": [
             {
-                "adset_name": "Nairob",
-                "adset_id": "6502751335782",
-                "ads": []
-            },
-            {
                 "adset_name": "Accra Ghana",
-                "adset_id": "6502751335382",
-                "ads": []
+                "adset_id": "6502941869782",
+                "ads": [
+                    {
+                        "ad_name": "Neural Network Model",
+                        "ad_id": "6502941870982",
+                        "status": "ACTIVE",
+                        "eff": "104059605956378_270874635935115",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Python Class",
+                        "ad_id": "6502941871582",
+                        "status": "ACTIVE",
+                        "eff": "104059605956378_270875575935021",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Celery in Python",
+                        "ad_id": "6502941869982",
+                        "status": "ACTIVE",
+                        "eff": "104059605956378_270861299269782",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Video Design Patterns",
+                        "ad_id": "6502941870782",
+                        "status": "ACTIVE",
+                        "eff": "104059605956378_270873405935238",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Python Data Types",
+                        "ad_id": "6502941870382",
+                        "status": "ACTIVE",
+                        "eff": "104059605956378_270866152602630",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    }
+                ]
             },
             {
                 "adset_name": "Dodoma Tanzania",
-                "adset_id": "6501393119982",
+                "adset_id": "6502941869582",
                 "ads": [
                     {
                         "ad_name": "Python Class",
-                        "ad_id": "6501393122182",
+                        "ad_id": "6502941869382",
                         "status": "ACTIVE",
-                        "eff": "104059605956378_270803845942194",
+                        "eff": "104059605956378_270875575935021",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Neural Network Model",
+                        "ad_id": "6502941871382",
+                        "status": "ACTIVE",
+                        "eff": "104059605956378_270874635935115",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Celery in Python",
+                        "ad_id": "6502941870182",
+                        "status": "ACTIVE",
+                        "eff": "104059605956378_270861299269782",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Video Design Patterns",
+                        "ad_id": "6502941871182",
+                        "status": "ACTIVE",
+                        "eff": "104059605956378_270873405935238",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Python Data Types",
+                        "ad_id": "6502941870582",
+                        "status": "ACTIVE",
+                        "eff": "104059605956378_270866152602630",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    }
+                ]
+            },
+            {
+                "adset_name": "Nairobi Kenya",
+                "adset_id": "6502751335782",
+                "ads": [
+                    {
+                        "ad_name": "Neural Network Model",
+                        "ad_id": "6502751336582",
+                        "status": "ACTIVE",
+                        "eff": "104059605956378_270874635935115",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Python Data Types",
+                        "ad_id": "6502751337182",
+                        "status": "ACTIVE",
+                        "eff": "104059605956378_270866152602630",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Python Class",
+                        "ad_id": "6502751335982",
+                        "status": "ACTIVE",
+                        "eff": "104059605956378_270875575935021",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Video Design Patterns",
+                        "ad_id": "6502751336182",
+                        "status": "ACTIVE",
+                        "eff": "104059605956378_270873405935238",
+                        "negative_comments": [],
+                        "positive_comments": []
+                    },
+                    {
+                        "ad_name": "Celery in Python",
+                        "ad_id": "6502751336382",
+                        "status": "ACTIVE",
+                        "eff": "104059605956378_270861299269782",
                         "negative_comments": [],
                         "positive_comments": []
                     }
