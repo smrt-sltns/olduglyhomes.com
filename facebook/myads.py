@@ -18,7 +18,7 @@ from .utils import (
     get_campaign_name_and_id, get_adsets_from_campaign,
     get_single_campaign, comment_count, comment_info, get_adset_name,
     get_ad_account, pages_associated_with_adaccounts,
-    single_ad_info, get_all_campaigns
+    single_ad_info, get_all_campaigns, get_access_token_for_ad
     )
 from .myads_test import save_pages_to_adaccount
 from .decorator import custom_login_required
@@ -85,9 +85,10 @@ def sentiment_graph(request, adset_id):
         adset_name = get_adset_name(adset_id=adset_id, access_token=access_token)
         for ad_id in ad_id_list:
             name, eff = get_ad_name_and_effective_object_story_id(ad_id=ad_id, access_token=access_token)
-            comment_len = comment_count(eff, access_token=access_token)
-            if comment_len > 2:
-                graph = get_sentiment_graph(effective_object_story_id=eff, post_title=name, access_token=access_token)
+            page_token = get_access_token_for_ad(eff=eff)
+            comment_len = comment_count(eff, access_token=page_token)
+            if comment_len > 1:
+                graph = get_sentiment_graph(effective_object_story_id=eff, post_title=name, access_token=page_token)
                 graph_container.append(graph)
         context = {
             "graph_container":graph_container,

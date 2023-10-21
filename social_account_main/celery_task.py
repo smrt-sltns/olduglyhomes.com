@@ -68,10 +68,13 @@ def send_mail_token(title, message, email_temaplate, user_email:list, **kwargs):
         pass 
 
 @shared_task
-def wraped_comments(file_name,account_id, token):
-    save_campaings(file_name,account_id=account_id, token=token)
-    save_ads(file_name, token=token)
-    save_comments(file_name, token=token)
+def wraped_comments(file_name,
+                    account_id, 
+                    token):
+    # print("wrapper executed")
+    save_campaings(file_name=file_name,account_id=account_id, token=token)
+    save_ads(file_name=file_name, token=token)
+    save_comments(file_name=file_name, token=token)
 
 
 @shared_task
@@ -130,9 +133,9 @@ def postive_comments_yesterday_send_email(user_id): # works every day in the mor
         user = User.objects.get(id=user_id)
     except Exception as e:
         print(e)
-        print("Automation failed for user id : ".format(user_id))
+        # print("Automation failed for user id : ".format(user_id))
     email = user.email 
-    print(email)
+    # print(email)
     f_name = email_to_file_name(email)
     ad_accounts  = AccountsAd.objects.filter(user=user)
     for ad in ad_accounts: # run automation for all the ad accounts 
@@ -148,7 +151,7 @@ def postive_comments_yesterday_send_email(user_id): # works every day in the mor
             "email": email,
             "account_name": account_name
             }
-        print(data)
+        # print(data)
         wraped_comments(file_name=file_name, account_id=account_id, token=token)
         is_mail_sent, data = positive_comments_send_email(user_email=email, file_name=file_name)
         if len(data) != 0:
@@ -163,7 +166,7 @@ def negative_comments_today_send_email(user_id): #
         user = User.objects.get(id=user_id)
     except Exception as e:
         print(e)
-        print("Automation failed for user id : ".format(user_id))
+        # print("Automation failed for user id : ".format(user_id))
     # ***important 
     # make a cutomusermodel and set email field null=False, blank=False
     email = user.email 
@@ -182,12 +185,12 @@ def negative_comments_today_send_email(user_id): #
             "email": email,
             "account_name": account_name
             }
-        print(user_data)
+        # print(user_data)
         wraped_comments(file_name=file_name, account_id=account_id, token=token)
         is_mail_sent, data = negative_comments_send_email(user_email=email, file_name=file_name)
         if len(data) != 0:
             LOG_negative_comments.delay(
                 user_id=user_id, account_id=account_id, 
                 data=data, is_mail_sent=is_mail_sent)
-            print("NEGATIVE LOG SAVED!")
+            # print("NEGATIVE LOG SAVED!")
 
