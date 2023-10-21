@@ -1,4 +1,5 @@
 from access_token import LONGLIVED_ACCESS_TOKEN
+from facebook.models import AccountPages
 import json 
 import urllib.request
 from textblob import TextBlob
@@ -6,6 +7,11 @@ from datetime import datetime
 
 
 
+#determine access token for each ad 
+def get_access_token_for_ad(eff):
+    page_id = eff.split("_")[0]
+    page  = AccountPages.objects.get(page_id=page_id)
+    return page.longlived_access_token
 
 
 
@@ -63,6 +69,7 @@ def get_comments(eff, token=LONGLIVED_ACCESS_TOKEN):
     negative_comment_list = []
     positive_comment_list = []
     comments_url = f"https://graph.facebook.com/v16.0/{eff}/comments?fields=id,message,created_time,is_hidden&summary=true&access_token={token}&limit=100&after"
+    # print(comments_url)
     comments = json.loads(urllib.request.urlopen(comments_url).read())
     ignore_comment_list = json.loads(open("JSON/ignored_comments.json", "r").read())
     if len(comments['data']) > 0:
@@ -86,15 +93,22 @@ def get_comments(eff, token=LONGLIVED_ACCESS_TOKEN):
 
 
 def save_comments(file_name, token):
-    campaigns = json.loads(open(file_name, "r").read())    
+    campaigns = json.loads(open(file_name, "r").read())   
+    # print("campaign") 
     for camps in campaigns:
         for adset in camps['adsets']:
             for ad in adset['ads']:
                 if ad['status'] == "ACTIVE":
                     eff = ad['eff']
-                    negative_comments_list, positive_comments_list = get_comments(eff, token=token)
+                    try: 
+                        page_token = get_access_token_for_ad(eff=eff) #get correct page token for each ad
+                    except Exception as e:
+                        # print(e)
+                        page_token = token 
+                    negative_comments_list, positive_comments_list = get_comments(eff, token=page_token)
                     ad['negative_comments'] = negative_comments_list
                     ad['positive_comments'] = positive_comments_list
+    # print(campaigns)
     with open(file_name, 'w') as json_file: 
         json_object = json.dumps(campaigns, indent=4)
         json_file.write(json_object)
@@ -173,6 +187,8 @@ def total_comment_yesterday(file_name):
                 data = []
                 if len(ads["positive_comments"]) !=0:
                     for c in ads["positive_comments"]:
+                        # status = Comment_made_yesterday(created_time=c['created_time'])
+                        # print(f"{c['comments']}, {c['created_time']}, {status}")
                         if Comment_made_yesterday(c['created_time']):
                             data.append({
                             # sending comment and id but not saving in the db 
@@ -183,6 +199,7 @@ def total_comment_yesterday(file_name):
                             "campaign_name": cams['campaign_name'],"campaign_id": cams['campaign_id'],
                             "url": url.format(adsets['adset_id']), "created_time": c['created_time']                           
                             })     
+                            # print(c['comment'], c['created_time'] )
                     store_data += [{f"{ads['ad_name']}":data}]
     return store_data
 

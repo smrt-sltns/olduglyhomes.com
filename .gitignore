@@ -47,3 +47,7 @@ local_settings.py
 *.swp
 *.bak
 *.tmp
+
+
+#this project 
+*notes.txt
