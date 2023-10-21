@@ -5,6 +5,7 @@ import urllib.request
 from access_token import LONGLIVED_ACCESS_TOKEN, USER_LONGLIVED_ACCESS_TOKEN
 import requests 
 from asgiref.sync import sync_to_async
+from .models import AccountsAd, AccountPages
 
 
 
@@ -43,7 +44,11 @@ def PageAndAccountToken(access_token):
     # print(data)
     return data
 
-
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+def get_access_token_for_ad(eff):
+    page_id = eff.split("_")[0]
+    page  = AccountPages.objects.get(page_id=page_id)
+    return page.longlived_access_token
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # ad accounts 
@@ -177,10 +182,10 @@ def hide_comment(comment_id, access_token=LONGLIVED_ACCESS_TOKEN):
         "access_token":access_token
         }
     response = requests.post(url, json=comment_hide)
-    if response.status_code == 200:
-        print('Comment hidden successfully.')
-    else:
-        print('Error hiding comment:', response.json()['error']['message'])
+    # if response.status_code == 200:
+    #     print('Comment hidden successfully.')
+    # else:
+    #     print('Error hiding comment:', response.json()['error']['message'])
 
 def unhide_comment(comment_id, access_token=LONGLIVED_ACCESS_TOKEN):
     url = f"https://graph.facebook.com/v16.0/{comment_id}"
@@ -189,10 +194,10 @@ def unhide_comment(comment_id, access_token=LONGLIVED_ACCESS_TOKEN):
         "access_token":access_token
         }
     response = requests.post(url, json=comment_hide)
-    if response.status_code == 200:
-        print('Comment revealed successfully.')
-    else:
-        print('Error hiding comment:', response.json()['error']['message']) 
+    # if response.status_code == 200:
+    #     print('Comment revealed successfully.')
+    # else:
+    #     print('Error hiding comment:', response.json()['error']['message']) 
 
 # check if the comments is hidden 
 def comment_status(comment_id, access_token=LONGLIVED_ACCESS_TOKEN):

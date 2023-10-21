@@ -29,14 +29,21 @@ def token_expired(request):
             api_key=user.creds.APP_ID, 
             api_secret=user.creds.APP_SECRET,
             access_token=access_token)
-        print("longlived access token: ",longlived_access_token)
+        # print("longlived access token: ",longlived_access_token)
         cred = Creds.objects.get(user_id=request.user.id)
         cred.LONGLIVED_ACCESS_TOKEN = longlived_access_token
         cred.save()
         renew_access_token(user_id = request.user.id, date_required=False) #take user token and renew all the token related to the user 
         return redirect("home")
     else:
-        return render(request, "register_token/token_expired.html")
+        adaccount_is_set = Creds.objects.get(user=request.user).has_ad_accounts
+        context = {
+                "adaccount_is_set":adaccount_is_set,
+            }
+        if adaccount_is_set:
+            adaccounts = AccountsAd.objects.filter(user=request.user).all()
+            context['adaccounts'] = adaccounts
+        return render(request, "register_token/token_expired.html", context)
 
 
 
@@ -48,13 +55,27 @@ def token_expired_page(request):
         renew_access_token(user_id=user_id, date_required=False)
         return redirect("home")
     else:
-        return render(request, "register_token/token_expired_page.html")
+        adaccount_is_set = Creds.objects.get(user=request.user).has_ad_accounts
+        context = {
+                "adaccount_is_set":adaccount_is_set,
+            }
+        if adaccount_is_set:
+            adaccounts = AccountsAd.objects.filter(user=request.user).all()
+            context['adaccounts'] = adaccounts
+        return render(request, "register_token/token_expired_page.html", context)
 
 
 
 @custom_login_required
 def token_limit_reached(request):
-    return render(request, "register_token/token_limit_reached.html")
+    adaccount_is_set = Creds.objects.get(user=request.user).has_ad_accounts
+    context = {
+            "adaccount_is_set":adaccount_is_set,
+        }
+    if adaccount_is_set:
+        adaccounts = AccountsAd.objects.filter(user=request.user).all()
+        context['adaccounts'] = adaccounts
+    return render(request, "register_token/token_limit_reached.html", context)
 
 
 
@@ -70,7 +91,7 @@ def is_datefield_one_month_old(obj):
             status = False
     else: 
         status = False
-    print(status)
+    # print(status)
     return status
 
 
@@ -90,7 +111,7 @@ def renew_access_token(user_id, date_required=True):
         cred.LONGLIVED_ACCESS_TOKEN = long_lived_token # renew access token for creds models
         cred.create_date = timezone.now().date()
         cred.save()  
-        print(f"Renewed Access token for {user.email}")
+        # print(f"Renewed Access token for {user.email}")
         save_account_pages(user=user) # renew access token for all the pages 
 
         adaccounts = AccountsAd.objects.filter(user=user)

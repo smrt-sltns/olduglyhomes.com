@@ -42,7 +42,7 @@ def negative_comments_send_email(user_email, file_name):
                 [user_email,],
                 html_message=msg_html,)
             mail_sent = True
-            print("MAIL SENT. Negative comments today.\nThese comments will be ignore in next batch!")
+            # print("MAIL SENT. Negative comments today.\nThese comments will be ignore in next batch!")
         except smtplib.SMTPException as e:
             mail_sent = False
         except Exception as e:
@@ -57,7 +57,7 @@ def negative_comments_send_email(user_email, file_name):
             j_file.write(json_obejct)
         # mail_sent = True 
     else:
-        print('NO MAIL SENT! Negative comments.')
+        # print('NO MAIL SENT! Negative comments.')
         mail_sent = False
         new_negative_comments = []
     return (mail_sent, new_negative_comments)
@@ -73,18 +73,18 @@ def positive_comments_send_email(user_email, file_name):
                 'Total comment made yesterday!',
                 "Comments made yesterday!",
                 settings.EMAIL_HOST_USER,
-                [user_email,],
-                # ['kundan.k.pandey02@gmail.com',
+                # [user_email,],
+                ['kundan.k.pandey02@gmail.com', user_email,],
                 # "georgeyoumansjr@gmail.com", 
                 # "coboaccess2@gmail.com"],
                 html_message=msg_html,
             )
-            print("MAIL SENT! Positive comments yesterday!")
+            # print("MAIL SENT! Positive comments yesterday!")
             mail_sent = True
         except Exception as e:
             mail_sent = False
     else:
-        print("NO MAIL SENT! Positive comments.")
+        # print("NO MAIL SENT! Positive comments.")
         mail_sent = False
         data = []
     return (mail_sent, data)

@@ -10,8 +10,9 @@ def get_date(created_time):
     return date
 
 
-def get_sentiment_graph(effective_object_story_id="114113634875896_142641242042511", post_title="static", access_token=LONGLIVED_ACCESS_TOKEN):
+def get_sentiment_graph(effective_object_story_id, post_title, access_token):
     ads_comment_url  = f"https://graph.facebook.com/v16.0/{effective_object_story_id}/comments?fields=id,message,created_time,is_hidden&summary=true&access_token={access_token}&pretty=1&summary=true&limit=100&after"
+    # print(ads_comment_url)
     ads_comments_json = json.loads(urllib.request.urlopen(ads_comment_url).read()) 
     comment_and_graph = {}
     comments = []

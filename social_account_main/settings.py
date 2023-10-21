@@ -283,21 +283,32 @@ CELERY_BEAT_SCHEDULE = {
 
       'add-every-1-day': {
         'task': 'social_account_main.celery_task.every_1_day',
-        'schedule': timedelta(days=1),
+        # 'schedule': timedelta(days=1),
+        'schedule': 200.0,
         'args': '',
         'options': {
-            'expires': 60.0,
+            'expires': 120.0,
         },
       },
 
 
-      'add-every-2-hours': {
-        'task': 'social_account_main.celery_task.every_2_hours',
-        'schedule': timedelta(hours=2),
-        'args': '',
-        'options': {
-            'expires': 60.0,
-        },
-      }
+    #   'add-every-2-hours': {
+    #     'task': 'social_account_main.celery_task.every_2_hours',
+    #     'schedule': timedelta(hours=2),
+    #     'args': '',
+    #     'options': {
+    #         'expires': 60.0,
+    #     },
+    #   },
+
+    #   'wrapper-comments': {
+    #     'task': 'social_account_main.celery_task.wraped_comments',
+    #     # 'schedule': timedelta(days=1),
+    #     'schedule': 100.0,
+    #     'args': '',
+    #     'options': {
+    #         'expires': 60.0,
+    #     },
+    #   },
 
 }
