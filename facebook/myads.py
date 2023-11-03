@@ -86,10 +86,12 @@ def sentiment_graph(request, adset_id):
         for ad_id in ad_id_list:
             name, eff = get_ad_name_and_effective_object_story_id(ad_id=ad_id, access_token=access_token)
             page_token = get_access_token_for_ad(eff=eff)
+            
             comment_len = comment_count(eff, access_token=page_token)
             if comment_len > 1:
                 graph = get_sentiment_graph(effective_object_story_id=eff, post_title=name, access_token=page_token)
                 graph_container.append(graph)
+        request.session['page_access_token'] = page_token
         context = {
             "graph_container":graph_container,
             "all_campaigns":all_campaigns,
