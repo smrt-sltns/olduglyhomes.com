@@ -74,7 +74,7 @@ def positive_comments_send_email(user_email, file_name):
                 "Comments made yesterday!",
                 settings.EMAIL_HOST_USER,
                 # [user_email,],
-                ['kundan.k.pandey02@gmail.com', user_email,],
+                ['kundan.k.pandey02@gmail.com',],# user_email,],
                 # "georgeyoumansjr@gmail.com", 
                 # "coboaccess2@gmail.com"],
                 html_message=msg_html,
