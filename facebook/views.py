@@ -234,14 +234,14 @@ def contact_us(request):
             Message: {message}""",
             settings.EMAIL_HOST_USER,
 
-            ['kundan.k.pandey02@gmail.com',],#"georgeyoumansjr@gmail.com","coboaccess2@gmail.com",],
+            ['kundan.k.pandey02@gmail.com',"georgeyoumansjr@gmail.com","coboaccess2@gmail.com",],
             )
         send_mail(
             "We are reviewing your query!",
             "Hi, thanks for reaching out to us! Our developers are notified of the problem, and they will get back to you shortly. Best Regards!",
             settings.EMAIL_HOST_USER,
-            # [request.user.email,],
-            ["kundanpandey.dev@gmail.com"]
+            [request.user.email,],
+            # ["kundanpandey.dev@gmail.com"]
         )
         #note save the contact made in db
         #send an email to user with contact confirmation (template)
