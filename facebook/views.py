@@ -227,19 +227,28 @@ def contact_us(request):
         send_mail(
             'Message from Sentiment App user.',
             f"""Message from Sentiment App user!\n
-            User details: 
-            Username: {user.username}\n
-            Email: {user.email}\n
-            Contact: {phone}\n
+            User details:
+            Username: {user.username}
+            Email: {user.email}
+            Contact: {phone}
             Message: {message}""",
             settings.EMAIL_HOST_USER,
-            # ['kundan.k.pandey02@gmail.com', "georgeyoumansjr@gmail.com","coboaccess2@gmail.com"],
-            ['kundan.k.pandey02@gmail.com',"georgeyoumansjr@gmail.com","coboaccess2@gmail.com",],)
+
+            ['kundan.k.pandey02@gmail.com',],#"georgeyoumansjr@gmail.com","coboaccess2@gmail.com",],
+            )
+        send_mail(
+            "We are reviewing your query!",
+            "Hi, thanks for reaching out to us! Our developers are notified of the problem, and they will get back to you shortly. Best Regards!",
+            settings.EMAIL_HOST_USER,
+            # [request.user.email,],
+            ["kundanpandey.dev@gmail.com"]
+        )
         #note save the contact made in db
         #send an email to user with contact confirmation (template)
         #send an email to self (template)
-
+        messages.info(request, "Your message has beed recorded. We will get back to you shortly.")
         return render(request, "contact_us.html")
+        # return redirect("/")
     else:
         return render(request, "contact_us.html")
 
