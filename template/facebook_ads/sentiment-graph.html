@@ -2,7 +2,11 @@
 {% load static %}
 
 {% block content %}
-
+<style>
+  strong {
+    font-size: 14px;
+  }
+</style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <div class="top-content" style="margin-left:10px; ">
@@ -70,13 +74,13 @@
           <!-- leaving the margin and padding to be 0 -->
           <li class="hidden">
             {% if comment.is_hidden %}
-            <p>{{comment.negative_message|safe|truncatechars:25}} {{comment.created_time}}</p>
+            <p>{{comment.negative_message|safe|truncatechars:35}} <span><strong>{{comment.created_time}}</strong></span></p>
             <strong><i class="text-success">This comment is hidden</i></strong>
             <a href="{% url 'unhide-comment' adset_id comment.id %}" class="btn btn-warning">
               Unhide
             </a>
             {%else %}
-            <p>{{comment.negative_message|safe|truncatechars:50}} {{comment.created_time}}</p>
+            <p>{{comment.negative_message|safe|truncatechars:45}} <span><strong>{{comment.created_time}}</strong></span></p>
             <a href="{% url 'hide-comment' adset_id comment.id %}" class="btn btn-sm btn-primary">
               Hide
             </a>
@@ -103,13 +107,13 @@
           <!-- leaving the margin and padding to be 0 -->
           <li class="hidden">
             {% if comment.is_hidden %}
-            <p>{{comment.positive_message|safe|truncatechars:25}} {{comment.created_time}}</p>
+            <p>{{comment.positive_message|safe|truncatechars:35}} <span><strong>{{comment.created_time}}</strong></span></p>
             <strong style="color:rgb(4, 93, 4);"><i class="text-success">This comment is hidden</i></strong>
             <a href="{% url 'unhide-comment' adset_id comment.id %}" class="btn btn-warning">
-              Unhide
+              Unhide<span><strong>{{comment.created_time}}</strong></span>
             </a>
             {%else %}
-            <p>{{comment.positive_message|safe|truncatechars:35}} {{comment.created_time}}</p>
+            <p>{{comment.positive_message|safe|truncatechars:45}} <span><strong>{{comment.created_time}}</strong></span></p>
             <a href="{% url 'hide-comment' adset_id comment.id %}" class="btn btn-sm btn-primary">
               Hide
             </a>
@@ -134,13 +138,13 @@
           <!-- leaving the margin and padding to be 0 -->
           <li class="hidden">
             {% if comment.is_hidden %}
-            <p>{{comment.neutral_message|safe|truncatechars:25}} {{comment.created_time}}</p>
+            <p>{{comment.neutral_message|safe|truncatechars:35}} <span><strong>{{comment.created_time}}</strong></span></p>
             <strong style="color:rgb(4, 93, 4);"><i class="text-success">This comment is hidden</i></strong>
             <a href="{% url 'unhide-comment' adset_id comment.id %}" class="btn btn-warning">
               Unhide
             </a>
             {%else %}
-            <p>{{comment.neutral_message|safe|truncatechars:25}} {{comment.created_time}}</p>
+            <p>{{comment.neutral_message|safe|truncatechars:45}} <span><strong>{{comment.created_time}}</strong></span></p>
             <a href="{% url 'hide-comment' adset_id comment.id %}" class="btn btn-sm btn-primary">
               Hide
             </a>
