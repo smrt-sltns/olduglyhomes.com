@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{% static 'style/index.css' %}" />
   <link rel="shortcut icon" href="{% static 'image/smartysync-favicon.png' %}" type="image/x-icon">
 </head>
-<body>
+<body class="contact-page">
     <section class="contact-section" style="background-image: url('{% static 'image/contact-bg.jpg' %}');">
         <div class="message-container" >
             {% if messages %}
@@ -30,6 +30,12 @@
                     <input type="text" name="phone" placeholder="Phone number"><br>
                     <textarea name="message" id="" cols="30" rows="10" placeholder="Message"></textarea><br>
                     <button type="submit">Submit</button>
+                    <div class="submit-popup">
+                        <div class="popup-messgae">
+                            <p style="color: #009900;"><b>Success!</b> Form is submittted!</p>
+                            <p style="color: #cf0202;"><b>Failed!</b> Form is not submittted.</p>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

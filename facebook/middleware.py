@@ -38,17 +38,17 @@ class TokenExpiredMiddleware:
         if f"/{request_path_prefix[1]}/" in url_path_for_fb:
             if response.status_code >= 400:
                 user_expired, user_limit, page_expired, page_limit = test_user_access_token(request)
-                print("User Expired: {}, User Limit : {},Page Expired : {},Page Limit : {}".format(user_expired, user_limit, page_expired, page_limit))
+                # print("User Expired: {}, User Limit : {},Page Expired : {},Page Limit : {}".format(user_expired, user_limit, page_expired, page_limit))
                 if user_expired:
                     send_mail_token_expired(request.user.email)
-                    print("user token is expired")
+                    # print("user token is expired")
                     return redirect('token-expired') 
                 if page_expired: 
-                    print("users page access token is expired")
+                    # print("users page access token is expired")
                     send_mail_token_expired(request.user.email)
                     return redirect("token-expired-page")
                 if user_limit or page_limit:
-                    print("Access token limit reached!")
+                    # print("Access token limit reached!")
                     send_mail_token_limit_reached(request.user.email)
                     return redirect('token-limit-reached') 
         return response
@@ -67,10 +67,10 @@ def test_user_access_token(request):
         response = requests.get(url)
         response.raise_for_status()  # Raise an exception for HTTP errors
     except requests.exceptions.RequestException as e:
-        print("Error making the request:", e)
+        # print("Error making the request:", e)
         error_data = response.json()
         error_message = error_data.get('error', 'Unknown Error')
-        print(F"ERROR CODE : {error_message['code']}")
+        # print(F"ERROR CODE : {error_message['code']}")
         if error_message['code'] in error_codes_limit_reached:
             user_token_limit_reached = True
         if error_message['code'] in error_code_expired:
@@ -116,14 +116,14 @@ def test_page_token(account_id, token):
         except Exception as e: 
             cm_error = cm_response.json()
             cm_error_message = cm_error.get('error', 'Unknown Error')
-            print(cm_error_message)
-            print("Error making the request:", e)
-        print(F"ERROR CODE : {cm_error_message['code']}")
+            # print(cm_error_message)
+            # print("Error making the request:", e)
+        # print(F"ERROR CODE : {cm_error_message['code']}")
         if  cm_error_message['code'] in error_codes_limit_reached:
             limit_reached = True
         if  cm_error_message['code'] in error_code_expired:
             expired = True
-        print(f"Page limit {limit_reached}, Page expiry:  {expired}")
+        # print(f"Page limit {limit_reached}, Page expiry:  {expired}")
     return (expired, limit_reached)
         
 
