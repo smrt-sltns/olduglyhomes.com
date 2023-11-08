@@ -15,10 +15,23 @@
       padding-right: 0 !important;
     }
   }
+  strong {
+    font-size: 14px;
+  }
 </style>
 <div class="top-content" style="margin-left:10px; ">
   <h2>{{adset_name}}</h2>
   <hr>
+</div>
+<div class="page-loader">
+  <div class="loading">
+    <svg xmlns="http://www.w3.org/2000/svg" width="200px" height="200px" viewBox="0 0 16 16" fill="none" class="hds-flight-icon--animation-loading">
+      <g fill="#000000" fill-rule="evenodd" clip-rule="evenodd">
+      <path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8z" opacity=".2"/>
+      <path d="M7.25.75A.75.75 0 018 0a8 8 0 018 8 .75.75 0 01-1.5 0A6.5 6.5 0 008 1.5a.75.75 0 01-.75-.75z"/>
+      </g>
+      </svg>
+  </div>
 </div>
 
 <div class="container">
@@ -143,12 +156,12 @@
             {% if comment.is_hidden %}
             <p>{{comment.neutral_message|safe|truncatechars:25}} {{comment.created_time}}</p>
             <strong><i class="text-success">This comment is hidden</i></strong>
-            <a href="{% url 'post-unhide-comment' adset_id comment.id c.access_token %}" class="btn btn-warning">
+            <a href="{% url 'post-unhide-comment' adset_id comment.id c.access_token %}" class="btn btn-warning bot-verify">
               Unhide
             </a>
             {%else %}
             <p>{{comment.neutral_message|safe|truncatechars:25}} {{comment.created_time}}</p>
-            <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-sm btn-danger px-3 btn-sm rounded-pill">
+            <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-sm btn-danger px-3 btn-sm rounded-pill bot-verify">
               Hide
             </a>
             {%endif%}
@@ -203,7 +216,11 @@
 }
 </script>
 <script src="{% static 'js/index.js' %}"></script>
-
+<script>
+  $(document).ready(function() {
+    $(".page-loader").hide();
+});
+</script>
 <style>
  
 .hidden:nth-child(n+6){

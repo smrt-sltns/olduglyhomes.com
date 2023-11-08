@@ -491,6 +491,27 @@ thead{
   color: var(--pimary-color);
   font-size: 35px;
 }
+.contact-page .popup-messgae{
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--pimary-color);
+}
+.page-loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  background-color: white;
+  user-select: none;
+}
 @media screen and (max-width: 1200px){
   .account-img img {
     max-width: 400px !important;
