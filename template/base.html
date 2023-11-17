@@ -12,6 +12,8 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script><!-- chart js  -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <link rel="shortcut icon" href="{% static 'image/smartysync-favicon.png' %}" type="image/x-icon">
+  <!-- spin js  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
   <title>Smart Solutions</title>
 </head>
 
@@ -57,6 +59,7 @@
       <div class="landing-content text-center px-sm-5 py-5 px-3 mx-2">
         <h1 class="mb-4">{% block title %}{% endblock %}</h1>
         <!-- Display messages if the comment is hidden successfully -->
+        {% block message %}
         <div class="message-container" >
           {% if messages %}
           {% for message in messages %}
@@ -72,6 +75,7 @@
           {% endfor %}
           {% endif %}
         </div>
+        {% endblock %}
 
         {% block content %}
         <!--  -->

@@ -14,7 +14,7 @@ import requests
 import plotly.offline as opy
 import plotly.graph_objs as go
 from access_token import USER_LONGLIVED_ACCESS_TOKEN
-from .models import Creds, AccountPages, AccountsAd
+from .models import Creds, AccountPages, AccountsAd, ContactUs
 from .sentiment_graph import get_sentiment_graph
 from .utils import (
     get_account_name, get_account_post_list,
@@ -234,7 +234,7 @@ def contact_us(request):
             Message: {message}""",
             settings.EMAIL_HOST_USER,
 
-            ['kundan.k.pandey02@gmail.com',"georgeyoumansjr@gmail.com","coboaccess2@gmail.com",],
+            ['kundan.k.pandey03@gmail.com',],#"georgeyoumansjr@gmail.com","coboaccess2@gmail.com",],
             )
         send_mail(
             "We are reviewing your query!",
@@ -246,7 +246,12 @@ def contact_us(request):
         #note save the contact made in db
         #send an email to user with contact confirmation (template)
         #send an email to self (template)
-        messages.info(request, "Your message has beed recorded. We will get back to you shortly.")
+        cu = ContactUs()
+        cu.user = request.user 
+        cu.phone = phone
+        cu.message = message 
+        cu.save()
+        messages.info(request, "Thank you for reaching out to us. We will get back to you shortly.")
         return render(request, "contact_us.html")
         # return redirect("/")
     else:

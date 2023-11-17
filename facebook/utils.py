@@ -4,7 +4,7 @@ import asyncio
 import urllib.request 
 from access_token import LONGLIVED_ACCESS_TOKEN, USER_LONGLIVED_ACCESS_TOKEN
 import requests 
-from asgiref.sync import sync_to_async
+# from asgiref.sync import sync_to_async
 from .models import AccountsAd, AccountPages
 
 

@@ -1,6 +1,25 @@
 {% extends "base.html" %}
 {% load static %}
 
+{%block message %} 
+  <div class="message-container" >
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == "error" %}
+    <div class="alert alert-danger alert-dismissible">
+      <strong>{{message.tags}}!</strong> {{message|safe}}
+      <span>We can't hide comments made by Admin (your) account. <a href="{% url 'contact_us' %}">Contact us</a> if the issue continues! </span>
+    </div>
+    {% else %}
+    <div class="alert alert-{{message.tags}} alert-dismissible">
+      <strong>{{message.tags}}!</strong> {{message|safe}}
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+  </div>
+{%endblock%}
+
 {% block content %}
 {% block dropdown %} {% endblock %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -23,15 +42,9 @@
   <h2>{{adset_name}}</h2>
   <hr>
 </div>
-<div class="page-loader">
-  <div class="loading">
-    <svg xmlns="http://www.w3.org/2000/svg" width="200px" height="200px" viewBox="0 0 16 16" fill="none" class="hds-flight-icon--animation-loading">
-      <g fill="#000000" fill-rule="evenodd" clip-rule="evenodd">
-      <path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8z" opacity=".2"/>
-      <path d="M7.25.75A.75.75 0 018 0a8 8 0 018 8 .75.75 0 01-1.5 0A6.5 6.5 0 008 1.5a.75.75 0 01-.75-.75z"/>
-      </g>
-      </svg>
-  </div>
+<div id="loaderContainer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.8); z-index: 9999;">
+  <div id="loader" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"><p style="padding-top: 149px;">Please wait...</p></div>
+  
 </div>
 
 <div class="container">
@@ -101,12 +114,12 @@
             {% if comment.is_hidden %}
             <p>{{comment.negative_message|safe|truncatechars:35}} <span><strong>{{comment.created_time}}</strong></span></p>
             <strong><i class="text-success">This comment is hidden</i></strong>
-            <a href="{% url 'post-unhide-comment' adset_id comment.id c.access_token %}" class="btn btn-warning">
+            <a href="{% url 'post-unhide-comment' adset_id comment.id c.access_token %}" class="btn btn-warning hideCommentBtn">
               Unhide
             </a>
             {%else %}
             <p>{{comment.negative_message|safe|truncatechars:45}} <span><strong>{{comment.created_time}}</strong></span></p>
-            <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-sm btn-danger px-3 btn-sm rounded-pill">
+            <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-sm btn-danger px-3 btn-sm rounded-pill hideCommentBtn">
               Hide
             </a>{%endif%}<hr>{% endif %}
           </li>
@@ -127,12 +140,12 @@
             {% if comment.is_hidden %}
             <p>{{comment.positive_message|safe|truncatechars:35}} <span><strong>{{comment.created_time}}</strong></span></p>
             <strong><i class="text-success">This comment is hidden</i></strong>
-            <a href="{% url 'post-unhide-comment' adset_id comment.id c.access_token %}" class="btn btn-warning">
+            <a href="{% url 'post-unhide-comment' adset_id comment.id c.access_token %}" class="btn btn-warning hideCommentBtn">
               Unhide
             </a>
             {%else %}
             <p>{{comment.positive_message|safe|truncatechars:45}} <span><strong>{{comment.created_time}}</strong></span></p>
-            <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-sm btn-danger px-3 btn-sm rounded-pill">
+            <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-sm btn-danger px-3 btn-sm rounded-pill hideCommentBtn">
               Hide
             </a>
             {%endif%}
@@ -156,12 +169,12 @@
             {% if comment.is_hidden %}
             <p>{{comment.neutral_message|safe|truncatechars:35}} <span><strong>{{comment.created_time}}</strong></span></p>
             <strong><i class="text-success">This comment is hidden</i></strong>
-            <a href="{% url 'post-unhide-comment' adset_id comment.id c.access_token %}" class="btn btn-warning bot-verify">
+            <a href="{% url 'post-unhide-comment' adset_id comment.id c.access_token %}" class="btn btn-warning bot-verify hideCommentBtn">
               Unhide
             </a>
             {%else %}
             <p>{{comment.neutral_message|safe|truncatechars:45}} <span><strong>{{comment.created_time}}</strong></span></p>
-            <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-sm btn-danger px-3 btn-sm rounded-pill">
+            <a href="{% url 'post-hide-comment' adset_id comment.id c.access_token %}" class="btn btn-sm btn-danger px-3 btn-sm rounded-pill hideCommentBtn">
               Hide
             </a>
             {%endif%}
@@ -216,6 +229,8 @@
 }
 </script>
 <script src="{% static 'js/index.js' %}"></script>
+<!-- loader -->
+<script src="{% static 'js/spin.js' %}"></script>
 <script>
   $(document).ready(function() {
     $(".page-loader").hide();

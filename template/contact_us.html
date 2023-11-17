@@ -11,15 +11,6 @@
 </head>
 <body class="contact-page">
     <section class="contact-section" style="background-image: url('{% static 'image/contact-bg.jpg' %}');">
-        <div class="message-container" >
-            {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-{{message.tags}} alert-dismissible">
-              <strong>{{message.tags}}!</strong> {{message|safe}}
-            </div>
-            {% endfor %}
-            {% endif %}
-          </div>
         <div class="contact-container">
             
             <div class="contact-content">
@@ -30,12 +21,15 @@
                     <input type="text" name="phone" placeholder="Phone number"><br>
                     <textarea name="message" id="" cols="30" rows="10" placeholder="Message"></textarea><br>
                     <button type="submit">Submit</button>
+                    {% if messages %}
+                    {% for message in messages %}
                     <div class="submit-popup">
                         <div class="popup-messgae">
-                            <p style="color: #009900;"><b>Success!</b> Form is submittted!</p>
-                            <p style="color: #cf0202;"><b>Failed!</b> Form is not submittted.</p>
+                            <p style="color: #009900;"><b>{{message.tags}}!</b> {{message}}!</p>
                         </div>
                     </div>
+                    {% endfor %}
+                    {% endif %}
                 </form>
             </div>
         </div>

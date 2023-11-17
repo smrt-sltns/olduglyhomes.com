@@ -64,10 +64,22 @@ class ContactUs(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     phone = models.CharField(max_length=100, null=True, blank=True)
     message = models.CharField(max_length=600, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True )
     
     def __str__(self):
-        return self.user.email
+        return f"{self.user.email} | {self.created_at}"
     
+
+class CommentActionsErrors(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
+    comment_message = models.CharField(max_length=200, null=True, blank=True)
+    comment_id = models.CharField(max_length=100, null=False, blank=False)
+    action = models.CharField(max_length=100, null=False, blank=False) # possible values are hide / unhide 
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    
+    def __str__(self):
+        return f"{self.user.email} | {self.created_at}"
+
 
 class IgnoredComments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

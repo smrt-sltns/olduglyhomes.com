@@ -125,7 +125,7 @@ def Hide_comment(request, adset_id, comment_id):
             )
     else:
         print(response.text)
-        messages.error(request, "Request Failed! {}".format(response.text))
+        messages.error(request, f"Failed to Unhide `{comment_message}`.")
     return HttpResponseRedirect(reverse('sentiment-graph', kwargs={'adset_id': adset_id}))
 
 
@@ -146,7 +146,7 @@ def Unhide_comment(request, adset_id, comment_id):
             )
     else:
         print(response.text)
-        messages.error(request, "Request Failed! {}".format(response.text))
+        messages.error(request, f"Failed to Unhide `{comment_message}`.")
     return HttpResponseRedirect(reverse('sentiment-graph', kwargs={'adset_id': adset_id}))
 
 
