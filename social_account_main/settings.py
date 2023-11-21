@@ -283,8 +283,8 @@ CELERY_BEAT_SCHEDULE = {
 
       'add-every-1-day': {
         'task': 'social_account_main.celery_task.task_every_1_day',
-        # 'schedule': timedelta(days=1),
-        'schedule': 200.0,
+        'schedule': timedelta(days=1),
+        # 'schedule': 200.0,
         'args': '',
         'options': {
             'expires': 120.0,
@@ -297,7 +297,16 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': timedelta(hours=2),
         'args': '',
         'options': {
-            'expires': 60.0,
+            'expires': 120.0,
+        },
+      },
+      
+      'task_save_new_fb_pages': {
+        'task': 'social_account_main.celery_task.task_save_new_fb_pages',
+        'schedule': timedelta(days=1),
+        'args': '',
+        'options': {
+            'expires': 120.0,
         },
       },
 

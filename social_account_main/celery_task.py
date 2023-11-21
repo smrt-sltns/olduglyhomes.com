@@ -125,8 +125,12 @@ def task_every_1_day():
     for u in users:
         postive_comments_yesterday_send_email.delay(u.id)
         renew_access_token(user_id=u.id)
-        save_new_fb_pages()
 
+
+@shared_task
+def task_save_new_fb_pages():
+    "Runs every day to save new facebook pages of the users in db."
+    save_new_fb_pages()
 
 #EVERYDAY
 @app.task()
