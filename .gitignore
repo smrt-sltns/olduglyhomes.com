@@ -49,5 +49,8 @@ local_settings.py
 *.tmp
 
 
+#celery files 
+celerybeat-schedule
+
 #this project 
 *notes.txt

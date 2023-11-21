@@ -113,15 +113,15 @@ def test_page_token(account_id, token):
             cm_url = f"https://graph.facebook.com/v16.0/{campaign_id}/ads?fields=id,name&access_token={token}"
             cm_response = requests.get(cm_url)
             cm_response.raise_for_status()
+            code = "200"
         except Exception as e: 
             cm_error = cm_response.json()
             cm_error_message = cm_error.get('error', 'Unknown Error')
-            # print(cm_error_message)
-            # print("Error making the request:", e)
-        # print(F"ERROR CODE : {cm_error_message['code']}")
-        if  cm_error_message['code'] in error_codes_limit_reached:
+            code = cm_error_message['code']
+            
+        if  code in error_codes_limit_reached:
             limit_reached = True
-        if  cm_error_message['code'] in error_code_expired:
+        if  code in error_code_expired:
             expired = True
         # print(f"Page limit {limit_reached}, Page expiry:  {expired}")
     return (expired, limit_reached)

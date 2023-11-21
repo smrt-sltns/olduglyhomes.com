@@ -20,6 +20,7 @@ import datetime
 from facebook.models import AccountsAd
 from facebook.token_expired import renew_access_token
 from access_token import LONGLIVED_ACCESS_TOKEN
+from facebook.new_pages import save_new_fb_pages
 from .emails import (negative_comment_today, positive_comments_send_email, save_ads, 
                     save_campaings, save_comments, negative_comments_send_email)
 from .myads_utils import email_to_file_name
@@ -112,18 +113,19 @@ def LOG_positive_comments(user_id, account_id, data, is_mail_sent):
 
 #every 2 hours 
 @shared_task
-def every_2_hours():
+def task_every_2_hours():
     users = User.objects.filter(is_superuser=False).all()
     for u in users:
         negative_comments_today_send_email.delay(u.id)
 
 
 @shared_task
-def every_1_day():
+def task_every_1_day():
     users = User.objects.filter(is_superuser=False).all()
     for u in users:
         postive_comments_yesterday_send_email.delay(u.id)
         renew_access_token(user_id=u.id)
+        save_new_fb_pages()
 
 
 #EVERYDAY

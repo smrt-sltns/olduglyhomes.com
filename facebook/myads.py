@@ -117,15 +117,18 @@ def Hide_comment(request, adset_id, comment_id):
         'access_token': access_token
     }
     response = requests.post(url, data=data)
+    comment_message = comment_info(comment_id, access_token=access_token)
+    print(comment_message)
     if response.status_code == 200:
-        comment_message = comment_info(comment_id, access_token=access_token)
+        
         messages.success(
             request, 
             "Your request was successful. \nComment : `{}` is hidden now from users.".format(comment_message)
             )
     else:
         print(response.text)
-        messages.error(request, f"Failed to Unhide `{comment_message}`.")
+        messages.error(request, f"Failed to hide `{comment_message}`.")
+    print("status code , ",response.status_code)
     return HttpResponseRedirect(reverse('sentiment-graph', kwargs={'adset_id': adset_id}))
 
 

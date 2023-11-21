@@ -77,16 +77,16 @@ def Post_hide_comment(request, account_id, comment_id, account_access_token):
         'access_token': account_access_token
     }
     # print("comment and access token \n",comment_id,"\n", account_access_token)
+    comment_message = comment_info(comment_id, access_token=account_access_token)
     response = requests.post(url, data=data)
     if response.status_code == 200:
-        comment_message = comment_info(comment_id, access_token=account_access_token)
         messages.success(
             request, 
             "Your request was successful. \nComment : `{}` is hidden now from users.".format(comment_message)
             )
     else:
         # print(response.text)
-        messages.error(request, "Request Failed! {}".format(response.text))
+        messages.error(request, f"Failed to hide `{comment_message}`.")
     return HttpResponseRedirect(
         reverse('sentiment-graph-post', 
         kwargs={'account_id': account_id, "account_access_token":account_access_token}))
@@ -100,15 +100,14 @@ def Post_unhide_comment(request, account_id, comment_id, account_access_token):
         'access_token': account_access_token
     }
     response = requests.post(url, data=data)
+    comment_message = comment_info(comment_id, access_token=account_access_token)
     if response.status_code == 200:
-        comment_message = comment_info(comment_id, access_token=account_access_token)
         messages.success(
             request, 
             "Your request was successful. \nComment : `{}` is unhidden now from users.".format(comment_message)
             )
     else:
-        # print(response.text)
-        messages.error(request, "Request Failed! {}".format(response.text))
+        messages.error(request, f"Failed to hide `{comment_message}`.")
     return HttpResponseRedirect(
         reverse('sentiment-graph-post', 
         kwargs={'account_id': account_id, "account_access_token":account_access_token}))

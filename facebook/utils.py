@@ -208,6 +208,11 @@ def comment_status(comment_id, access_token=LONGLIVED_ACCESS_TOKEN):
 #<<=======================================================================================================================>>
 #FACEBOOK ACCOUNT SECTION LOGIC 
 
+def get_all_accounts(user_access_token):
+    url  = f"https://graph.facebook.com/v16.0/me/accounts?fileds=id,name,access_token&access_token={user_access_token}&limit=100"
+    response = json.loads(urllib.request.urlopen(url).read())
+    return response['data']
+
 def get_account_name(page_id, page_access_token):
     url = f"https://graph.facebook.com/v16.0/{page_id}?fields=id,name&access_token={page_access_token}"
     read_url = json.loads(urllib.request.urlopen(url).read())

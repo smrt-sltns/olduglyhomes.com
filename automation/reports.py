@@ -21,7 +21,7 @@ def negative_report(request, ad_id):
         adaccounts = AccountsAd.objects.filter(user=request.user).all()
         context['adaccounts'] = adaccounts
     return render(request, "reports/negative_comments.html", context) 
-    pass 
+
 
 def positive_report(request, ad_id):
     adaccount_is_set = Creds.objects.get(user=request.user).has_ad_accounts
@@ -43,3 +43,4 @@ def positive_report(request, ad_id):
 
 def no_reports(request, message):
     message = message
+    pass 
