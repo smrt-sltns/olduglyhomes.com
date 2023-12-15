@@ -1,11 +1,11 @@
 from pathlib import Path
-from decouple import config
+from decouple import config,Csv
 import os 
 from datetime import timedelta
 import logging.config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-BASE_URL = config("BASE_URL", "https://olduglyhomes.com")
+BASE_URL = config("BASE_URL","")
 # BASE_URL = "https://127.0.0.1:8000"
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -16,13 +16,7 @@ SECRET_KEY = 'django-insecure-acj1g@4&c&pkah!1il$ooqm669#s@!4bag*_lw66cga8_mzqhn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", False)
 
-ALLOWED_HOSTS = [
-    "www.olduglyhomes.com",
-    "olduglyhomes.com",
-    "localhost",
-    "69.48.163.14",
-    "127.0.0.1",
-]
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="", cast=Csv())
 
 
 # Application definition
@@ -264,8 +258,8 @@ CACHES = {
     }
 }
 
-CELERY_BROKER_URL = "redis://localhost:6379/0"
-CELERY_RESULT_BACKEND = "redis://localhost:6379/1"
+CELERY_BROKER_URL = config("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = config("CELERY_RESULT_BACKEND")
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'

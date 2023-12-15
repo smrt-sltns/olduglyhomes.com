@@ -54,3 +54,6 @@ celerybeat-schedule
 
 #this project 
 *notes.txt
+
+#JSON folder
+JSON/
