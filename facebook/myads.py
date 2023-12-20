@@ -85,7 +85,7 @@ def sentiment_graph(request, adset_id):
         adset_name = get_adset_name(adset_id=adset_id, access_token=access_token)
         for ad_id in ad_id_list:
             name, eff = get_ad_name_and_effective_object_story_id(ad_id=ad_id, access_token=access_token)
-            page_token = get_access_token_for_ad(eff=eff)
+            page_token = get_access_token_for_ad(eff=eff, user=request.user)
             
             comment_len = comment_count(eff, access_token=page_token)
             if comment_len > 1:

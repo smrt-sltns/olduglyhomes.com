@@ -26,6 +26,9 @@ class LogNegativeComments(models.Model):
     created_time = models.CharField(max_length=100, null=True, blank=True) # comment created date 
     is_mail_sent = models.BooleanField(default=False) # was mail sent for the comment?
     automation_runtime = models.DateTimeField(auto_now_add=True,null=True, blank=True) 
+    
+    is_deleted = models.BooleanField(default=False)
+    is_hidden = models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = "Log Negative Comments"

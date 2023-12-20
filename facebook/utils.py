@@ -45,10 +45,14 @@ def PageAndAccountToken(access_token):
     return data
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-def get_access_token_for_ad(eff):
+def get_access_token_for_ad(eff, user=None):
     page_id = eff.split("_")[0]
-    page  = AccountPages.objects.get(page_id=page_id)
-    return page.longlived_access_token
+    try:
+        page  = AccountPages.objects.get(page_id=page_id)
+        token = page.longlived_access_token
+    except Exception as e:
+        token = AccountsAd.objects.filter(user=user)[0].access_token
+    return token
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # ad accounts 

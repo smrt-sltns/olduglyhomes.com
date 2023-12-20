@@ -40,7 +40,12 @@
                     <td>{{p.created_time}}</td>
                     <td>{{p.automation_runtime}}</td>
                     <td><span class="comment-{% if p.is_mail_sent %}success{% else %}failed{% endif %}">{{p.is_mail_sent}}</span></td>
-                    <td><a href="{{base_url}}/sentiment-graph/{{p.adset_id}}/">link</a></td>
+                    {% if p.is_deleted %}
+                    <td><p style="color:red;">Deleted</p></td>
+                    {%else %}
+                    <td><a href="{% url 'negative_comment_status' p.comment_id p.ad_id p.adset_id %}">View</a></td>
+                        <!-- <td><a href="{{base_url}}/sentiment-graph/{{p.adset_id}}/">link</a></td> -->
+                    {%endif%}
                 </tr>
                 {%endfor %}
             </tbody>

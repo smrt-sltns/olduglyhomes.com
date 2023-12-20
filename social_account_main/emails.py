@@ -35,7 +35,7 @@ def negative_comments_send_email(user_email, file_name):
                                     {'new_negative_comments': new_comments, "old_negative_comments": old_comments})
         try:
             send_mail(
-                'email title',
+                'Negative Comments Alert!',
                 "Negative comments!",
                 settings.EMAIL_HOST_USER,
                 # ['kundan.k.pandey02@gmail.com', "georgeyoumansjr@gmail.com","coboaccess2@gmail.com"],
