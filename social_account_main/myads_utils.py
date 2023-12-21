@@ -147,7 +147,7 @@ def Comment_made_yesterday(created_time:str):
 
 def negative_comment_today(file_name):
     campaings = json.loads(open(file_name, "r").read())
-    url = "https://smartsolutions.pythonanywhere.com/sentiment-graph/{}" # fetch from smart solutions 
+    url = "https://smarttextinfo.com/sentiment-graph/{}" # fetch from smart solutions 
     data = {}
     new_negative_comments = []
     old_negative_comments = []
@@ -178,7 +178,7 @@ def negative_comment_today(file_name):
 
 
 def total_comment_yesterday(file_name):
-    url = "https://smartsolutions.pythonanywhere.com/sentiment-graph/{}" # fetch from smart solutions 
+    url = "https://smarttextinfo.com/sentiment-graph/{}" # fetch from smart solutions 
     campaings = json.loads(open(file_name, "r").read())
     store_data = []
     for cams in campaings:
