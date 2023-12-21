@@ -45,12 +45,11 @@ def positive_report(request, ad_id):
 
 
 def negative_comment_status(request, comment_id, ad_id, adset_id ):
-    access_token = Creds.objects.get(user=request.user).LONGLIVED_ACCESS_TOKEN
+    # comment = LogNegativeComments.objects.get(comment_id=comment_id)
     comment = LogNegativeComments.objects.get(comment_id=comment_id)
-    # adaccount = LogNegativeComments.objects.get(comment_id=comment_id).adaccount
-    # page_token = adaccount.page_associated.longlived_access_token
-    # adaccount_id = adaccount.id
-    name, eff = get_ad_name_and_effective_object_story_id(ad_id=ad_id, access_token=access_token)
+    adaccount = LogNegativeComments.objects.get(comment_id=comment_id).adaccount
+    page_token = adaccount.page_associated.longlived_access_token
+    name, eff = get_ad_name_and_effective_object_story_id(ad_id=ad_id, access_token=page_token)
     page_token = get_access_token_for_ad(eff=eff, user=request.user)
     comment_url  = f"https://graph.facebook.com/v16.0/{eff}/comments?fields=id,message,created_time,is_hidden&summary=true&access_token={page_token}&pretty=1&summary=true&limit=100&after"
     comments_json = json.loads(urllib.request.urlopen(comment_url).read())
