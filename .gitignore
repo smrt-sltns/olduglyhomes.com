@@ -47,13 +47,13 @@ local_settings.py
 *.swp
 *.bak
 *.tmp
-*.data
-*.dir 
+
 
 
 #celery files 
 celerybeat-schedule
-
+*.dat
+*.dir
 #this project 
 *notes.txt
 

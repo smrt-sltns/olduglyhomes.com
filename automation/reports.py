@@ -13,7 +13,7 @@ import urllib.request
 def negative_report(request, ad_id):
     adaccount_is_set = Creds.objects.get(user=request.user).has_ad_accounts
     adaccount = AccountsAd.objects.get(id=ad_id)
-    negativelog = LogNegativeComments.objects.all().filter(adaccount=adaccount).order_by('-automation_runtime')
+    negativelog = LogNegativeComments.objects.all().filter(adaccount=adaccount).filter(is_deleted=False).order_by('-automation_runtime')
     context = {
         # "all_campaigns":all_campaigns,
         "base_url": settings.BASE_URL,
