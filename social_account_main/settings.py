@@ -288,7 +288,7 @@ CELERY_BEAT_SCHEDULE = {
 
       'add-every-2-hours': {
         'task': 'social_account_main.celery_task.task_every_2_hours',
-        'schedule': timedelta(hours=2),
+        'schedule': timedelta(hours=1),
         'args': '',
         'options': {
             'expires': 120.0,
