@@ -77,8 +77,17 @@ def adset_list_campaign(request, campaign_id):
 
 @custom_login_required
 def sentiment_graph(request, adset_id):
-    access_token = request.session['page_access_token']
-    all_campaigns = request.session['all_campaigns']
+    if "page_access_token" in request.session:
+        
+        access_token = request.session['page_access_token']
+    else : 
+        access_token = Creds.objects.get(user=request.user).LONGLIVED_ACCESS_TOKEN
+    if "all_campaigns" in request.session:
+        
+        all_campaigns = request.session['all_campaigns']
+    else: 
+        all_campaigns =  []
+        
     try:
         graph_container = []
         ad_id_list = get_ad_id_list(campaign_id=adset_id, access_token=access_token)
