@@ -23,6 +23,7 @@ from .utils import (
 from .myads_test import save_pages_to_adaccount
 from .decorator import custom_login_required
 from access_token import LONGLIVED_ACCESS_TOKEN
+from automation.models import LogNegativeComments
 
 
 
@@ -112,7 +113,7 @@ def sentiment_graph(request, adset_id):
             context.update({"no_comments":True})
         return render(request, "facebook_ads/sentiment-graph.html", context)
     except Exception as e:
-        print(e)
+        # print(e)
         return render(request, "facebook_ads/404NOADS.html", {"all_campaigns":all_campaigns})
 
 
@@ -127,17 +128,21 @@ def Hide_comment(request, adset_id, comment_id):
     }
     response = requests.post(url, data=data)
     comment_message = comment_info(comment_id, access_token=access_token)
-    print(comment_message)
     if response.status_code == 200:
-        
+        try: 
+            comment = LogNegativeComments.objects.get(comment_id=comment_id)
+            comment.is_hidden = True
+            comment.save()
+        except Exception as e:
+            pass 
         messages.success(
             request, 
             "Your request was successful. \nComment : `{}` is hidden now from users.".format(comment_message)
             )
     else:
-        print(response.text)
+        
+        # print(response.text)
         messages.error(request, f"Failed to hide `{comment_message}`.")
-    print("status code , ",response.status_code)
     return HttpResponseRedirect(reverse('sentiment-graph', kwargs={'adset_id': adset_id}))
 
 
@@ -151,13 +156,19 @@ def Unhide_comment(request, adset_id, comment_id):
     }
     response = requests.post(url, data=data)
     if response.status_code == 200:
+        try: 
+            comment = LogNegativeComments.objects.get(comment_id=comment_id)
+            comment.is_hidden = False
+            comment.save()
+        except Exception as e:
+            pass 
         comment_message = comment_info(comment_id, access_token=access_token)
         messages.success(
             request, 
             "Your request was successful. \nComment : `{}` is unhidden now from users.".format(comment_message)
             )
     else:
-        print(response.text)
+        # print(response.text)
         messages.error(request, f"Failed to Unhide `{comment_message}`.")
     return HttpResponseRedirect(reverse('sentiment-graph', kwargs={'adset_id': adset_id}))
 
@@ -168,7 +179,7 @@ def set_accountad(request):
     token = creds.LONGLIVED_ACCESS_TOKEN # user access token 
     if request.method == "POST":
         adaccounts = request.POST.getlist("page_account")
-        print("PAGE ACCOUNT IDS ::: {}".format(adaccounts))
+        # print("PAGE ACCOUNT IDS ::: {}".format(adaccounts))
         for a in adaccounts:
             ad_id, ad_name = single_ad_info(token=token, ad_id=a)
             try:
@@ -200,7 +211,7 @@ def set_accountad(request):
                         creds.save()
                     messages.success(request, "{} saved successfully!".format(ad_name))
             except Exception as e:
-                    print(e)
+                    # print(e)
                     messages.error(request, "Failed to save <b>{}</b>.".format(ad_name))
         return redirect(reverse("home"))
     else:
