@@ -1,0 +1,124 @@
+{% extends "index_report.html" %}
+{% block content %}
+
+
+<div class="inner-content">
+    <h3 class="content-title">Set Ad Spend Limit</h3>
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                <th>AD Name</th>
+                <th>Current Spend</th>
+                <th>Set Limit</th>
+                <th>Status</th>
+                <th>Date Time</th>
+                <th>Tracking status</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ad in adrecords %}
+
+            <tr>
+                <td><span>{{ad.ad_name}}</span><br><span style="font-size: 14px;"><b>{{ad.campaign_name}} - {{ad.adset_name}}</b></span></td>
+                <td>$ {{ad.ad_spend}}</td>
+                <td>
+                <form action="{% url 'limit' %}" method="post">
+                {% csrf_token %}
+                    <div class="input-group">
+                        <input type="number" class="form-control" name="limit" placeholder="Enter Limit" value={{ad.ad_spend_limit}} required>
+                        <input type="hidden" class="form-control" name="ad_id" value={{ad.ad_id}}>
+
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="sumit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                </td>
+                <td>
+                {% if ad.is_active %}
+                    <span class="badge badge-success">Active</span>
+                {% else %}
+                    <span class="badge badge-danger">Inactive</span>
+                {% endif %}
+                </td>
+                <td>{{ad.created_datetime}}</td>
+                <td>
+                    <label class="switch">
+                        {% if ad.expired %}
+                        <input type="checkbox" name="track" class="ad-checkbox" data-ad-id="{{ad.ad_id}}">
+                        {% else %}
+                        <input type="checkbox" checked name="track" class="ad-checkbox" data-ad-id="{{ad.ad_id}}">
+                        {% endif %}
+                        <span class="slider round"></span>
+                    </label>
+                </td>
+            </tr>
+            {%endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked + .slider {
+        background-color: #28a745;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #28a745;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+</style>
+
+{% endblock content %}

@@ -15,6 +15,7 @@ urlpatterns = [
     path('', include('facebook.urls'), name='facebook-urls'),
     path('404',error_page,name="error-page"),
     path("reports/", include("automation.urls"), name="reports"),
+    path("ad_spend/", include("limit.urls"), name="limit"), 
     path('social-auth/', include('social_django.urls', namespace="social")),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
 ]

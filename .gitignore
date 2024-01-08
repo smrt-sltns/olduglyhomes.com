@@ -58,4 +58,4 @@ celerybeat-schedule
 *notes.txt
 
 #JSON folder
-JSON/
+JSON/*.json

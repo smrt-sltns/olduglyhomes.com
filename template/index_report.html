@@ -87,6 +87,12 @@
                             Facebook Pages
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'ad_spend'  %}">
+                            <i class="fa fa-dollar-sign"></i>
+                            Ad Spend
+                        </a>
+                    </li>
                     <li class="nav-item" >
                         <a class="nav-link" href="{% url 'contact_us' %}" >
                             <i class="fa fa-address-book"></i>
@@ -112,7 +118,7 @@
                         <strong>{{message.tags}}!</strong> {{message|safe}}
                     </div>
                     {% else %}
-                    <div class="alert alert-{{message.tags}} alert-dismissible">
+                    <div class="alert alert-primary alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         <strong>{{message.tags}}!</strong> {{message|safe}}
                     </div>
@@ -138,9 +144,35 @@
 
     </script>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.ad-checkbox').change(function () {
+            var isChecked = $(this).prop('checked');
+            var rowId = $(this).data('ad-id');
+            // Make AJAX request to your Django view
+            $.ajax({
+                url: '/ad_spend/track/',
+                method: 'POST',
+                data: {
+                    'ad_id': rowId,
+                    'is_checked': isChecked,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function (data) {
+                    // Handle success if needed
+                },
+                error: function (error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+    });
+</script>
+
+    {% comment %} <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> {% endcomment %}
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
