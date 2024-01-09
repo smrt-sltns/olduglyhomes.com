@@ -3,28 +3,19 @@ django.setup()
 from celery import Celery, shared_task
 from django.conf import settings 
 from django.core.mail import EmailMessage, get_connection, send_mail, send_mass_mail
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import get_template
-from django.template import Context
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
 from django.conf import settings
-
-
-import time
 import os
-import json
-import urllib.request
-import datetime
-
 from facebook.models import AccountsAd
 from facebook.token_expired import renew_access_token
-from access_token import LONGLIVED_ACCESS_TOKEN
 from facebook.new_pages import save_new_fb_pages
+
 from .emails import (negative_comment_today, positive_comments_send_email, save_ads, 
                     save_campaings, save_comments, negative_comments_send_email)
 from .myads_utils import email_to_file_name
 from automation.models import LogNegativeComments, LogPositiveComments
+from limit.task import dummy_print
 
 
 
@@ -126,6 +117,10 @@ def task_every_1_day():
         postive_comments_yesterday_send_email.delay(u.id)
         renew_access_token(user_id=u.id)
 
+@shared_task
+def task_spend_limit():
+    dummy_print.delay()
+    
 
 @shared_task
 def task_save_new_fb_pages():

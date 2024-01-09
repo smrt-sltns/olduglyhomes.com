@@ -306,15 +306,15 @@ CELERY_BEAT_SCHEDULE = {
             'expires': 120.0,
         },
       },
-
-    #   'wrapper-comments': {
-    #     'task': 'social_account_main.celery_task.wraped_comments',
-    #     # 'schedule': timedelta(days=1),
-    #     'schedule': 100.0,
-    #     'args': '',
-    #     'options': {
-    #         'expires': 60.0,
-    #     },
-    #   },
+      
+      #update ads spend every 10 min 
+      'task_spend_limit': {
+        'task': 'social_account_main.celery_task.task_spend_limit',
+        'schedule': 150.0,
+        'args': '',
+        'options': {
+            'expires': 120.0,
+        },
+      },
 
 }

@@ -8,7 +8,7 @@ class AdRecord(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     account_id = models.CharField(max_length=200, null=True, blank=True)
     
-    effective_object_story_id = models.CharField(max_length=200, blank=True,unique=True, null=True)
+    effective_object_story_id = models.CharField(max_length=200, blank=True,unique=False, null=True)
     campaign_name = models.CharField(max_length=200, null=True, blank=True)
     campaign_id = models.CharField(max_length=200, null=True, blank=True)
     

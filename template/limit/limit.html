@@ -2,8 +2,34 @@
 {% block content %}
 
 
+
 <div class="inner-content">
     <h3 class="content-title">Set Ad Spend Limit</h3>
+    <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Sort by
+    </button>
+    <div class="dropdown-menu" aria-labelledby="sortDropdown">
+
+      <!-- Budget Section -->
+      <div class="dropdown-header">Budget</div>
+      <a class="dropdown-item" type="button" href="{% url 'sort' value='lowest' %}">Lowest</a>
+      <a class="dropdown-item" type="button" href="{% url 'sort' value='highest' %}">Highest</a>
+
+      <!-- Status Section -->
+      <div class="dropdown-divider"></div>
+      <div class="dropdown-header">Status</div>
+      <a class="dropdown-item" type="button" href="{% url 'sort' value='active' %}">Active</a>
+      <a class="dropdown-item" type="button" href="{% url 'sort' value='inactive' %}">Inactive</a>
+
+      <!-- Track Section -->
+      <div class="dropdown-divider"></div>
+      <div class="dropdown-header">Track</div>
+      <a class="dropdown-item" type="button" href="{% url 'sort' value='tracked' %}">Tracked</a>
+      <a class="dropdown-item" type="button" href="{% url 'sort' value='untracked' %}">Untracked</a>
+
+    </div>
+  </div>
     <div class="table-container">
         <table class="table">
             <thead>

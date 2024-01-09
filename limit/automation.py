@@ -7,89 +7,64 @@ from django.contrib.auth.models import User
 from django.conf import settings 
 import json 
 import os 
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage, get_connection, send_mail
 
 
 
-def capture_new_ads(user_id="3"):
-    """
-    run every hour and capture new ads 
-    with infomation like campaign and adset information.
-    """
-    user = User.objects.get(id=user_id)
-    email = user.email 
-    
-    # email = "georgeyoumansjr@gmail.com"
-    folder = os.path.join(settings.BASE_DIR, F"JSON/{email_to_file_name(email=email)}")
-    user_files = os.listdir(folder)
-    
-    active_ad_list = []
-    # user_files = []
-    for file in user_files:
-        read_data = open(f"{folder}/{file}", "r").read()
-        ads_data = json.loads(read_data)
-        for adset in ads_data:
-            campaign_name = adset['campaign_name']
-            campaign_id = adset['campaign_id']
-            for ad in adset['adsets']:
-                adset_name = ad['adset_name']
-                adset_id = ad['adset_id']
-                for a in ad['ads']:
-                    ad_id = a['ad_id']
-                    ad_name = a['ad_name']
-                    eff = a['eff']
-                    active_ad_list.append(ad_id)
-                    adrecord = AdRecord()
-                    if not AdRecord.objects.filter(ad_id=ad_id).exists():
-                        adrecord = AdRecord(
-                            user = user,
-                            ad_id=ad_id, ad_name=ad_name, 
-                            adset_name=adset_name, adset_id=adset_id, 
-                            campaign_id = campaign_id, campaign_name=campaign_name,
-                            effective_object_story_id=eff, 
-                            account_id = "act_296865963")
-                        adrecord.save()
-        print(f"file : {file}, len : {len(active_ad_list)}")
-    for db_ads in AdRecord.objects.all():
-        if db_ads.ad_id not in active_ad_list:
-            db_ads.is_active = False
-            # db_ads.save()
-        else: 
-            db_ads.is_active = True
-            # db_ads.save()
-    
-            # print(db_ads.adset_name, db_ads.campaign_name, "is not active!")
 
 
-
-def check_spend_limit(user_id="3"):
+def check_spend_limit(user_id):
     """
     run every 20 minutes on selected ads 
     which have their limit set and if limit 
     set has exceeded then send the email to the 
     user associated 
     """
+    over_spend_ads = []
     user = User.objects.get(id=user_id)
     access_token = Creds.objects.get(user=user).LONGLIVED_ACCESS_TOKEN
     ads = AdRecord.objects.filter(user=user,is_active=True, expired=False).all()
     for ad in ads:
         url =  f'https://graph.facebook.com/v18.0/{ad.ad_id}/insights?fields=spend&access_token={access_token}'
-        response = requests.get(url)
+        try:
+            response = requests.get(url)
+        except Exception as e:
+            print("This url is failed")
+            print(url)
         content = response.json()
-        spend = content['data'][0]['spend']
+        spend = content['data'][0]['spend'] if len(content['data']) > 0 else 0
+        print(f"spend type {type(spend)}")
         print(spend, ad.ad_spend_limit)
         ad.ad_spend = spend
         ad.is_limit_set = True
         ad.save()
         if float(spend) > ad.ad_spend_limit and ad.is_limit_set == True and ad.ad_spend_limit  != 0.0:
+            over_spend_ads.append(ad)
             print("Send notification email ", ad.ad_id)
+            ad.expired = True
+            ad.save()
+    # print(over_spend_ads)
+    return (over_spend_ads, user.email)
 
 
-def send_limit_exceed_mail():
+def send_limit_exceed_mail(adlist, user_email):
     """
     Send remider email to user if 
     ad spend limit has exceeded 
     """ 
-    pass 
+    if len(adlist) != 0:
+        msg_html = render_to_string('email_template/spend_limit.html', 
+                                    {'adlist': adlist})
 
-if __name__ == "__main__":
-    capture_new_ads()
+        send_mail(
+            'Ad Spend limit reached!',
+            "Comments made yesterday!",
+            settings.EMAIL_HOST_USER,
+            # [user_email,],
+            ['kundan.k.pandey02@gmail.com', user_email,],
+            # "georgeyoumansjr@gmail.com", 
+            # "coboaccess2@gmail.com"],
+            html_message=msg_html,
+        )
+            # print("MAIL SENT! Positive comments yesterday!")
