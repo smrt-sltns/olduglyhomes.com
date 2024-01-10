@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Three-Column Table</title>
+    <title>Ad Spend limit reached</title>
     <style>
         table {
             width: 100%;
@@ -24,27 +24,22 @@
 </head>
 <body>
 
-    <h2>Three-Column Table</h2>
+    <h2>AD Table</h2>
     <table>
         <thead>
-            <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
+                <tr>AD Name</th>
+                <th>Current Spend</th>
+                <th>Limit set</th>
             </tr>
         </thead>
         <tbody>
+            {% for ad in adlist %}
             <tr>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
+                <td>{{ad.ad_name}}<br><strong>({{ad.campaign_name}} | {{ad.adset_name}})</strong></td>
+                <td>{{ad.ad_spend}}</td>
+                <td>{{ad.ad_spend_limit}}</td>
             </tr>
-            <tr>
-                <td>Data 4</td>
-                <td>Data 5</td>
-                <td>Data 6</td>
-            </tr>
-            <!-- Add more rows as needed -->
+            {% endfor %}
         </tbody>
     </table>
 

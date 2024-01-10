@@ -30,21 +30,16 @@ def check_spend_limit(user_id):
         try:
             response = requests.get(url)
         except Exception as e:
-            print("This url is failed")
-            print(url)
+            pass
         content = response.json()
         spend = content['data'][0]['spend'] if len(content['data']) > 0 else 0
-        print(f"spend type {type(spend)}")
-        print(spend, ad.ad_spend_limit)
         ad.ad_spend = spend
         ad.is_limit_set = True
         ad.save()
         if float(spend) > ad.ad_spend_limit and ad.is_limit_set == True and ad.ad_spend_limit  != 0.0:
             over_spend_ads.append(ad)
-            print("Send notification email ", ad.ad_id)
             ad.expired = True
             ad.save()
-    # print(over_spend_ads)
     return (over_spend_ads, user.email)
 
 
@@ -59,12 +54,8 @@ def send_limit_exceed_mail(adlist, user_email):
 
         send_mail(
             'Ad Spend limit reached!',
-            "Comments made yesterday!",
+            "Check belows Ads that have surpassed the spend limit!",
             settings.EMAIL_HOST_USER,
-            # [user_email,],
-            ['kundan.k.pandey02@gmail.com', user_email,],
-            # "georgeyoumansjr@gmail.com", 
-            # "coboaccess2@gmail.com"],
+            [ user_email,],
             html_message=msg_html,
         )
-            # print("MAIL SENT! Positive comments yesterday!")

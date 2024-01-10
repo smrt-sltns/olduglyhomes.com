@@ -7,7 +7,7 @@ from django.utils.safestring import mark_safe
 # Create your views here.
 
 def ad_spend(request):
-    adrecords = AdRecord.objects.all().filter(user=request.user).order_by('-is_active').order_by("expired").order_by('-ad_spend')
+    adrecords = AdRecord.objects.all().filter(user=request.user).order_by('-is_active')
     adaccount_is_set = Creds.objects.get(user=request.user).has_ad_accounts
     context = {
         "adaccount_is_set": adaccount_is_set,
@@ -15,9 +15,7 @@ def ad_spend(request):
         }
     if adaccount_is_set:
         adaccounts = AccountsAd.objects.filter(user=request.user).all()
-        context['adaccounts'] = adaccounts
-    print(f"ad account is set : {adaccount_is_set}")
-        
+        context['adaccounts'] = adaccounts        
     return render(request, "limit/limit.html", context)
 
 
@@ -29,6 +27,7 @@ def set_limit(request):
         adrecord = AdRecord.objects.get(ad_id=ad_id)
         adrecord.ad_spend_limit = float(limit)
         adrecord.is_limit_set = True
+        adrecord.expired = False
         adrecord.save()
         msg = f"You have set a new limit for Ad -> `<strong >{adrecord.campaign_name} | {adrecord.adset_name} | {adrecord.ad_name}</strong>`."
         safe_message = mark_safe(msg)

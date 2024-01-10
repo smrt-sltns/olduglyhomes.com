@@ -14,20 +14,16 @@ import os
 
 
 @shared_task
-def capture_new_ads(user_id="3"):
+def capture_new_ads(user_id):
     """
     run every hour and capture new ads 
     with infomation like campaign and adset information.
     """
     user = User.objects.get(id=user_id)
-    email = user.email 
-    
-    # email = "georgeyoumansjr@gmail.com"
-    folder = os.path.join(settings.BASE_DIR, F"JSON/{email_to_file_name(email=email)}")
+    folder = os.path.join(settings.BASE_DIR, F"JSON/{email_to_file_name(email=user.email)}")
+    existing_ads = AdRecord.objects.filter(user=user).all()
     user_files = os.listdir(folder)
-    
     active_ad_list = []
-    # user_files = []
     for file in user_files:
         read_data = open(f"{folder}/{file}", "r").read()
         ads_data = json.loads(read_data)
@@ -41,7 +37,6 @@ def capture_new_ads(user_id="3"):
                     ad_id = a['ad_id']
                     ad_name = a['ad_name']
                     eff = a['eff']
-                    # print(eff)
                     active_ad_list.append(ad_id)
                     adrecord = AdRecord()
                     if not AdRecord.objects.filter(ad_id=ad_id).exists():
@@ -53,8 +48,7 @@ def capture_new_ads(user_id="3"):
                             effective_object_story_id=eff, 
                             account_id = "")
                         adrecord.save()
-        print(f"file : {file}, len : {len(active_ad_list)}")
-    for db_ads in AdRecord.objects.all():
+    for db_ads in existing_ads:
         if db_ads.ad_id not in active_ad_list:
             db_ads.is_active = False
             db_ads.expired = True
@@ -66,9 +60,5 @@ def capture_new_ads(user_id="3"):
 
 @shared_task
 def spend_limit_and_email(user_id):
-    limit_list = check_spend_limit(user_id=user_id)
-    send_limit_exceed_mail()
-    for i in range(10):
-        print("dummy print")
-        
-        
+    adlist, email = check_spend_limit(user_id=user_id)
+    send_limit_exceed_mail(adlist=adlist, user_email=email)

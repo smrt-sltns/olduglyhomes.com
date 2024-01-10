@@ -15,7 +15,7 @@ from .emails import (negative_comment_today, positive_comments_send_email, save_
                     save_campaings, save_comments, negative_comments_send_email)
 from .myads_utils import email_to_file_name
 from automation.models import LogNegativeComments, LogPositiveComments
-from limit.task import dummy_print
+from limit.task import spend_limit_and_email, capture_new_ads
 
 
 
@@ -108,6 +108,7 @@ def task_every_2_hours():
     users = User.objects.filter(is_superuser=False).all()
     for u in users:
         negative_comments_today_send_email.delay(u.id)
+        capture_new_ads.delay(user_id=u.id)
 
 
 @shared_task
@@ -116,10 +117,13 @@ def task_every_1_day():
     for u in users:
         postive_comments_yesterday_send_email.delay(u.id)
         renew_access_token(user_id=u.id)
+        
 
 @shared_task
 def task_spend_limit():
-    dummy_print.delay()
+    users = User.objects.filter(is_superuser=False).all()
+    for u in users:
+        spend_limit_and_email.delay(user_id=u.id)
     
 
 @shared_task
