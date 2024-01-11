@@ -9,12 +9,13 @@ import json
 import os 
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage, get_connection, send_mail
+from datetime import datetime, timedelta
 
 
 
 
 
-def check_spend_limit(user_id):
+def check_spend_limit(user_id="3"):
     """
     run every 20 minutes on selected ads 
     which have their limit set and if limit 
@@ -25,11 +26,17 @@ def check_spend_limit(user_id):
     user = User.objects.get(id=user_id)
     access_token = Creds.objects.get(user=user).LONGLIVED_ACCESS_TOKEN
     ads = AdRecord.objects.filter(user=user,is_active=True, expired=False).all()
+    today = datetime.now()
+    today_date = today.strftime("%Y-%m-%d")
+    last_month = today - timedelta(days=30)
+    last_month_date = last_month.strftime("%Y-%m-%d")
+    
     for ad in ads:
-        url =  f'https://graph.facebook.com/v18.0/{ad.ad_id}/insights?fields=spend&access_token={access_token}'
+        url =  f'https://graph.facebook.com/v18.0/{ad.ad_id}/insights?fields=spend&time_range[since]={last_month_date}&time_range[until]={today_date}&access_token={access_token}'
         try:
-            response = requests.get(url)
+            response = requests.get(url=url)
         except Exception as e:
+            # print(e)
             pass
         content = response.json()
         spend = content['data'][0]['spend'] if len(content['data']) > 0 else 0
@@ -40,6 +47,8 @@ def check_spend_limit(user_id):
             over_spend_ads.append(ad)
             ad.expired = True
             ad.save()
+        print(ad.ad_name, ad.ad_spend, ad.ad_spend_limit)
+        
     return (over_spend_ads, user.email)
 
 
