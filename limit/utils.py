@@ -2,59 +2,38 @@ import json
 import requests
 import urllib.request
 from decouple import config 
-
-LONGLIVED_ACCESS_TOKEN = config("USER_LONGLIVED_ACCES_TOKEN", "")
-
-def save_campaings(account_id="act_296865963", token=LONGLIVED_ACCESS_TOKEN):
-    data = []
-    campaigns = {}
-    all_campaigns_url = f"https://graph.facebook.com/v16.0/{account_id}/campaigns?fields=id,name,effective_status&access_token={token}"
-    all_campaigns = json.loads(urllib.request.urlopen(all_campaigns_url).read())
-    for c in all_campaigns['data']:
-        if c['effective_status'] == "ACTIVE":# or c['effective_status'] == "PAUSED":
-            campaigns = {
-                "campaign_name": c['name'], 
-                "campaign_id": c['id'],  
-                "campaign_status": c['effective_status'], 
-                "adsets":[]
-                }
-            data.append(campaigns)
-    # with open(file_name, 'w') as json_file:
-    #     json_objects = json.dumps(data, indent=4)
-    #     json_file.write(json_objects)
-    return data
+from django.contrib.auth.models import User 
+from .models import AdRecord
+from datetime import datetime, timedelta
 
 
-# save adsets and ads from the campaigs 
-def save_ads(token=LONGLIVED_ACCESS_TOKEN):
-    # active_campaing_list = json.loads(open(file_name, "r").read())
-    active_campaing_list = save_campaings()
+
+def adrecord_groups(adrecords):
+    if len(adrecords) == 0:
+        return {}
     
-    data = []
-    for c in active_campaing_list:
-        adsets_url = f"https://graph.facebook.com/v16.0/{c['campaign_id']}/adsets?fields=name,id&access_token={token}"
-        adsets = json.loads(urllib.request.urlopen(adsets_url).read())
-        for adset in adsets['data']:
-            adset_id = adset['id']
-            adset_name = adset['name']
-            ads_url = f"https://graph.facebook.com/v16.0/{adset['id']}/ads?fields=name,id,effective_status,creative.fields(effective_object_story_id),insights.fields(actions)&access_token={token}"
-            ads_json = json.loads(urllib.request.urlopen(ads_url).read())
-            ads = []
-            if len(ads_json['data']) !=0:
-                for a in ads_json['data']:
-                    status = a['effective_status']
-                    eff = a['creative']['effective_object_story_id']
-                    if status == "ACTIVE":
-                        ads.append({"ad_name": a['name'], "ad_id": a['id'], "status":status, 
-                                    "eff":eff, "negative_comments":[], "positive_comments":[] })
-                c['adsets'].append({"adset_name": adset_name, "adset_id": adset_id, "ads": ads})
-        data.append(c)
-    # with open(file_name, 'w') as json_file:
-    #     json_objects = json.dumps(data, indent=4)
-    #     json_file.write(json_objects)
-    print("ads saved")
-    return data 
-    
+    ad_records_by_campaign = {}
+    for ad_record in adrecords:
+        campaign_name = ad_record.campaign_name
+        campaign_id = ad_record.campaign_id
+        adset_name = ad_record.adset_name
+        adset_id = ad_record.adset_id
+
+        if campaign_id not in ad_records_by_campaign:
+            ad_records_by_campaign[campaign_id] = {
+                "campaign_data": ad_record, 
+                "adsets" : {}
+            }
+        if adset_id not in ad_records_by_campaign[campaign_id]['adsets']:
+            ad_records_by_campaign[campaign_id]['adsets'][adset_id] = {
+                'adset_id': ad_record.adset_id,  
+                "adset_name": ad_record.adset_name,
+                'adset_spend': ad_record.adset_spend,  
+                
+                "adrecords" : []
+            }
+        ad_records_by_campaign[campaign_id]['adsets'][adset_id]['adrecords'].append(ad_record)
+    return ad_records_by_campaign
 
 
 def email_to_file_name(email):
@@ -65,7 +44,11 @@ def email_to_file_name(email):
     else:
         return  break_at
 
-if __name__ == '__main__':
-    # save_campaings()
-    ads = save_ads()
-    print(ads)
+
+def one_month_old_dates():
+    today = datetime.now()
+    today_date = today.strftime("%Y-%m-%d")
+    last_month = today - timedelta(days=30)
+    last_month_date = last_month.strftime("%Y-%m-%d")
+    return today_date, last_month_date
+

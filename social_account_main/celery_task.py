@@ -108,7 +108,7 @@ def task_every_2_hours():
     users = User.objects.filter(is_superuser=False).all()
     for u in users:
         negative_comments_today_send_email.delay(u.id)
-        capture_new_ads.delay(user_id=u.id)
+        
 
 
 @shared_task
@@ -198,4 +198,5 @@ def negative_comments_today_send_email(user_id): #
                 user_id=user_id, account_id=account_id, 
                 data=data, is_mail_sent=is_mail_sent)
             # print("NEGATIVE LOG SAVED!")
+    capture_new_ads(user_id=user.id)
 

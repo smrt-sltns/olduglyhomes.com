@@ -7,9 +7,12 @@ from django.contrib import messages
 from django.conf import settings 
 from django.urls import reverse
 from facebook.utils import get_ad_name_and_effective_object_story_id, get_access_token_for_ad
+from facebook.decorator import custom_login_required
 import json 
 import urllib.request
 
+
+@custom_login_required
 def negative_report(request, ad_id):
     adaccount_is_set = Creds.objects.get(user=request.user).has_ad_accounts
     adaccount = AccountsAd.objects.get(id=ad_id)
@@ -26,7 +29,7 @@ def negative_report(request, ad_id):
         context['adaccounts'] = adaccounts
     return render(request, "reports/negative_comments.html", context) 
 
-
+@custom_login_required
 def positive_report(request, ad_id):
     adaccount_is_set = Creds.objects.get(user=request.user).has_ad_accounts
     adaccount = AccountsAd.objects.get(id=ad_id)
@@ -43,7 +46,7 @@ def positive_report(request, ad_id):
         context['adaccounts'] = adaccounts
     return render(request, "reports/positive_comments.html", context) 
 
-
+@custom_login_required
 def negative_comment_status(request, comment_id, ad_id, adset_id ):
     # comment = LogNegativeComments.objects.get(comment_id=comment_id)
     comment = LogNegativeComments.objects.get(comment_id=comment_id)
@@ -66,7 +69,7 @@ def negative_comment_status(request, comment_id, ad_id, adset_id ):
         return redirect(url)
 
 
-
+@custom_login_required
 def no_reports(request, message):
     message = message
     pass 

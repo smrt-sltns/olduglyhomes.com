@@ -34,42 +34,25 @@
         <table class="table">
             <thead>
                 <tr>
-                <th>AD Name</th>
-                <th>Current Spend</th>
-                <th>Set Limit</th>
-                <th>Status</th>
-                <th>Date Time</th>
-                <th>Tracking status</th>
-            </tr>
+                    <th>AD Name</th>
+                    <th>Current Spend</th>
+                    <th>Set Limit</th>
+                    <th>Status</th>
+                    <th>Date Time</th>
+                    <th>Tracking status</th>
+                </tr>
             </thead>
             <tbody>
-            {% for campaign_id, campaign_data in adrecords.items %}
+            {% for campaign_name, campaign_data in adrecords.items %}
             <tr>
                 <th>
-                    <h2>{{ campaign_data.campaign_data.campaign_name}}</h2>
-                </th>
-                <th><h2><b style="color: black;">$ {{campaign_data.campaign_data.campaign_spend}}</b></h2></th>
-                <th>
-                    <p>Set Campaign Spend Limit</p>
-                    <form action="{% url 'limit_campaign' %}" method="post">
-                        {% csrf_token %}
-                            <div class="input-group">
-                                <input type="number" class="form-control" name="limit_campaign" placeholder="Enter Limit" value={{campaign_data.campaign_data.campaign_spend_limit}} required>
-                                <input type="hidden" class="form-control" name="campaign_id" value={{campaign_id}}>
-        
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="sumit">Submit</button>
-                                </div>
-                            </div>
-                        </form>
+                    <h2>{{ campaign_data.campaign_name}} [ Total : <b style="color:rgb(198, 200, 71);">$ {{campaign_data.campaign_spend}}</b> ]</h2>
                 </th>
                 <th></th>
-                <th>
-
-                </th>
-                <th>
-                    
-                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
             {% for adset_name, adset_data in campaign_data.adsets.items %}
             <tr>

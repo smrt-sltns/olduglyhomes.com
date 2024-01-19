@@ -1,8 +1,8 @@
 from celery import shared_task
 import requests 
 from .models import AdRecord
-from .utils import save_ads, email_to_file_name
-from .automation import check_spend_limit, send_limit_exceed_mail
+from .utils import email_to_file_name
+from .automation import check_spend_limit, check_spend_limit_adset, check_spend_limit_campaign, send_limit_exceed_mail
 from decouple import config 
 from facebook.models import Creds
 from django.contrib.auth.models import User 
@@ -59,4 +59,7 @@ def capture_new_ads(user_id):
 @shared_task
 def spend_limit_and_email(user_id):
     adlist, email = check_spend_limit(user_id=user_id)
-    send_limit_exceed_mail(adlist=adlist, user_email=email)
+    check_spend_limit_adset(user_id=user_id)
+    
+    campaignlist = check_spend_limit_campaign(user_id=user_id)
+    send_limit_exceed_mail(adlist=adlist, user_email=email, campaignlist=campaignlist)

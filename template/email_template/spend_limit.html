@@ -23,7 +23,28 @@
     </style>
 </head>
 <body>
+    {%if campaignlist %}
+    <h2>Campaign Table</h2>
+    <table>
+        <thead>
+                <tr>AD Name</th>
+                <th>Current Spend</th>
+                <th>Limit set</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for campaign in campaignlist %}
+            <tr>
+                <td><strong>{{campaign.campaign_name}}</strong></td>
+                <td>{{campaign.campaign_spend}}</td>
+                <td>{{campaign.campaign_spend_limit}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
+    {% endif %}
+    {% if adlist %}
     <h2>AD Table</h2>
     <table>
         <thead>
@@ -42,6 +63,7 @@
             {% endfor %}
         </tbody>
     </table>
+    {% endif %}
 
 </body>
 </html>

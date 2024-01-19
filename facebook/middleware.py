@@ -38,17 +38,13 @@ class TokenExpiredMiddleware:
         if f"/{request_path_prefix[1]}/" in url_path_for_fb:
             if response.status_code >= 400:
                 user_expired, user_limit, page_expired, page_limit = test_user_access_token(request)
-                # print("User Expired: {}, User Limit : {},Page Expired : {},Page Limit : {}".format(user_expired, user_limit, page_expired, page_limit))
                 if user_expired:
                     send_mail_token_expired(request.user.email)
-                    # print("user token is expired")
                     return redirect('token-expired') 
                 if page_expired: 
-                    # print("users page access token is expired")
                     send_mail_token_expired(request.user.email)
                     return redirect("token-expired-page")
                 if user_limit or page_limit:
-                    # print("Access token limit reached!")
                     send_mail_token_limit_reached(request.user.email)
                     return redirect('token-limit-reached') 
         return response
@@ -57,6 +53,8 @@ class TokenExpiredMiddleware:
 
 # user access token test  
 def test_user_access_token(request):
+    if request.user.is_anonymous:
+        return redirect("/")
     access_token = Creds.objects.get(user=request.user).LONGLIVED_ACCESS_TOKEN
     url = f"https://graph.facebook.com/v16.0/me/accounts?access_token={access_token}"
     user_token_expired = user_token_limit_reached = page_token_expired = page_token_limit_reached = False
@@ -67,7 +65,6 @@ def test_user_access_token(request):
         response = requests.get(url)
         response.raise_for_status()  # Raise an exception for HTTP errors
     except requests.exceptions.RequestException as e:
-        # print("Error making the request:", e)
         error_data = response.json()
         error_message = error_data.get('error', 'Unknown Error')
         # print(F"ERROR CODE : {error_message['code']}")

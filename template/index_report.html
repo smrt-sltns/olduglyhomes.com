@@ -66,7 +66,7 @@
                         <ul id="adAccountsDropdown" class="collapse list-unstyled">
                             {% for a in adaccounts %}
                             <!-- <li><a class="nav-link" href="{% url 'adset-list' a.ad_account_id a.access_token  %}" > -->
-                            <li><a class="nav-link" href="{% url 'positive_report' a.id  %}" >
+                            <li><a class="nav-link" href="{% url 'negative_report' a.id  %}" >
 
                                     {{a.ad_account_name}}
                                 </a></li>
