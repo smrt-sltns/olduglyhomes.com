@@ -290,7 +290,7 @@ CELERY_BEAT_SCHEDULE = {
       'add-every-2-hours': {
         'task': 'social_account_main.celery_task.task_every_2_hours',
         'schedule': timedelta(hours=1),
-        # 'schedule': 300.0,
+        # 'schedule': 600.0,
         'args': '',
         'options': {
             'expires': 150.0,
@@ -302,14 +302,14 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': timedelta(days=1),
         'args': '',
         'options': {
-            'expires': 120.0,
+            'expires': 300.0,
         },
       },
       
       #update ads spend every 10 min 
       'task_spend_limit': {
         'task': 'social_account_main.celery_task.task_spend_limit',
-        'schedule': 600.0,
+        'schedule': 120.0,
         'args': '',
         'options': {
             'expires': 150.0,

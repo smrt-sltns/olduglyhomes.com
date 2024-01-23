@@ -65,17 +65,18 @@ def check_spend_limit_campaign(user_id):
             pass
         content = response.json()
         spend = content['data'][0]['spend'] if len(content['data']) > 0 else 0
-        print(f"{campaign} ->>>>> {spend}")
+        print(f"campaign : {campaign} ->>>>> {spend}")
         db_campaign = AdRecord.objects.filter(campaign_id=campaign).all()
         for dc in db_campaign:
             dc.campaign_spend = spend
             dc.save()
-        campaign_spend_limit = dc.campaign_spend_limit
-        if float(dc.campaign_spend) > dc.campaign_spend_limit and dc.is_campaign_limit_set == True and dc.campaign_spend_limit  != 0.0:
+            campaign_spend_limit = dc.campaign_spend_limit
+        if float(dc.campaign_spend) > float(dc.campaign_spend_limit) and dc.is_campaign_limit_set == True and dc.campaign_spend_limit  != 0.0:
             over_spend_campaigns.append(dc)
+            AdRecord.objects.filter(campaign_id=dc.campaign_id).update(is_campaign_limit_set=False)
+            # dc.is_campaign_limit_set = False
+            # dc.save()
             print(f"campaign : {dc.campaign_name} limit is reached!")
-            # ad.expired = True
-            # ad.save()
     return over_spend_campaigns
 
 
@@ -106,13 +107,13 @@ def send_limit_exceed_mail(adlist, user_email, campaignlist):
     Send remider email to user if 
     ad spend limit has exceeded 
     """ 
-    if len(adlist) != 0:
+    if len(adlist) != 0 or len(campaignlist) != 0:
         msg_html = render_to_string('email_template/spend_limit.html', 
                                     {'adlist': adlist, "campaignlist": campaignlist})
         send_mail(
             'Ad Spend limit reached!',
             "Check belows Ads that have surpassed the spend limit!",
             settings.EMAIL_HOST_USER,
-            [ user_email, "kundanpandey.dev@gmail.com"],
+            [ user_email, "kundan.k.pandey02@gmail.com"],
             html_message=msg_html,
         )

@@ -53,21 +53,15 @@ class TokenExpiredMiddleware:
 
 # user access token test  
 def test_user_access_token(request):
-    if request.user.is_anonymous:
-        return redirect("/")
     access_token = Creds.objects.get(user=request.user).LONGLIVED_ACCESS_TOKEN
     url = f"https://graph.facebook.com/v16.0/me/accounts?access_token={access_token}"
     user_token_expired = user_token_limit_reached = page_token_expired = page_token_limit_reached = False
-    # user_token_limit_reached = False
-    # page_token_expired = False
-    # page_token_limit_reached = False
     try:
         response = requests.get(url)
         response.raise_for_status()  # Raise an exception for HTTP errors
     except requests.exceptions.RequestException as e:
         error_data = response.json()
         error_message = error_data.get('error', 'Unknown Error')
-        # print(F"ERROR CODE : {error_message['code']}")
         if error_message['code'] in error_codes_limit_reached:
             user_token_limit_reached = True
         if error_message['code'] in error_code_expired:
@@ -120,7 +114,6 @@ def test_page_token(account_id, token):
             limit_reached = True
         if  code in error_code_expired:
             expired = True
-        # print(f"Page limit {limit_reached}, Page expiry:  {expired}")
     return (expired, limit_reached)
         
 
