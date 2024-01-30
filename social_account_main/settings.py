@@ -240,14 +240,24 @@ TUT  = "https://medium.com/@namantam1/login-with-facebook-and-google-in-django-u
 
 
 
-#SMTP SERVER BACKENT
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.ger-rei.com'
-EMAIL_USE_TLS = False
-EMAIL_PORT = 465
-EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'contact@ger-rei.com'
-EMAIL_HOST_PASSWORD = 'Ohappydays@1'
+# #SMTP SERVER BACKENT
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'mail.ger-rei.com'
+# EMAIL_USE_TLS = False
+# EMAIL_PORT = 465
+# EMAIL_USE_SSL = True
+# EMAIL_HOST_USER = 'contact@ger-rei.com'
+# EMAIL_HOST_PASSWORD = 'Ohappydays@1'
+
+
+#gmail smtp setup 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "coboaccess2@gmail.com" 
+EMAIL_HOST_PASSWORD = "bgdf lhug pysq vqyh"
+
+DEFAULT_FROM_EMAIL = 'coboaccess2@gmail.com'
 
 CONTACT_US_EMAIL = "kundan.k.pandey03@gmail.com" # we listen to users on this email
 

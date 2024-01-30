@@ -39,7 +39,7 @@
                 <th>Set Limit</th>
                 <th>Status</th>
                 <th>Date Time</th>
-                <th>Tracking status</th>
+                <th>Change status</th>
             </tr>
             </thead>
             <tbody>
@@ -114,10 +114,10 @@
                 <td>{{ad.created_datetime}}</td>
                 <td>
                     <label class="switch">
-                        {% if ad.expired %}
-                        <input type="checkbox" name="track" class="ad-checkbox" data-ad-id="{{ad.ad_id}}">
-                        {% else %}
+                        {% if ad.is_active %}
                         <input type="checkbox" checked name="track" class="ad-checkbox" data-ad-id="{{ad.ad_id}}">
+                        {% else %}
+                        <input type="checkbox"  name="track" class="ad-checkbox" data-ad-id="{{ad.ad_id}}">
                         {% endif %}
                         <span class="slider round"></span>
                     </label>

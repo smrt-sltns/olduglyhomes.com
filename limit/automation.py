@@ -1,6 +1,4 @@
 import requests 
-from .models import AdRecord
-from .utils import email_to_file_name, one_month_old_dates
 from decouple import config 
 from facebook.models import Creds
 from django.contrib.auth.models import User 
@@ -11,12 +9,14 @@ import os
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage, get_connection, send_mail
 from datetime import datetime, timedelta
+from .models import AdRecord
+from .utils import email_to_file_name, one_month_old_dates
+from .ad_status import set_ad_status, set_campaign_status
 
 
 
 
-
-def check_spend_limit(user_id="3"):
+def check_spend_limit_ad(user_id="3"):
     """
     run every 20 minutes on selected ads 
     which have their limit set and if limit 
@@ -45,6 +45,7 @@ def check_spend_limit(user_id="3"):
             over_spend_ads.append(ad)
             ad.expired = True
             ad.save()
+            set_ad_status(access_token=access_token, ad_id=ad.id, status="PAUSED")
         print(ad.ad_name, ad.ad_spend, ad.ad_spend_limit)
     return (over_spend_ads, user.email)
 
@@ -74,6 +75,7 @@ def check_spend_limit_campaign(user_id):
         if float(dc.campaign_spend) > float(dc.campaign_spend_limit) and dc.is_campaign_limit_set == True and dc.campaign_spend_limit  != 0.0:
             over_spend_campaigns.append(dc)
             AdRecord.objects.filter(campaign_id=dc.campaign_id).update(is_campaign_limit_set=False)
+            set_campaign_status(access_token=access_token, campaign_id=dc.campaign_id, status="PAUSED")
             # dc.is_campaign_limit_set = False
             # dc.save()
             print(f"campaign : {dc.campaign_name} limit is reached!")

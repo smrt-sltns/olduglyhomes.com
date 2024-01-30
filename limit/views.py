@@ -5,6 +5,7 @@ from django.utils.safestring import mark_safe
 from facebook.models import Creds, AccountsAd
 from .models import AdRecord
 from .utils import adrecord_groups
+from .ad_status import set_ad_status
 from facebook.decorator import custom_login_required
 # Create your views here.
 
@@ -60,21 +61,34 @@ def set_limit_campaign(request):
         messages.info(request ,safe_message)
     return redirect("ad_spend")
 
+
 @custom_login_required
 def track(request):
     if request.method == 'POST':
+        access_token = Creds.objects.get(user=request.user).LONGLIVED_ACCESS_TOKEN
         ad_id = request.POST.get('ad_id')
         is_checked = request.POST.get('is_checked')
         adrecord = AdRecord.objects.get(ad_id=ad_id)
         if is_checked == 'true':
-            adrecord.expired = False
-            adrecord.save()
+            # adrecord.expired = False
+            try:
+                set_ad_status(access_token=access_token, ad_id=int(adrecord.ad_id), status="ACTIVE")
+                adrecord.is_active = True
+                adrecord.save()
+            except Exception as e:
+                print(e)
         else:
-            adrecord.expired = True
+            # adrecord.expired = True
+            try:
+                set_ad_status(access_token=access_token, ad_id=int(adrecord.ad_id), status="PAUSED")
+                adrecord.is_active = False
+            except Exception as e:
+                print(e)
             adrecord.save()
         return JsonResponse({'status': 'success'})
-
     return JsonResponse({'status': 'error'})
+
+
 
 @custom_login_required
 def sort(request, value):
