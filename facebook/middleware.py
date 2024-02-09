@@ -3,6 +3,7 @@ from .models import Creds, AccountPages, AccountsAd
 import requests
 import json 
 from .token_expired import send_mail_token_expired, send_mail_token_limit_reached
+from django.conf import settings 
 
 
 #middleware for these prefix 
@@ -54,7 +55,7 @@ class TokenExpiredMiddleware:
 # user access token test  
 def test_user_access_token(request):
     access_token = Creds.objects.get(user=request.user).LONGLIVED_ACCESS_TOKEN
-    url = f"https://graph.facebook.com/v16.0/me/accounts?access_token={access_token}"
+    url = f"https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/me/accounts?access_token={access_token}"
     user_token_expired = user_token_limit_reached = page_token_expired = page_token_limit_reached = False
     try:
         response = requests.get(url)
@@ -81,7 +82,7 @@ def test_user_access_token(request):
 
 # need improvement on codes 
 def test_page_token(account_id, token):
-    url = f"https://graph.facebook.com/v16.0/{account_id}/campaigns?fields=id,name&access_token={token}"
+    url = f"https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{account_id}/campaigns?fields=id,name&access_token={token}"
     limit_reached = expired = False
     try:
         response = requests.get(url)
@@ -101,7 +102,7 @@ def test_page_token(account_id, token):
         return (expired, limit_reached)
     else: 
         try:
-            cm_url = f"https://graph.facebook.com/v16.0/{campaign_id}/ads?fields=id,name&access_token={token}"
+            cm_url = f"https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{campaign_id}/ads?fields=id,name&access_token={token}"
             cm_response = requests.get(cm_url)
             cm_response.raise_for_status()
             code = "200"

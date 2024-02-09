@@ -4,6 +4,7 @@ from access_token import LONGLIVED_ACCESS_TOKEN
 from textblob import TextBlob
 import plotly.offline as opy
 import plotly.graph_objs as go
+from django.conf import settings
 
 def get_date(created_time):
     date = created_time.split("T")[0]
@@ -11,7 +12,7 @@ def get_date(created_time):
 
 
 def get_sentiment_graph(effective_object_story_id, post_title, access_token):
-    ads_comment_url  = f"https://graph.facebook.com/v16.0/{effective_object_story_id}/comments?fields=id,message,created_time,is_hidden&summary=true&access_token={access_token}&pretty=1&summary=true&limit=100&after"
+    ads_comment_url  = f"https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{effective_object_story_id}/comments?fields=id,message,created_time,is_hidden&summary=true&access_token={access_token}&pretty=1&summary=true&limit=100&after"
     # print(ads_comment_url)
     ads_comments_json = json.loads(urllib.request.urlopen(ads_comment_url).read()) 
     comment_and_graph = {}

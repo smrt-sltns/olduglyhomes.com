@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib.auth import logout
+from django.conf import settings 
 from urllib.request import urlopen
 import time 
 from textblob import TextBlob
@@ -49,6 +50,8 @@ def home(request):
 
 
 
+
+#below is not in use 
 
 @custom_login_required
 def get_posts(request, page_id, page_access_token):

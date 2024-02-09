@@ -235,6 +235,7 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields': 'id,name,email', 
 }
 
+FACEBOOK_API_VERSION = config("FACEBOOK_API_VERSION")
 TUT  = "https://medium.com/@namantam1/login-with-facebook-and-google-in-django-using-social-auth-app-django-d042bfeb04cb"
 
 
@@ -300,7 +301,7 @@ CELERY_BEAT_SCHEDULE = {
       'add-every-2-hours': {
         'task': 'social_account_main.celery_task.task_every_2_hours',
         'schedule': timedelta(hours=1),
-        # 'schedule': 600.0,
+        # 'schedule': 100.0,
         'args': '',
         'options': {
             'expires': 150.0,
@@ -319,7 +320,9 @@ CELERY_BEAT_SCHEDULE = {
       #update ads spend every 10 min 
       'task_spend_limit': {
         'task': 'social_account_main.celery_task.task_spend_limit',
+        # 'schedule': 200.0,
         'schedule': 600.0,
+        
         'args': '',
         'options': {
             'expires': 150.0,

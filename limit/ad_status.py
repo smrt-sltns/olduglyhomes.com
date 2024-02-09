@@ -1,12 +1,13 @@
 import requests 
 from facebook.utils import get_ad_id_list
+from django.conf import settings 
 
 
 
 
 def set_ad_status(access_token, ad_id, status):
     print("Switching to : ", status)
-    ad_set_endpoint = f"https://graph.facebook.com/v18.0/{ad_id}"
+    ad_set_endpoint = f"https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{ad_id}"
     params = {
         'status': status, 
         'access_token': access_token,

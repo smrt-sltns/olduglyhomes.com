@@ -28,7 +28,7 @@ from .decorator import custom_login_required
 @custom_login_required
 def get_accounts(request):
     access_token = Creds.objects.get(user=request.user).LONGLIVED_ACCESS_TOKEN
-    url = f"https://graph.facebook.com/v16.0/me/accounts?access_token={access_token}"
+    url = f"https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/me/accounts?access_token={access_token}"
     accounts_json = json.loads(urllib.request.urlopen(url).read())
     accounts = accounts_json['data']
     context = {
@@ -71,7 +71,7 @@ def sentiment_graph_posts(request, account_id, account_access_token):
 
 @custom_login_required
 def Post_hide_comment(request, account_id, comment_id, account_access_token):
-    url = f'https://graph.facebook.com/{comment_id}'
+    url = f'https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{comment_id}'
     data = {
         'is_hidden': 'true',
         'access_token': account_access_token
@@ -94,7 +94,7 @@ def Post_hide_comment(request, account_id, comment_id, account_access_token):
 
 @custom_login_required
 def Post_unhide_comment(request, account_id, comment_id, account_access_token):
-    url = f'https://graph.facebook.com/{comment_id}'
+    url = f'https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{comment_id}'
     data = {
         'is_hidden': 'false',
         'access_token': account_access_token

@@ -30,7 +30,7 @@ def check_spend_limit_ad(user_id="3"):
     today_date, last_month_date = one_month_old_dates()
     
     for ad in ads:
-        url =  f'https://graph.facebook.com/v18.0/{ad.ad_id}/insights?fields=spend&time_range[since]={last_month_date}&time_range[until]={today_date}&access_token={access_token}'
+        url =  f'https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{ad.ad_id}/insights?fields=spend&time_range[since]={last_month_date}&time_range[until]={today_date}&access_token={access_token}'
         try:
             response = requests.get(url=url)
         except Exception as e:
@@ -45,7 +45,10 @@ def check_spend_limit_ad(user_id="3"):
             over_spend_ads.append(ad)
             ad.expired = True
             ad.save()
-            set_ad_status(access_token=access_token, ad_id=ad.id, status="PAUSED")
+            result = set_ad_status(access_token=access_token, ad_id=int(ad.ad_id), status="PAUSED")
+            if result == True:
+                ad.is_active = False
+                ad.save()
         print(ad.ad_name, ad.ad_spend, ad.ad_spend_limit)
     return (over_spend_ads, user.email)
 
@@ -58,7 +61,7 @@ def check_spend_limit_campaign(user_id):
     over_spend_campaigns = []
     
     for campaign in campaigns:
-        url =  f'https://graph.facebook.com/v18.0/{campaign}/insights?fields=spend&time_range[since]={last_month_date}&time_range[until]={today_date}&access_token={access_token}'
+        url =  f'https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{campaign}/insights?fields=spend&time_range[since]={last_month_date}&time_range[until]={today_date}&access_token={access_token}'
         try:
             response = requests.get(url=url)
         except Exception as e:
@@ -71,11 +74,11 @@ def check_spend_limit_campaign(user_id):
         for dc in db_campaign:
             dc.campaign_spend = spend
             dc.save()
-            campaign_spend_limit = dc.campaign_spend_limit
+            # campaign_spend_limit = dc.campaign_spend_limit
         if float(dc.campaign_spend) > float(dc.campaign_spend_limit) and dc.is_campaign_limit_set == True and dc.campaign_spend_limit  != 0.0:
             over_spend_campaigns.append(dc)
             AdRecord.objects.filter(campaign_id=dc.campaign_id).update(is_campaign_limit_set=False)
-            set_campaign_status(access_token=access_token, campaign_id=dc.campaign_id, status="PAUSED")
+            set_campaign_status(access_token=access_token, campaign_id=int(dc.campaign_id), status="PAUSED")
             # dc.is_campaign_limit_set = False
             # dc.save()
             print(f"campaign : {dc.campaign_name} limit is reached!")
@@ -88,7 +91,7 @@ def check_spend_limit_adset(user_id):
     today_date, last_month_date = one_month_old_dates()
     access_token = Creds.objects.get(user__id=user_id).LONGLIVED_ACCESS_TOKEN
     for adset in adsets:
-        url =  f'https://graph.facebook.com/v18.0/{adset}/insights?fields=spend&time_range[since]={last_month_date}&time_range[until]={today_date}&access_token={access_token}'
+        url =  f'https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{adset}/insights?fields=spend&time_range[since]={last_month_date}&time_range[until]={today_date}&access_token={access_token}'
         try:
             response = requests.get(url=url)
         except Exception as e:

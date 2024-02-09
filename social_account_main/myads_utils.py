@@ -4,6 +4,7 @@ import json
 import urllib.request
 from textblob import TextBlob
 from datetime import datetime
+from django.conf import settings 
 
 
 
@@ -19,7 +20,7 @@ def get_access_token_for_ad(eff):
 def save_campaings(file_name="JSON/active_campaigns.json",account_id="act_296865963", token=LONGLIVED_ACCESS_TOKEN):
     data = []
     campaigns = {}
-    all_campaigns_url = f"https://graph.facebook.com/v16.0/{account_id}/campaigns?fields=id,name,effective_status&access_token={token}"
+    all_campaigns_url = f"https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{account_id}/campaigns?fields=id,name,effective_status&access_token={token}&limit=100"
     all_campaigns = json.loads(urllib.request.urlopen(all_campaigns_url).read())
     for c in all_campaigns['data']:
         if c['effective_status'] == "ACTIVE":# or c['effective_status'] == "PAUSED":
@@ -41,12 +42,12 @@ def save_ads(file_name, token=LONGLIVED_ACCESS_TOKEN):
     active_campaing_list = json.loads(open(file_name, "r").read())
     data = []
     for c in active_campaing_list:
-        adsets_url = f"https://graph.facebook.com/v16.0/{c['campaign_id']}/adsets?fields=name,id&access_token={token}"
+        adsets_url = f"https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{c['campaign_id']}/adsets?fields=name,id&access_token={token}&limit=100"
         adsets = json.loads(urllib.request.urlopen(adsets_url).read())
         for adset in adsets['data']:
             adset_id = adset['id']
             adset_name = adset['name']
-            ads_url = f"https://graph.facebook.com/v16.0/{adset['id']}/ads?fields=name,id,effective_status,creative.fields(effective_object_story_id),insights.fields(actions)&access_token={token}"
+            ads_url = f"https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{adset['id']}/ads?fields=name,id,effective_status,creative.fields(effective_object_story_id),insights.fields(actions)&access_token={token}&limit=100"
             ads_json = json.loads(urllib.request.urlopen(ads_url).read())
             ads = []
             if len(ads_json['data']) !=0:
@@ -68,7 +69,7 @@ def save_ads(file_name, token=LONGLIVED_ACCESS_TOKEN):
 def get_comments(eff, token=LONGLIVED_ACCESS_TOKEN):
     negative_comment_list = []
     positive_comment_list = []
-    comments_url = f"https://graph.facebook.com/v16.0/{eff}/comments?fields=id,message,created_time,is_hidden&summary=true&access_token={token}&limit=100&after"
+    comments_url = f"https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{eff}/comments?fields=id,message,created_time,is_hidden&summary=true&access_token={token}&limit=100&after"
     # print(comments_url)
     comments = json.loads(urllib.request.urlopen(comments_url).read())
     ignore_comment_list = json.loads(open("JSON/ignored_comments.json", "r").read())
