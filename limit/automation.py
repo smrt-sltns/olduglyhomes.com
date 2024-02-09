@@ -46,9 +46,9 @@ def check_spend_limit_ad(user_id="3"):
             ad.expired = True
             ad.save()
             result = set_ad_status(access_token=access_token, ad_id=int(ad.ad_id), status="PAUSED")
-            if result == True:
-                ad.is_active = False
-                ad.save()
+            # if result == True:
+            #     ad.is_active = False
+            #     ad.save()
         print(ad.ad_name, ad.ad_spend, ad.ad_spend_limit)
     return (over_spend_ads, user.email)
 
