@@ -31,6 +31,9 @@ def set_campaign_status(access_token, campaign_id, status):
     campaign_ad_list = get_ad_id_list(campaign_id=campaign_id, access_token=access_token)
     #pause all the ads in the campaign 
     for ad_id in campaign_ad_list:
-        set_ad_status(ad_id=ad_id, access_token=access_token, status=status)
+        result = set_ad_status(ad_id=ad_id, access_token=access_token, status=status)
+        
     #pause the campaign
-    set_ad_status(ad_id=campaign_id, access_token=access_token, status=status)
+    result = set_ad_status(ad_id=campaign_id, access_token=access_token, status=status)
+    #if result is true then all the requests made were successfull 
+    return result 

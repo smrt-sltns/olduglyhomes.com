@@ -46,9 +46,10 @@ def check_spend_limit_ad(user_id="3"):
             ad.expired = True
             ad.save()
             result = set_ad_status(access_token=access_token, ad_id=int(ad.ad_id), status="PAUSED")
-            # if result == True:
-            #     ad.is_active = False
-            #     ad.save()
+            if result == True:
+                ad.is_active = False
+                # ad.is_expired = True
+                ad.save()
         print(ad.ad_name, ad.ad_spend, ad.ad_spend_limit)
     return (over_spend_ads, user.email)
 
@@ -77,8 +78,10 @@ def check_spend_limit_campaign(user_id):
             # campaign_spend_limit = dc.campaign_spend_limit
         if float(dc.campaign_spend) > float(dc.campaign_spend_limit) and dc.is_campaign_limit_set == True and dc.campaign_spend_limit  != 0.0:
             over_spend_campaigns.append(dc)
-            AdRecord.objects.filter(campaign_id=dc.campaign_id).update(is_campaign_limit_set=False)
-            set_campaign_status(access_token=access_token, campaign_id=int(dc.campaign_id), status="PAUSED")
+            result = set_campaign_status(access_token=access_token, campaign_id=int(dc.campaign_id), status="PAUSED")
+            if result == True:
+                AdRecord.objects.filter(campaign_id=dc.campaign_id).update(is_campaign_limit_set=False, is_active=False)
+                
             # dc.is_campaign_limit_set = False
             # dc.save()
             print(f"campaign : {dc.campaign_name} limit is reached!")
