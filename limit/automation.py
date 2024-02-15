@@ -89,7 +89,7 @@ def check_spend_limit_adset(user_id, days=30):
     adrecords = AdRecord.objects.filter(user__id=user_id, is_active=True).all()
     access_token = Creds.objects.get(user__id=user_id).LONGLIVED_ACCESS_TOKEN
     adsets = list(set([c.adset_id for c in adrecords]))    
-    today_date, last_month_date = one_month_old_dates(days=days.days)
+    today_date, last_month_date = one_month_old_dates(days_old=days.days)
     for adset in adsets:
         url =  f'https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{adset}/insights?fields=spend&time_range[since]={last_month_date}&time_range[until]={today_date}&access_token={access_token}'
         try:
