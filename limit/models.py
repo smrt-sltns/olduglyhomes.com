@@ -9,10 +9,12 @@ class AdRecord(models.Model):
     account_id = models.CharField(max_length=200, null=True, blank=True)
     
     effective_object_story_id = models.CharField(max_length=200, blank=True,unique=False, null=True)
+
     campaign_name = models.CharField(max_length=200, null=True, blank=True)
     campaign_id = models.CharField(max_length=200, null=True, blank=True)
     campaign_spend = models.FloatField(default=0)
     campaign_spend_limit = models.FloatField(default=0.0)#limit set and if exceeded then expire the ad
+    campaign_total_spend = models.FloatField(default=0.0)#total spend on campaign from last 400 days
     is_campaign_limit_set = models.BooleanField(default=False)
     
     
@@ -66,3 +68,11 @@ class AdSetRecord(models.Model):
 
     def __str__(self):
         return f"{self.campaign} | {self.adset_name}"
+
+
+class AdRecordSpenddate(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=False, blank=False)
+    days = models.IntegerField(default=31)
+    
+    def __str__(self):
+        return f"{self.user} | {self.days}"

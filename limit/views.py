@@ -3,9 +3,10 @@ from django.http import JsonResponse
 from django.contrib import messages 
 from django.utils.safestring import mark_safe
 from facebook.models import Creds, AccountsAd
-from .models import AdRecord
+from .models import AdRecord, AdRecordSpenddate
 from .utils import adrecord_groups
 from .ad_status import set_ad_status
+from .automation import check_spend_limit_campaign
 from facebook.decorator import custom_login_required
 # Create your views here.
 
@@ -17,13 +18,16 @@ def ad_spend(request):
     group then with associated campaign. 
     Display this group on limit.html
     """
+    spenddays = AdRecordSpenddate.objects.filter(user=request.user)
     adrecords = AdRecord.objects.all().filter(user=request.user, is_active=True)
     adaccount_is_set = Creds.objects.get(user=request.user).has_ad_accounts
     ad_records_by_campaign = adrecord_groups(adrecords=adrecords)
     
     context = {
         "adaccount_is_set": adaccount_is_set,
-        'adrecords': ad_records_by_campaign
+        'adrecords': ad_records_by_campaign,
+        "spenddays": spenddays.first().days if spenddays.exists() else 30,
+
         }
     if adaccount_is_set:
         adaccounts = AccountsAd.objects.filter(user=request.user).all()
@@ -45,6 +49,7 @@ def set_limit(request):
         safe_message = mark_safe(msg)
         messages.info(request ,safe_message)
     return redirect("ad_spend")
+
 
 @custom_login_required
 def set_limit_campaign(request):
@@ -92,6 +97,7 @@ def track(request):
 
 @custom_login_required
 def sort(request, value):
+    days = AdRecordSpenddate.objects.get(user=request.user)
     value_dir = {
         "active": "-is_active",
         "inactive": "is_active",
@@ -102,15 +108,33 @@ def sort(request, value):
         
     }
     flt = value_dir.get(value)
+    spenddays = AdRecordSpenddate.objects.filter(user=request.user)
     adrecords = AdRecord.objects.all().filter(user=request.user).order_by(flt).all()
     adaccount_is_set = Creds.objects.get(user=request.user).has_ad_accounts
     adrecords_by_campaign = adrecord_groups(adrecords=adrecords)
     context = {
         "adaccount_is_set": adaccount_is_set,
-        'adrecords': adrecords_by_campaign
+        'adrecords': adrecords_by_campaign,
+        "spenddays": spenddays.first().days if spenddays.exists() else 30,
         }
     if adaccount_is_set:
         adaccounts = AccountsAd.objects.filter(user=request.user).all()
         context['adaccounts'] = adaccounts
     return render(request, "limit/limit.html",context )
-        
+
+
+@custom_login_required
+def adspenddays(request):
+    days = request.GET.get("adspenddays")
+    user = request.user
+    try:
+        spenddate = AdRecordSpenddate.objects.get(user=user)
+        spenddate.days = days 
+        spenddate.save()
+    except Exception as e:
+        spenddate = AdRecordSpenddate(user=user, days=days)
+        spenddate.save()    
+    check_spend_limit_campaign(user_id=user.id)
+    
+    messages.info(request, f"Changed spend date to : Last {days} .")
+    return redirect("ad_spend")

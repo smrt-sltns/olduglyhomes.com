@@ -45,10 +45,11 @@ def email_to_file_name(email):
         return  break_at
 
 
-def one_month_old_dates():
+def one_month_old_dates(days_old=30):
     today = datetime.now()
     today_date = today.strftime("%Y-%m-%d")
-    last_month = today - timedelta(days=30)
+    last_month = today - timedelta(days=days_old)
     last_month_date = last_month.strftime("%Y-%m-%d")
+    print(today_date, last_month_date)
     return today_date, last_month_date
 

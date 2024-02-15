@@ -321,7 +321,8 @@ CELERY_BEAT_SCHEDULE = {
       'task_spend_limit': {
         'task': 'social_account_main.celery_task.task_spend_limit',
         # 'schedule': 200.0,
-        'schedule': 600.0,
+        # 'schedule': 600.0,
+        'schedule': timedelta(minutes=20),
         
         'args': '',
         'options': {

@@ -62,3 +62,5 @@ def spend_limit_and_email(user_id):
     check_spend_limit_adset(user_id=user_id)
     campaignlist = check_spend_limit_campaign(user_id=user_id)
     send_limit_exceed_mail(adlist=adlist, user_email=email, campaignlist=campaignlist)
+    
+    
