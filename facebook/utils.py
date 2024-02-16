@@ -106,7 +106,6 @@ def pages_associated_with_adaccounts(token, ad_account_id="act_296865963"):
 
 
 def get_all_campaigns(ad_id, token):
-    # get all the campaign from smart solutio business account.
     url = f"https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{ad_id}/campaigns?effective_status=%5B%22ACTIVE%22%2C%22PAUSED%22%5D&fields=name%2Cobjective&access_token={token}&limit=100&after"
     campaigns = fetch(url, print_response=False)
     return (campaigns['data'][0]['id'], campaigns['data'][0]['name'])
@@ -155,7 +154,6 @@ def get_ad_id_list(campaign_id ="6338868868582", access_token=LONGLIVED_ACCESS_T
     comment_id_list = []
     for d in ads_json['data']:
         comment_id_list.append(d['id'])
-    # print(comment_id_list)
     return comment_id_list
 
 def get_ad_name_and_effective_object_story_id(ad_id="6338868872182", access_token=LONGLIVED_ACCESS_TOKEN):

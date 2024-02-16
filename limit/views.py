@@ -138,3 +138,8 @@ def adspenddays(request):
     
     messages.info(request, f"Changed spend date to : Last {days} .")
     return redirect("ad_spend")
+
+
+
+    
+    

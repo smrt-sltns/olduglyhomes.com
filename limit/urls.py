@@ -1,5 +1,6 @@
 from django.urls import path 
 from . import views 
+from .refresh import refresh
 
 
 urlpatterns = [
@@ -9,4 +10,5 @@ urlpatterns = [
     path("limit_campaign", views.set_limit_campaign, name="limit_campaign"),
     path("sort/<value>/", views.sort, name="sort"),
     path("adspenddays", views.adspenddays, name="adspenddays"),
+    path("refresh", refresh, name="refresh"),
 ]
