@@ -6,7 +6,8 @@ from facebook.models import Creds, AccountsAd
 from .models import AdRecord, AdRecordSpenddate
 from .utils import adrecord_groups
 from .ad_status import set_ad_status
-from .automation import check_spend_limit_campaign
+from .automation import  check_spend_limit_campaign
+from .task import spend_wrapper
 from facebook.decorator import custom_login_required
 # Create your views here.
 
@@ -135,7 +136,7 @@ def adspenddays(request):
         spenddate = AdRecordSpenddate(user=user, days=days)
         spenddate.save()    
     check_spend_limit_campaign(user_id=user.id)
-    
+    spend_wrapper.delay(user_id=user.id)
     messages.info(request, f"Changed spend date to : Last {days} .")
     return redirect("ad_spend")
 

@@ -11,10 +11,6 @@
     <link rel="stylesheet" href="{% static 'style/table.css' %}">
     <link rel="stylesheet" href="{% static 'style/index.css' %}">
     <link rel="shortcut icon" href="{% static 'image/smartysync-favicon.png' %}" type="image/x-icon">
-    <style>
-        /* Add custom styles for the dark theme sidebar */
-
-    </style>
 </head>
 
 <body>
@@ -39,24 +35,6 @@
             <aside id="sidebar">
                 <ul>
                     {% if adaccount_is_set %}
-                    <!-- automation report  -->
-                    <!-- <li class="nav-item dropdown" style="text-decoration:none; color:white;">
-                        <a class="nav-link dropdown-toggle" href="#" id="adAutomationDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false"
-                            >
-                            <i class="fas fa-tachometer-alt"></i>
-                            Ad Account Report 
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="adAutomationDropdown">
-                            <li><a class="dropdown-item" href="#" style="color: black;">
-                                    Negative Comments
-                                </a></li>
-                            <li><a class="dropdown-item" href="#" style="color: black;">
-                                    Positive Comments
-                                </a></li>
-                        </ul>
-                    </li> -->
-                    <!-- ad accounts  -->
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle" data-toggle="collapse" href="#adAccountsDropdown"
                             aria-expanded="false">
@@ -65,7 +43,6 @@
                         </a>
                         <ul id="adAccountsDropdown" class="collapse list-unstyled">
                             {% for a in adaccounts %}
-                            <!-- <li><a class="nav-link" href="{% url 'adset-list' a.ad_account_id a.access_token  %}" > -->
                             <li><a class="nav-link" href="{% url 'negative_report' a.id  %}" >
 
                                     {{a.ad_account_name}}

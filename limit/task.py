@@ -64,3 +64,7 @@ def spend_limit_and_email(user_id):
     send_limit_exceed_mail(adlist=adlist, user_email=email, campaignlist=campaignlist)
     
     
+@shared_task
+def spend_wrapper(user_id):
+    check_spend_limit_ad(user_id=user_id)
+    check_spend_limit_adset(user_id=user_id)

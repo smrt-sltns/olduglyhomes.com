@@ -50,7 +50,7 @@ def check_spend_limit_ad(user_id="3"):
             if result == True:
                 ad.is_active = False
                 ad.save()
-        print(ad.ad_name, ad.ad_spend, ad.ad_spend_limit)
+        # print(ad.ad_name, ad.ad_spend, ad.ad_spend_limit)
     return (over_spend_ads, user.email)
 
 
@@ -70,7 +70,7 @@ def check_spend_limit_campaign(user_id):
             pass
         content_last_month = response_last_month.json()
         spend = content_last_month['data'][0]['spend'] if len(content_last_month['data']) > 0 else 0
-        print(f"campaign : {campaign} ->>>>> {spend}")
+        # print(f"campaign : {campaign} ->>>>> {spend}")
         db_campaign = AdRecord.objects.filter(campaign_id=campaign).all()
         for dc in db_campaign:
             dc.campaign_spend = spend
@@ -80,11 +80,11 @@ def check_spend_limit_campaign(user_id):
             result = set_campaign_status(access_token=access_token, campaign_id=int(dc.campaign_id), status="PAUSED")
             if result == True:
                 AdRecord.objects.filter(campaign_id=dc.campaign_id).update(is_campaign_limit_set=False, is_active=False)
-            print(f"campaign : {dc.campaign_name} limit is reached!")
+            # print(f"campaign : {dc.campaign_name} limit is reached!")
     return over_spend_campaigns
 
 
-def check_spend_limit_adset(user_id, days=30):
+def check_spend_limit_adset(user_id):
     days = AdRecordSpenddate.objects.get(user_id=user_id)
     adrecords = AdRecord.objects.filter(user__id=user_id, is_active=True).all()
     access_token = Creds.objects.get(user__id=user_id).LONGLIVED_ACCESS_TOKEN
@@ -99,7 +99,7 @@ def check_spend_limit_adset(user_id, days=30):
             pass
         content = response.json()
         spend = content['data'][0]['spend'] if len(content['data']) > 0 else 0
-        print(f"{adset} ->>>>> {spend}")
+        # print(f"{adset} ->>>>> {spend}")
         db_campaign = AdRecord.objects.filter(adset_id=adset).all()
         for dc in db_campaign:
             dc.adset_spend = spend
@@ -119,6 +119,6 @@ def send_limit_exceed_mail(adlist, user_email, campaignlist):
             'Ad Spend limit reached!',
             "Check belows Ads that have surpassed the spend limit!",
             settings.EMAIL_HOST_USER,
-            [ user_email, "kundan.k.pandey02@gmail.com"],
+            [user_email, "kundan.k.pandey02@gmail.com"],
             html_message=msg_html,
         )

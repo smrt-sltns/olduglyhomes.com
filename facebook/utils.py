@@ -80,7 +80,6 @@ def get_ad_account(token):
         status = 404  # error for ad accounts 
     adaccount_dict['status'] = status 
     adaccount_dict['data'] = data
-    # print(adaccount_dict)
     return adaccount_dict
 
 
@@ -109,7 +108,6 @@ def get_all_campaigns(ad_id, token):
     url = f"https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{ad_id}/campaigns?effective_status=%5B%22ACTIVE%22%2C%22PAUSED%22%5D&fields=name%2Cobjective&access_token={token}&limit=100&after"
     campaigns = fetch(url, print_response=False)
     return (campaigns['data'][0]['id'], campaigns['data'][0]['name'])
-
 
 
 def get_adset_name(adset_id="6345796776582", access_token=LONGLIVED_ACCESS_TOKEN):

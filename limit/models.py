@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User 
+from django.core.exceptions import ValidationError 
+from django.utils import timezone
 
 # Create your models here.
 
@@ -78,10 +80,9 @@ class AdRecordSpenddate(models.Model):
         return f"{self.user} | {self.days}"
     
 
-# class Refresh(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-#     refresh_count = models.IntegerField(default=0)
-#     refresh_time = models.TimeField()
+class Refresh(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    refresh_time = models.TimeField()
     
-#     def __str__(self):
-#         return f"{self.user} | {self.refresh_count}"
+    def __str__(self):
+        return f"{self.user} | {self.refresh_time}"

@@ -13,12 +13,11 @@ def get_date(created_time):
 
 def get_sentiment_graph(effective_object_story_id, post_title, access_token):
     ads_comment_url  = f"https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{effective_object_story_id}/comments?fields=id,message,created_time,is_hidden&summary=true&access_token={access_token}&pretty=1&summary=true&limit=100&after"
-    # print(ads_comment_url)
     ads_comments_json = json.loads(urllib.request.urlopen(ads_comment_url).read()) 
     comment_and_graph = {}
     comments = []
     comment_list = []
-    reversed_comment = ads_comments_json['data'][::-1]
+    reversed_comment = ads_comments_json['data']
     positive_sentiment = negative_sentiment = neutral_sentiment = 0
     for d in reversed_comment:
         comment_polarity = TextBlob(d['message']).sentiment.polarity
