@@ -11,4 +11,5 @@ urlpatterns = [
     path("sort/<value>/", views.sort, name="sort"),
     path("adspenddays", views.adspenddays, name="adspenddays"),
     path("refresh", refresh, name="refresh"),
+    path("campaign-status/<campaign_id>/<status>", views.campaign_status_change_view, name="campaign_status_change_view")
 ]

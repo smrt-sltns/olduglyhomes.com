@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 from facebook.models import Creds, AccountsAd
 from .models import AdRecord, AdRecordSpenddate
 from .utils import adrecord_groups
-from .ad_status import set_ad_status
+from .ad_status import set_ad_status, set_campaign_status
 from .automation import  check_spend_limit_campaign
 from .task import spend_wrapper
 from facebook.decorator import custom_login_required
@@ -94,6 +94,27 @@ def track(request):
         return JsonResponse({'status': 'success'})
     return JsonResponse({'status': 'error'})
 
+
+@custom_login_required
+def campaign_status_change_view(request, campaign_id, status):
+    user = request.user 
+    access_token = Creds.objects.get(user=user).LONGLIVED_ACCESS_TOKEN
+    result = set_campaign_status(access_token=access_token, campaign_id=campaign_id, status=status)
+    campaign = AdRecord.objects.filter(campaign_id=campaign_id).first()
+    if result == True:
+        if status == "PAUSED":
+            AdRecord.objects.filter(campaign_id=campaign_id).update(is_campaign_active=False, is_active=False)
+            msg = f'{campaign.campaign_name} is <strong style="color:EFB50C;">Paused</strong>.'
+            
+        elif status == "ACTIVE":
+            AdRecord.objects.filter(campaign_id=campaign_id).update(is_campaign_active=True, is_active=True)
+            msg = f'{campaign.campaign_name} is <strong style="color:2CAB09;">Activated</strong>.'
+        safe_message = mark_safe(msg)
+        messages.info(request, safe_message)
+    else:
+        messages.error(request, "Something went wrong! Please try again after some time.")
+    return redirect("ad_spend")
+            
 
 
 @custom_login_required

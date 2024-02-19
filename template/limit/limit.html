@@ -91,7 +91,11 @@
 
                     </th>
                     <th>
-
+                        {% if campaign_data.campaign_data.is_campaign_active %}
+                        <a href="{% url 'campaign_status_change_view' campaign_id=campaign_data.campaign_data.campaign_id status='PAUSED' %}" class="btn btn-warning">Pause Campaign</a>
+                        {% else %}
+                        <a href="{% url 'campaign_status_change_view' campaign_id=campaign_data.campaign_data.campaign_id status='ACTIVE' %}" class="btn btn-success">Activate Campaign</a>
+                        {% endif %}
                     </th>
                 </tr>
                 {% for adset_name, adset_data in campaign_data.adsets.items %}

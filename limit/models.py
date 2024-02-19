@@ -36,6 +36,7 @@ class AdRecord(models.Model):
     
     expired = models.BooleanField(default=False)#id new limit is set then set to True 
     is_active = models.BooleanField(default=True) #track ads only if activate 
+    is_campaign_active = models.BooleanField(default=True) #track campaigns only if they are active
     is_limit_set = models.BooleanField(default=False) #track if limit is set
     created_datetime = models.DateTimeField(auto_now_add=True)    
     
