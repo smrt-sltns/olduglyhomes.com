@@ -161,7 +161,7 @@ LOGGING = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
 
@@ -187,17 +187,8 @@ MEDIA_ROOT = BASE_DIR / 'uploads'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
-# LOGIN_URL = 'login'
-# LOGOUT_URL = '/'
 LOGIN_REDIRECT_URL= "home"
 LOGOUT_REDIRECT_URL = "home"
-
-# SECURE_SSL_REDIRECT = False
-# LOGIN_URL = 'login'
-# LOGIN_REDIRECT_URL = 'home'
-# LOGOUT_URL = 'logout'
-# LOGOUT_REDIRECT_URL = 'login'
 
 
 
