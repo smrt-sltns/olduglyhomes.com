@@ -10,12 +10,12 @@
             Spend Last {{spenddays}} Days
         </button>
         <div class="dropdown-menu" aria-labelledby="sortDropdown">
-            <a class="dropdown-item" type="button" href="{% url 'adspenddays' %}?adspenddays=1">Today</a>
-            <a class="dropdown-item" type="button" href="{% url 'adspenddays' %}?adspenddays=10">Last 10 Days</a>
-            <a class="dropdown-item" type="button" href="{% url 'adspenddays' %}?adspenddays=30">Last 1 Month</a>
-            <a class="dropdown-item" type="button" href="{% url 'adspenddays' %}?adspenddays=90">Last 3 Months</a>
-            <a class="dropdown-item" type="button" href="{% url 'adspenddays' %}?adspenddays=180">Last 6 Months</a>
-            <a class="dropdown-item" type="button" href="{% url 'adspenddays' %}?adspenddays=360">Last 1 year</a>
+            <a class="dropdown-item hideCommentBtn" type="button" href="{% url 'adspenddays' %}?adspenddays=1">Today</a>
+            <a class="dropdown-item hideCommentBtn" type="button" href="{% url 'adspenddays' %}?adspenddays=10">Last 10 Days</a>
+            <a class="dropdown-item hideCommentBtn" type="button" href="{% url 'adspenddays' %}?adspenddays=30">Last 1 Month</a>
+            <a class="dropdown-item hideCommentBtn" type="button" href="{% url 'adspenddays' %}?adspenddays=90">Last 3 Months</a>
+            <a class="dropdown-item hideCommentBtn" type="button" href="{% url 'adspenddays' %}?adspenddays=180">Last 6 Months</a>
+            <a class="dropdown-item hideCommentBtn" type="button" href="{% url 'adspenddays' %}?adspenddays=360">Last 1 year</a>
         </div>
     </div>
 
@@ -28,20 +28,20 @@
 
             <!-- Budget Section -->
             <div class="dropdown-header">Budget</div>
-            <a class="dropdown-item" type="button" href="{% url 'sort' value='lowest' %}">Lowest</a>
-            <a class="dropdown-item" type="button" href="{% url 'sort' value='highest' %}">Highest</a>
+            <a class="dropdown-item hideCommentBtn" type="button" href="{% url 'sort' value='lowest' %}">Lowest</a>
+            <a class="dropdown-item hideCommentBtn" type="button" href="{% url 'sort' value='highest' %}">Highest</a>
 
             <!-- Status Section -->
             <div class="dropdown-divider"></div>
             <div class="dropdown-header">Status</div>
-            <a class="dropdown-item" type="button" href="{% url 'sort' value='active' %}">Active</a>
-            <a class="dropdown-item" type="button" href="{% url 'sort' value='inactive' %}">Inactive</a>
+            <a class="dropdown-item hideCommentBtn" type="button" href="{% url 'sort' value='active' %}">Active</a>
+            <a class="dropdown-item hideCommentBtn" type="button" href="{% url 'sort' value='inactive' %}">Inactive</a>
 
             <!-- Track Section -->
             <div class="dropdown-divider"></div>
             <div class="dropdown-header">Track</div>
-            <a class="dropdown-item" type="button" href="{% url 'sort' value='tracked' %}">Tracked</a>
-            <a class="dropdown-item" type="button" href="{% url 'sort' value='untracked' %}">Untracked</a>
+            <a class="dropdown-item hideCommentBtn" type="button" href="{% url 'sort' value='tracked' %}">Tracked</a>
+            <a class="dropdown-item hideCommentBtn" type="button" href="{% url 'sort' value='untracked' %}">Untracked</a>
 
         </div>
     </div>
