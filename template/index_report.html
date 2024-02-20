@@ -8,6 +8,8 @@
     <title>Report</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- spin js  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
     <link rel="stylesheet" href="{% static 'style/table.css' %}">
     <link rel="stylesheet" href="{% static 'style/index.css' %}">
     <link rel="shortcut icon" href="{% static 'image/smartysync-favicon.png' %}" type="image/x-icon">
@@ -29,6 +31,11 @@
         </nav>
     </header>
 
+    
+    <div id="loaderContainer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.8); z-index: 9999;">
+        <div id="loader" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"><p style="padding-top: 149px;">Please Wait...</p></div>
+        
+    </div>
     <!-- Sidebar Navigation -->
     <div class="container-fluid">
         <div class="row">
@@ -87,7 +94,7 @@
                     </li>
                     <!-- Refresh button -->
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'refresh' %}">
+                        <a class="nav-link hideCommentBtn" href="{% url 'refresh' %}">
                             <i class="fas fa-sync-alt"></i>
                             Refresh
                         </a>
@@ -156,6 +163,8 @@
         });
     });
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 
     {% comment %} <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -167,6 +176,22 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
         <script src="{% static 'js/index.js' %}"></script>
+
+    <!-- page loader script -->
+<script src="{% static 'js/spin.js' %}"></script>
+
+<script>
+  $(document).ready(function() {
+    $(".page-loader").hide();
+});
+</script><!-- page loader script -->
+<script src="{% static 'js/spin.js' %}"></script>
+
+<script>
+  $(document).ready(function() {
+    $(".page-loader").hide();
+});
+</script>
 </body>
 
 </html>

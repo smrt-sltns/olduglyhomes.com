@@ -2,7 +2,6 @@
 {% block content %}
 
 
-
 <div class="inner-content">
     <!-- <h3 class="content-title">Set Ad Spend Limit</h3> -->
     <div class="dropdown" style="padding-right:150px;">
@@ -92,9 +91,11 @@
                     </th>
                     <th>
                         {% if campaign_data.campaign_data.is_campaign_active %}
-                        <a href="{% url 'campaign_status_change_view' campaign_id=campaign_data.campaign_data.campaign_id status='PAUSED' %}" class="btn btn-warning">Pause Campaign</a>
+                        
+                        <a href="{% url 'campaign_status_change_view' campaign_id=campaign_data.campaign_data.campaign_id status='PAUSED' %}" class="btn btn-warning hideCommentBtn">Pause Campaign</a>
                         {% else %}
-                        <a href="{% url 'campaign_status_change_view' campaign_id=campaign_data.campaign_data.campaign_id status='ACTIVE' %}" class="btn btn-success">Activate Campaign</a>
+                        
+                        <a href="{% url 'campaign_status_change_view' campaign_id=campaign_data.campaign_data.campaign_id status='ACTIVE' %}" class="btn btn-success hideCommentBtn">Activate Campaign</a>
                         {% endif %}
                     </th>
                 </tr>
