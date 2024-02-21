@@ -177,6 +177,20 @@ table a:hover{
 #sidebar .nav-link:hover i{
   color: var(--white-color);
 }
+
+
+#sidebar .active{
+  background-color: var(--pimary-color);
+  color: var(--white-color);
+}
+#sidebar .active i{
+  color: var(--white-color);
+}
+
+#sidebar .active a{
+  color: var(--white-color);
+}
+
 #main-content{
   width: calc(100% - 250px);
   height: calc(100vh - 56px);

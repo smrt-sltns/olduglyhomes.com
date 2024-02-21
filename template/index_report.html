@@ -43,7 +43,7 @@
                 <ul>
                     {% if adaccount_is_set %}
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" data-toggle="collapse" href="#adAccountsDropdown"
+                        <a class="nav-link dropdown-toggle {% block adaccount_active %}{% endblock adaccount_active %}" data-toggle="collapse" href="#adAccountsDropdown"
                             aria-expanded="false">
                             <i class="fas fa-ad"></i>
                             Ad Accounts
@@ -59,7 +59,7 @@
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'set-accountad'  %}">
+                        <a class="nav-link " href="{% url 'set-accountad'  %}">
                             <i class="fas fa-ad"></i>
                             Save Ad Accounts
                         </a>
@@ -72,13 +72,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'ad_spend'  %}">
+                        <a class="nav-link {% block adspend_active %}{% endblock adspend_active %}" href="{% url 'ad_spend'  %}">
                             <i class="fa fa-dollar-sign"></i>
                             Ad Spend
                         </a>
                     </li>
                     <li class="nav-item" >
-                        <a class="nav-link" href="{% url 'contact_us' %}" >
+                        <a class="nav-link " href="{% url 'contact_us' %}" >
                             <i class="fa fa-address-book"></i>
                             Contact Us
                         </a>

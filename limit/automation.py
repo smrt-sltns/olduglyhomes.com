@@ -27,7 +27,7 @@ def check_spend_limit_ad(user_id="3"):
     days = AdRecordSpenddate.objects.get(user_id=user_id)
     user = User.objects.get(id=user_id)
     access_token = Creds.objects.get(user=user).LONGLIVED_ACCESS_TOKEN
-    ads = AdRecord.objects.filter(user=user,is_active=True, expired=False).all()
+    ads = AdRecord.objects.filter(user=user,is_active=True).all()
     today_date, last_month_date = one_month_old_dates(days_old=days.days)
     
     for ad in ads:
@@ -42,9 +42,10 @@ def check_spend_limit_ad(user_id="3"):
         ad.ad_spend = spend
         ad.is_limit_set = True
         ad.save()
-        if float(spend) > ad.ad_spend_limit and ad.is_limit_set == True and ad.ad_spend_limit  != 0.0:
+        if float(spend) > ad.ad_spend_limit and ad.is_limit_set == True and ad.ad_spend_limit  != 0.0 and ad.expired == False:
             over_spend_ads.append(ad)
             ad.expired = True
+            ad.is_limit_set = False
             ad.save()
             result = set_ad_status(access_token=access_token, ad_id=int(ad.ad_id), status="PAUSED")
             if result == True:
