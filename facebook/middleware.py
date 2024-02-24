@@ -23,7 +23,7 @@ error_codes_limit_reached = [4, 17, 32, 613] # limit reached subtoken
 error_code_expired = [190] # access token expired subtoken 
 
 #condition for token to give 400 response 
-# api response limit is exauhsted --done
+# api response limit is exhausted --done
 # page token is invalid --done
 # user token is invalid or expired (middleware only apply to this ) --done
 
@@ -80,7 +80,6 @@ def test_user_access_token(request):
         return ( user_token_expired, user_token_limit_reached,  page_token_expired, page_token_limit_reached )
 
 
-# need improvement on codes 
 def test_page_token(account_id, token):
     url = f"https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/{account_id}/campaigns?fields=id,name&access_token={token}"
     limit_reached = expired = False

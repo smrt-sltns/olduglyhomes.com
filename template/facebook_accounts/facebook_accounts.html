@@ -6,6 +6,10 @@
 {% block title %} Please choose an Account {% endblock %}
 {% block content %}
 {% block dropdown %}{%endblock%}
+<div id="loaderContainer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.8); z-index: 9999;">
+    <div id="loader" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"><p style="padding-top: 149px;">Please wait...</p></div>
+    
+  </div>
     <h3>{{campaign_name}}</h3>
 
     <div class="add-account-container">
@@ -13,7 +17,7 @@
             <div class="accounts-list">
                 {% for a in accounts %}
                 <div class="box">
-                    <a href="{% url 'sentiment-graph-post' a.id a.access_token %}" class="account-name">
+                    <a href="{% url 'sentiment-graph-post' a.id a.access_token %}" class="account-name hideCommentBtn">
                         {{a.name}} 
                     </a>
                 </div> 
@@ -29,4 +33,12 @@
     {{message }}
     {% endfor %}
     {% endif %}
+
+<!-- loader -->
+<script src="{% static 'js/spin.js' %}"></script>
+<script>
+  $(document).ready(function() {
+    $(".page-loader").hide();
+});
+</script>
 {% endblock %}
