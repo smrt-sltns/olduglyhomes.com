@@ -51,9 +51,11 @@ def capture_new_ads(user_id):
     for db_ads in existing_ads:
         if db_ads.ad_id not in active_ad_list:
             db_ads.is_active = False
+            db_ads.is_campaign_active = False
             db_ads.save()
         else: 
             db_ads.is_active = True
+            db_ads.is_campaign_active = True
             db_ads.save()
 
 @shared_task
