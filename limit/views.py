@@ -158,7 +158,7 @@ def adspenddays(request):
         spenddate.save()    
     check_spend_limit_campaign(user_id=user.id)
     spend_wrapper.delay(user_id=user.id)
-    messages.info(request, f"Changed spend date to : Last {days} .")
+    messages.info(request, f"Changed spend date to : Last {days} days.")
     return redirect("ad_spend")
 
 
