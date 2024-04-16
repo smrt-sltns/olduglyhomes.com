@@ -211,7 +211,7 @@ def set_accountad(request):
                         creds.save()
                     messages.success(request, "{} saved successfully!".format(ad_name))
             except Exception as e:
-                    # print(e)
+                    print(e)
                     messages.error(request, "Failed to save <b>{}</b>.".format(ad_name))
         return redirect(reverse("home"))
     else:

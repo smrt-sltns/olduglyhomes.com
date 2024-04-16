@@ -161,7 +161,7 @@ def postive_comments_yesterday_send_email(user_id): # works every day in the mor
                 user_id=user_id, account_id=account_id, 
                 is_mail_sent=is_mail_sent, data=data)
 
-#every 2 hours 
+#runs every hours 
 @app.task()
 def negative_comments_today_send_email(user_id): # 
     try: 

@@ -3,6 +3,7 @@ import requests
 import urllib.request
 from decouple import config 
 from django.contrib.auth.models import User 
+from django.conf import settings
 from .models import AdRecord
 from datetime import datetime, timedelta
 

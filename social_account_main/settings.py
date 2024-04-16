@@ -30,11 +30,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'facebook',
     "automation",
+    "youtube",
     'social_django',
     # force https on social-oauth 
     'sslserver',
     'django_celery_results',
     "limit",
+    
     
 ]
 
@@ -320,5 +322,19 @@ CELERY_BEAT_SCHEDULE = {
             'expires': 150.0,
         },
       },
+      
+    #Get youtube subs count 
+      'task_youtube_subs_count': {
+        'task': 'youtube.tasks.task_save_video',
+        # 'schedule': 200.0,
+        # 'schedule': 600.0,
+        'schedule': timedelta(minutes=20),
+        
+        'args': '',
+        'options': {
+            'expires': 150.0,
+        },
+      },
 
+    
 }

@@ -40,6 +40,5 @@ def save_pages_to_adaccount(request, ad_account_id): #check which page token is 
         except Exception as e: 
             print(e)
             continue
-
     return page_id
     

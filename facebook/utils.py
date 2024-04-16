@@ -30,8 +30,8 @@ def get_permission_list(token):
     return permission_list
 
 def get_long_lived_access_token(api_key, api_secret, access_token):
-    url = u"https://graph.facebook.com/{settings.FACEBOOK_API_VERSION}/oauth/access_token?grant_type=fb_exchange_token" \
-            u"&client_id={}&client_secret={}&fb_exchange_token={}".format(api_key, api_secret, access_token)
+    url = u"https://graph.facebook.com/{}/oauth/access_token?grant_type=fb_exchange_token" \
+            u"&client_id={}&client_secret={}&fb_exchange_token={}".format(settings.FACEBOOK_API_VERSION, api_key, api_secret, access_token)
     read_url = json.loads(urllib.request.urlopen(url).read())
     return read_url['access_token']
 
