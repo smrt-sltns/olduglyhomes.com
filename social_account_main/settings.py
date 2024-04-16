@@ -18,7 +18,7 @@ DEBUG = config("DEBUG", False)
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="", cast=Csv())
 
-
+ALLOWED_HOSTS = ['190.92.151.242', "www.smarttextinfo.com", "smarttextinfo.com", "127.0.0.1"]
 # Application definition
 
 INSTALLED_APPS = [
