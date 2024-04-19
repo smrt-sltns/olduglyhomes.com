@@ -1,5 +1,7 @@
 from pathlib import Path
 from decouple import config,Csv
+from celery.schedules import crontab
+
 import os 
 from datetime import timedelta
 import logging.config
@@ -280,10 +282,11 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 # celery beat to run task every x time 
 CELERY_BEAT_SCHEDULE = {
 
+#----------------------------------------------------------------------FACEBOOK--------------------------------------------------------------------
+
       'add-every-1-day': {
         'task': 'social_account_main.celery_task.task_every_1_day',
         'schedule': timedelta(days=1),
-        # 'schedule': 200.0,
         'args': '',
         'options': {
             'expires': 120.0,
@@ -294,7 +297,6 @@ CELERY_BEAT_SCHEDULE = {
       'add-every-2-hours': {
         'task': 'social_account_main.celery_task.task_every_2_hours',
         'schedule': timedelta(hours=1),
-        # 'schedule': 100.0,
         'args': '',
         'options': {
             'expires': 150.0,
@@ -313,24 +315,30 @@ CELERY_BEAT_SCHEDULE = {
       #update ads spend every 10 min 
       'task_spend_limit': {
         'task': 'social_account_main.celery_task.task_spend_limit',
-        # 'schedule': 200.0,
-        # 'schedule': 600.0,
         'schedule': timedelta(minutes=20),
-        
         'args': '',
         'options': {
             'expires': 150.0,
         },
       },
       
-    #Get youtube subs count 
+#----------------------------------------------------------------------YOUTUBE--------------------------------------------------------------------
+      
+      #Soft Marketing
       'task_youtube_subs_count': {
         'task': 'youtube.tasks.task_save_video',
-        # 'schedule': 200.0,
-        # 'schedule': 600.0,
-        'schedule': timedelta(minutes=20),
-        
-        'args': '',
+        'schedule': 200.0,
+        'args': 'soft_marketing',
+        'options': {
+            'expires': 150.0,
+        },
+      },
+
+    #SAP
+      'task_youtube_subs_count': {
+        'task': 'youtube.tasks.task_save_video',
+        'schedule': crontab(hour=3, minute=0),
+        'args': 'SAP',
         'options': {
             'expires': 150.0,
         },

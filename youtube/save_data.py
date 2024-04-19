@@ -7,17 +7,17 @@ from .email import email_subscriber_change
 Make all first api call to save data in database.
 """
 
-def save_videos():
+def save_videos(unique_name):
     """
     Get Channel info (subscriber count)
     and Video info (Likes, dislikes, comment count etc.)
     and save to db. 
     Send email if there are subscriber count changes.
     """ 
-    cred = YoutubeCreds.objects.first()
-    channel = Channel.objects.first()
+    cred = YoutubeCreds.objects.filter(unique_name=unique_name).first()
+    channel = Channel.objects.filter(creds=cred).first()
     channel_data, videos_data = videos(api_key=cred.api_key, channel_id=channel.channel_id )
-    email_subscriber_change(previous_subs_count=int(channel.subscribers), current_subs_count=int(channel_data[2]))
+    email_subscriber_change(previous_subs_count=int(channel.subscribers), current_subs_count=int(channel_data[2]), channel_name=channel.name)
     if len(channel_data) != 0:
         channel.subscribers = channel_data[2]
         channel.save()
@@ -41,3 +41,5 @@ def save_videos():
             vd.comments_count=int(video[5]) 
             vd.published_at=video[6]
             vd.save()
+
+

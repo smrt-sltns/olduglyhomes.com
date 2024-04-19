@@ -10,19 +10,20 @@ class YoutubeCreds(models.Model):
     client_secret = models.CharField(max_length=150,unique=True, null=True, blank=True)
     access_token = models.CharField(max_length=300,unique=True, null=True, blank=True)
     refresh_token = models.CharField(max_length=300,unique=True, null=True, blank=True)
-    
+    unique_name = models.CharField(max_length=100, unique=True, null=True, blank=True)
     class Meta:
         verbose_name = "Creds"
         verbose_name_plural = "Creds"
 
     def __str__(self):
-        return self.user.email
+        return f"{self.unique_name} | {self.user.email}"
     
     
 
 class Channel(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     creds = models.ForeignKey(YoutubeCreds, on_delete=models.CASCADE, null=True, blank=True)
+    name = models.CharField(max_length=100, null=True, blank=True)
     channel_id = models.CharField(max_length=100,unique=True, null=False, blank=False)
     channel_username = models.CharField(max_length=100, null=True, blank=True)  
     subscribers = models.IntegerField()

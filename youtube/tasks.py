@@ -8,14 +8,14 @@ from .save_data import save_videos
 
 
 @shared_task()
-def task_save_video():
+def task_save_video(unique_name):
     """
-    This will run once every day. 
+    Takes in unique names of the existing channel in db 
+    and then call the GET API to get the channel data. 
+    All the data (subscriber, videos (id, likes, comment count etc.))
+    is saved / updated in the db. 
+    If there are changes in the subscribers count then a mail is 
+    sent out. 
+    """
+    save_videos(unique_name)
     
-    1. Get info of Channel and Videos from 
-       Youtube Data API and save to db. 
-    2. Send email notifying if there are 
-        changes in the subscriber count.
-    """
-    save_videos()
-   

@@ -20,74 +20,79 @@
 <body class="bg-light">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<!-- Loader container -->
-<div id="loaderContainer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.8); z-index: 9999;">
-    <div id="loader" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"><p style="padding-top: 149px;">Please wait...</p></div>
-    
+  <!-- Loader container -->
+  <div id="loaderContainer"
+    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.8); z-index: 9999;">
+    <div id="loader" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+      <p style="padding-top: 149px;">Please wait...</p>
+    </div>
   </div>
+  
   <header id="header" class="py-2">
     <div class="container">
       <nav class="navbar navbar-light navbar-fixed-top justify-content-between">
         <span class="navbar-brand mb-0 h1"><a href="{% url 'home' %}" class="text-white">
-          <img src="{% static 'image/smartysync-logo.png' %}" alt="Smartysync" width="70px">
-        </a> </span>
+            <img src="{% static 'image/smartysync-logo.png' %}" alt="Smartysync" width="70px">
+          </a> </span>
         {% block dropdown %}
         <div class="dropdown">
-        <button type="button" class="btn btn-outline-white dropdown-toggle" data-toggle="dropdown">
-          Active Campaigns
-        </button>
-        <div class="dropdown-menu">
-          {% for campaign in all_campaigns %}
-          {% if campaign.effective_status == "ACTIVE" %}
-          <a class="dropdown-item hideCommentBtn" href="{% url 'adset-list-campaign' campaign.id %}" style="color: rgb(9, 136, 9);">{{campaign.name}} (active)</a>
-          {% else %}
-          <a class="dropdown-item hideCommentBtn" href="{% url 'adset-list-campaign' campaign.id %}">{{campaign.name}}</a>
-          {% endif %}
-          {% endfor %}
+          <button type="button" class="btn btn-outline-white dropdown-toggle" data-toggle="dropdown">
+            Active Campaigns
+          </button>
+          <div class="dropdown-menu">
+            {% for campaign in all_campaigns %}
+            {% if campaign.effective_status == "ACTIVE" %}
+            <a class="dropdown-item hideCommentBtn" href="{% url 'adset-list-campaign' campaign.id %}"
+              style="color: rgb(9, 136, 9);">{{campaign.name}} (active)</a>
+            {% else %}
+            <a class="dropdown-item hideCommentBtn"
+              href="{% url 'adset-list-campaign' campaign.id %}">{{campaign.name}}</a>
+            {% endif %}
+            {% endfor %}
+          </div>
         </div>
-      </div>
-      {% endblock %}
-      
-      {% if request.user.is_authenticated %}
-      <span class="username">{{request.user}}
-        <!-- <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a></span> -->
-        {% else %}
-        <!-- <div class="empty-name">
+        {% endblock %}
+
+        {% if request.user.is_authenticated %}
+        <span class="username">{{request.user}}
+          <!-- <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a></span> -->
+          {% else %}
+          <!-- <div class="empty-name">
           Guest User
         </div> -->
-        {% endif %}
-  
+          {% endif %}
+
       </nav>
     </div>
   </header>
 
-    
-  <section class="landing-section">
-      <div class="landing-content text-center px-sm-5 py-5 px-3 mx-2">
-        <h1 class="mb-4">{% block title %}{% endblock %}</h1>
-        <!-- Display messages if the comment is hidden successfully -->
-        {% block message %}
-        <div class="message-container" >
-          {% if messages %}
-          {% for message in messages %}
-          {% if message.tags == "error" %}
-          <div class="alert alert-danger alert-dismissible">
-            <strong>{{message.tags}}!</strong> {{message|safe}}
-          </div>
-          {% else %}
-          <div class="alert alert-{{message.tags}} alert-dismissible">
-            <strong>{{message.tags}}!</strong> {{message|safe}}
-          </div>
-          {% endif %}
-          {% endfor %}
-          {% endif %}
-        </div>
-        {% endblock %}
 
-        {% block content %}
-        <!--  -->
-        {% endblock %}
+  <section class="landing-section">
+    <div class="landing-content text-center px-sm-5 py-5 px-3 mx-2">
+      <h1 class="mb-4">{% block title %}{% endblock %}</h1>
+      <!-- Display messages if the comment is hidden successfully -->
+      {% block message %}
+      <div class="message-container">
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.tags == "error" %}
+        <div class="alert alert-danger alert-dismissible">
+          <strong>{{message.tags}}!</strong> {{message|safe}}
+        </div>
+        {% else %}
+        <div class="alert alert-{{message.tags}} alert-dismissible">
+          <strong>{{message.tags}}!</strong> {{message|safe}}
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
       </div>
+      {% endblock %}
+
+      {% block content %}
+      <!--  -->
+      {% endblock %}
+    </div>
   </section>
 
 
