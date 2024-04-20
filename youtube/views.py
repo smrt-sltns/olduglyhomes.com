@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from .authorize import google_auth, google_auth_callback
 from .models import YoutubeCreds, Channel, Video, Comment, CommentReply
-
+from django.contrib.auth.models import User 
+from django.http import HttpResponse
 
 
 def index(request):
@@ -28,3 +29,28 @@ def index(request):
         "channels" : Channel.objects.all(),
     }
     return render(request, "youtube/index.html", context)
+
+
+
+def add_channel(request):
+    if request.method == "POST":
+        api_key = request.POST['api_key']
+        channel_id = request.POST['channel_id']
+        channel_name = request.POST['channel_name'] 
+        print(api_key, channel_id, channel_name)
+        user = request.user
+        if not YoutubeCreds.objects.filter(api_key=api_key).exists():
+            
+            creds = YoutubeCreds(api_key=api_key, user=user)
+            channel_username = str(channel_name).split(" ")
+            username = "_".join(channel_username)
+            channel = Channel(
+                user=user, creds = creds, 
+                name = channel_name, 
+                channel_username=username,
+                channel_id=channel_id
+            )
+            print("creds and channel have been created!")
+            return HttpResponse("New channel added!")
+    else: 
+        return render(request, "youtube/add_channel.html")

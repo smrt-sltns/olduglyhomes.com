@@ -327,7 +327,7 @@ CELERY_BEAT_SCHEDULE = {
       #Soft Marketing
       'task_youtube_subs_count': {
         'task': 'youtube.tasks.task_save_video',
-        'schedule': 200.0,
+        'schedule': crontab(hour=3, minute=5),
         'args': 'soft_marketing',
         'options': {
             'expires': 150.0,

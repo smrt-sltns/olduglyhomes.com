@@ -8,28 +8,29 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h2>Bootstrap Form with 5 Input Fields</h2>
-        <form>
+        <h2>Add youtube channels in the automation.</h2>
+        <form action="" method="POST">
+            {% csrf_token %}
             <div class="form-group">
-                <label for="input1">Input 1</label>
-                <input type="text" class="form-control" id="input1" placeholder="Enter value for input 1">
+                <label for="input1">API Key</label>
+                <input type="text" class="form-control" name="api_key" placeholder="Enter api key here">
             </div>
             <div class="form-group">
-                <label for="input2">Input 2</label>
-                <input type="text" class="form-control" id="input2" placeholder="Enter value for input 2">
+                <label for="input2">Channel Id</label>
+                <input type="text" class="form-control" name="channel_id" placeholder="Enter channel Id">
             </div>
             <div class="form-group">
-                <label for="input3">Input 3</label>
-                <input type="text" class="form-control" id="input3" placeholder="Enter value for input 3">
+                <label for="input3">Channel Name</label>
+                <input type="text" class="form-control" name="channel_name" placeholder="Channel Name">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="input4">Input 4</label>
                 <input type="text" class="form-control" id="input4" placeholder="Enter value for input 4">
             </div>
             <div class="form-group">
                 <label for="input5">Input 5</label>
                 <input type="text" class="form-control" id="input5" placeholder="Enter value for input 5">
-            </div>
+            </div> -->
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
