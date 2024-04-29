@@ -251,7 +251,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "coboaccess2@gmail.com" 
-EMAIL_HOST_PASSWORD = "bgdf lhug pysq vqyh"
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 
 DEFAULT_FROM_EMAIL = 'coboaccess2@gmail.com'
 
@@ -327,7 +327,9 @@ CELERY_BEAT_SCHEDULE = {
       #Soft Marketing
       'task_youtube_subs_count': {
         'task': 'youtube.tasks.task_save_video',
-        'schedule': crontab(hour=3, minute=5),
+        # 'schedule': crontab(hour=3, minute=5),
+        'schedule': 100.0,
+        
         'args': 'soft_marketing',
         'options': {
             'expires': 150.0,
@@ -337,7 +339,7 @@ CELERY_BEAT_SCHEDULE = {
     #SAP
       'task_youtube_subs_count': {
         'task': 'youtube.tasks.task_save_video',
-        'schedule': crontab(hour=3, minute=0),
+        'schedule': 100.0,
         'args': 'SAP',
         'options': {
             'expires': 150.0,

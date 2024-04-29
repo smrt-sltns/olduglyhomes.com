@@ -2,10 +2,19 @@ from youtube.utils.channels import videos
 from youtube.utils.comments import comments 
 from .models import YoutubeCreds, Channel, Video, Comment, CommentReply
 from .email import email_subscriber_change
+from datetime import datetime
+from django.utils.timezone import make_aware
 
 """
 Make all first api call to save data in database.
 """
+
+def string_to_datetime(date_string):
+    datetime_obj = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
+    aware_datetime = make_aware(datetime_obj)
+    return aware_datetime
+
+
 
 def save_videos(unique_name):
     """
@@ -30,7 +39,8 @@ def save_videos(unique_name):
                 views=int(video[2]),
                 likes = int(video[3]), dislikes=int(video[4]),
                 comments_count=int(video[5]), 
-                published_at=video[6]
+                published_at=video[6],
+                published_datetime=string_to_datetime(video[6])
             )
         else: 
             vd = Video.objects.get(video_id=video[0])
@@ -40,6 +50,7 @@ def save_videos(unique_name):
             vd.dislikes=int(video[4])
             vd.comments_count=int(video[5]) 
             vd.published_at=video[6]
+            vd.published_datetime=string_to_datetime(video[6])
             vd.save()
 
 

@@ -17,9 +17,9 @@ def index(request):
     videos = Video.objects.filter(channel=channel).all()
     len(videos)
     if sort_by == "published_at":
-        videos = Video.objects.filter(channel=channel).order_by("-pk").all()[::-1]
+        videos = Video.objects.filter(channel=channel).order_by("published_datetime").all()
     elif sort_by == "" or sort_by == None:
-        videos = Video.objects.filter(channel=channel).all()
+        videos = Video.objects.filter(channel=channel).order_by("-published_datetime").all()
     else:
         videos = Video.objects.filter(channel=channel).order_by(f"-{sort_by}")
     

@@ -47,6 +47,7 @@ class Video(models.Model):
     dislikes = models.IntegerField(default=0)
     comments_count = models.IntegerField(default=0) 
     published_at = models.CharField(max_length=100, null=True, blank=True) #youtube data 
+    published_datetime = models.DateTimeField(null=True, blank=True)
     store_at = models.DateTimeField(auto_now=True) #datetime when the video was capture by us 
     
     class Meta:
