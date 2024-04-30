@@ -340,7 +340,7 @@ CELERY_BEAT_SCHEDULE = {
       'task_youtube_subs_count': {
         'task': 'youtube.tasks.task_save_video',
         'schedule': 100.0,
-        'args': ('soft_marketing',),
+        'args': ('SAP',),
         'options': {
             'expires': 150.0,
         },
