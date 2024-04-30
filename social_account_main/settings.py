@@ -328,7 +328,7 @@ CELERY_BEAT_SCHEDULE = {
       'task_youtube_subs_count': {
         'task': 'youtube.tasks.task_save_video',
         # 'schedule': crontab(hour=3, minute=5),
-        'schedule': 100.0,
+        'schedule': timedelta(minutes=10),
         
         'args': ('soft_marketing',),
         'options': {
@@ -339,7 +339,7 @@ CELERY_BEAT_SCHEDULE = {
     #SAP
       'task_youtube_subs_count': {
         'task': 'youtube.tasks.task_save_video',
-        'schedule': 100.0,
+        'schedule': timedelta(minutes=10),
         'args': ('SAP',),
         'options': {
             'expires': 150.0,
