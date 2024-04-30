@@ -2,7 +2,7 @@ from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
-RECIPIENT_LIST = ["kundanpandey.dev@gmail.com", "georgeyoumansjr@gmail.com"]
+RECIPIENT_LIST = ["kundanpandey.dev@gmail.com",]# "georgeyoumansjr@gmail.com"]
 
 def email_subscriber_change(previous_subs_count:int, current_subs_count:int, channel_name:str):
     """Send email if the are changes in the subscribers count."""
