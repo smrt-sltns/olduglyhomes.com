@@ -26,7 +26,7 @@ class Channel(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     channel_id = models.CharField(max_length=100,unique=True, null=False, blank=False)
     channel_username = models.CharField(max_length=100, null=True, blank=True)  
-    subscribers = models.IntegerField()
+    subscribers = models.IntegerField(default=0)
     
     class Meta:
         verbose_name = "Channel"

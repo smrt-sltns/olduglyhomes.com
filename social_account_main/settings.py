@@ -324,27 +324,25 @@ CELERY_BEAT_SCHEDULE = {
       
 #----------------------------------------------------------------------YOUTUBE--------------------------------------------------------------------
       
-      #Soft Marketing
       'task_youtube_subs_count': {
         'task': 'youtube.tasks.task_save_video',
-        # 'schedule': crontab(hour=3, minute=5),
         'schedule': timedelta(minutes=10),
         
-        'args': ('soft_marketing',),
+        'args': "",
         'options': {
             'expires': 150.0,
         },
       },
 
-    #SAP
-      'task_youtube_subs_count': {
-        'task': 'youtube.tasks.task_save_video',
-        'schedule': timedelta(minutes=10),
-        'args': ('SAP',),
-        'options': {
-            'expires': 150.0,
-        },
-      },
+    # #SAP
+    #   'task_youtube_subs_count': {
+    #     'task': 'youtube.tasks.task_save_video',
+    #     'schedule': timedelta(minutes=10),
+    #     'args': ('SAP',),
+    #     'options': {
+    #         'expires': 150.0,
+    #     },
+    #   },
 
     
 }
