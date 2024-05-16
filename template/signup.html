@@ -1,0 +1,35 @@
+{% extends "login.html" %}
+
+{% block login_form %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card bg-transparent" style="width: 300px; margin-left: -50px;">
+          <div class="card-header bg-transparent">
+            Sign Up
+          </div>
+          <div class="card-body bg-transparent">
+            <form method="post" action="{% url 'signup' %}">
+              {% csrf_token %}
+              <div class="form-group">
+                <!-- <label for="email" class="text-light">Email address</label> -->
+                <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <!-- <label for="password" class="text-light">Password</label> -->
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+              </div>
+              <div class="form-group">
+                <!-- <label for="password" class="text-light">Password</label> -->
+                <input type="password" class="form-control" name="confirm_password" id="password" placeholder="Confirm Password">
+              </div>
+              <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<p>Already have an account? <a href="{% url 'login' %}" style="color: blue;">Login</a></p>
+
+{% endblock %}

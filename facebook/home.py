@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.urls import reverse
 from .decorator import custom_login_required 
-from .models import Creds, AccountPages, AccountsAd
+from .models import Creds, AccountPages, AccountsAd, DefaultApp
 
 
 
@@ -20,6 +20,9 @@ def user_logout(request):
 @custom_login_required
 def home(request):
     user = request.user
+    default_app = DefaultApp.objects.get(user=user)
+    if default_app.to_youtube == True:
+        return redirect("youtube-index")
     ad = AccountsAd.objects.filter(user=user)
     if ad.exists():
         ad_id = ad[0].id

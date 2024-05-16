@@ -19,6 +19,8 @@ urlpatterns = [
     path("youtube/", include("youtube.urls"), name="limit"), 
     path('social-auth/', include('social_django.urls', namespace="social")),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
+    path('accounts/', include('allauth.urls')),
+    path('accounts/', include('allauth.socialaccount.urls')),
 ]
 
 if settings.DEBUG:

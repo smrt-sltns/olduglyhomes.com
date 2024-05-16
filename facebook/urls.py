@@ -1,11 +1,11 @@
 from django.urls import path
-from . import views2, views, myads, confirm_email, home, token_expired
+from . import views2, views, myads, confirm_email, home, token_expired, auth
 
 
 urlpatterns = [
     # home
     path("", home.home, name="home"),
-    path("login/", home.login, name="login"),
+    # path("login/", home.login, name="login"),
     path("user-logout", home.user_logout, name="user-logout"), 
 
     #myads
@@ -43,6 +43,10 @@ urlpatterns = [
     #contact us 
     path("contact-us/", views.contact_us, name="contact_us"),
 
+    #authentication 
+    path("login", auth.login, name="login" ),
+    path("signup", auth.signup, name="signup"),
+    
     # views2
     path('get-context2', views2.social_auth_data, name='get-context2'), 
     path('get-context3', views2.get_pages, name='get-context3'), 

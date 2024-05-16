@@ -56,12 +56,15 @@
         {% if request.user.is_authenticated %}
         <span class="username">{{request.user}}
           <!-- <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a></span> -->
+        <a class="btn btn-outline-danger ml-2" href="{% url 'switch' %}" type="button">Youtube</a>
+
           {% else %}
           <!-- <div class="empty-name">
           Guest User
         </div> -->
           {% endif %}
-
+         
+      </span>
       </nav>
     </div>
   </header>

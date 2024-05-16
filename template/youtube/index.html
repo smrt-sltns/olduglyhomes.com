@@ -32,7 +32,7 @@
           <div class="dropdown-menu">
             {% for channel in channels %}
             <a class="dropdown-item"
-              href="{% url 'index' %}?channel_id={{channel.channel_id}}">{{channel.channel_username}}</a>
+              href="{% url 'youtube-index' %}?channel_id={{channel.channel_id}}">{{channel.channel_username}}</a>
             {% endfor %}
             <hr class="dropdown-divider">
             <!-- Button after list elements -->
@@ -49,6 +49,8 @@
             Guest User
           </div>
           {% endif %}
+          <a class="btn btn-outline-primary ml-2" href="{% url 'switch' %}" type="button">Facebook</a>
+        </span>
       </nav>
     </div>
   </header>
@@ -77,16 +79,16 @@
         <tr>
           <th>ID</th>
           <th>Title</th>
-          <th><a href="{% url 'index' %}?channel_id={{channel.channel_id}}&sort_by=views"
+          <th><a href="{% url 'youtube-index' %}?channel_id={{channel.channel_id}}&sort_by=views"
               style="text-decoration: none; color: white;"><i class="fas fa-sort" style="font-size: 13px;"></i>
             </a>Views</th>
-          <th><a href="{% url 'index' %}?channel_id={{channel.channel_id}}&sort_by=likes"
+          <th><a href="{% url 'youtube-index' %}?channel_id={{channel.channel_id}}&sort_by=likes"
               style="text-decoration: none; color: white;"><i class="fas fa-sort"></i> </a>Likes</th>
-          <th><a href="{% url 'index' %}?channel_id={{channel.channel_id}}&sort_by=dislikes"
+          <th><a href="{% url 'youtube-index' %}?channel_id={{channel.channel_id}}&sort_by=dislikes"
               style="text-decoration: none; color: white;"><i class="fas fa-sort"></i> </a>Dislikes</th>
-          <th><a href="{% url 'index' %}?channel_id={{channel.channel_id}}&sort_by=comments_count"
+          <th><a href="{% url 'youtube-index' %}?channel_id={{channel.channel_id}}&sort_by=comments_count"
               style="text-decoration: none; color: white;"><i class="fas fa-sort"></i> </a>Comments</th>
-          <th><a href="{% url 'index' %}?channel_id={{channel.channel_id}}&sort_by=published_at"
+          <th><a href="{% url 'youtube-index' %}?channel_id={{channel.channel_id}}&sort_by=published_at"
               style="text-decoration: none; color: white;"><i class="fas fa-sort"></i> </a>Published At</th>
         </tr>
       </thead>

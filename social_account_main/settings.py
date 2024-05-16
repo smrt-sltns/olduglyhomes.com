@@ -30,14 +30,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django.contrib.sites",
     'facebook',
     "automation",
     "youtube",
-    'social_django',
-    # force https on social-oauth 
-    'sslserver',
-    'django_celery_results',
+    # 'social_django',
     "limit",
+    
+    # force https on social-oauth 
+    # 'sslserver',
+    'django_celery_results',
+    
+    # all auth configurations
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     
     
 ]
@@ -54,6 +62,8 @@ MIDDLEWARE = [
     'social_django.middleware.SocialAuthExceptionMiddleware',
     # Custom middleware if User token is expired 
     "facebook.middleware.TokenExpiredMiddleware",
+    #all auth 
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'social_account_main.urls'
@@ -80,6 +90,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'social_account_main.wsgi.application'
 
+SITE_ID = 3
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": ["profile", "email"],
+        "AUTH_PARAMS": {"access_type": "online"},
+    }
+}
+LOGIN_REDIRECT_URL = "success"
+SOCIALACCOUNT_LOGIN_ON_GET = True  # This shows google's authorization page, skipping a sign-in page that pops up
+SOCIALACCOUNT_AUTO_SIGNUP = True   # This automatically signs up a user after using google to sign in
+ACCOUNT_LOGOUT_ON_GET = True
+LOGOUT_REDIRECT_URL = "sign-in"
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
 
 
 
@@ -190,8 +217,9 @@ MEDIA_ROOT = BASE_DIR / 'uploads'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+SITE_ID = 2
 
-LOGIN_REDIRECT_URL= "home"
+LOGIN_REDIRECT_URL= "youtube-index"
 LOGOUT_REDIRECT_URL = "home"
 
 
@@ -202,7 +230,41 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.twitter.TwitterOAuth',
     'social_core.backends.github.GithubOAuth2',
     'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
 )
+
+# AUTHENTICATION_BACKENDS = (
+#     'allauth.account.auth_backends.AuthenticationBackend',
+#     'django.contrib.auth.backends.ModelBackend',
+# )
+
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',
+    
+# ]
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'optional' 
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': config("GOOGLE_CLIENT_ID"),
+            'secret': config("GOOGLE_CLIENT_SECRET")    ,
+            'key': ''
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
@@ -219,8 +281,8 @@ SOCIAL_AUTH_PIPELINE = (
 
 SOCIAL_AUTH_FACEBOOK_KEY = config('APP_ID')
 SOCIAL_AUTH_FACEBOOK_SECRET = config('APP_SECRET')
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "your_google_clientId"
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "your_google_clientsecret"
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "your_google_clientId"
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "your_google_clientsecret"
 
 
 

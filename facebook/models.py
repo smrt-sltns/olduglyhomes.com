@@ -96,5 +96,12 @@ class IgnoredComments(models.Model):
 
 
 
+class DefaultApp(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True) 
+    to_youtube = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return f"{self.user} | Youtube {self.to_youtube}"
+
     
 

@@ -4,13 +4,20 @@ from .models import YoutubeCreds, Channel, Video, Comment, CommentReply
 from django.contrib.auth.models import User 
 from django.http import HttpResponse
 from django.contrib import messages
+from facebook.decorator import custom_login_required
+from facebook.models import DefaultApp
 
-
-def index(request):
+@custom_login_required
+def YoutubeIndex(request):
     """Display Channel and Video info in a HTML table."""
     channel_id = request.GET.get("channel_id", None)
     if not channel_id: 
-        channel_id = Channel.objects.first().channel_id
+        chnl = Channel.objects.filter(user=request.user)
+        if not chnl.exists():
+            messages.info(request, "Please add your Youtube channels to continue.")
+            return render(request, "youtube/index.html")
+        else:
+            channel_id = chnl.first().channel_id
     channel = Channel.objects.get(channel_id=channel_id)
     sort_by = request.GET.get('sort_by', '')
     
@@ -21,7 +28,7 @@ def index(request):
         videos = Video.objects.filter(channel=channel).order_by("-published_datetime").all()
     else:
         videos = Video.objects.filter(channel=channel).order_by(f"-{sort_by}")
-    
+
     context = {
         "channel": channel,
         "videos": videos, 
@@ -30,7 +37,7 @@ def index(request):
     return render(request, "youtube/index.html", context)
 
 
-
+@custom_login_required
 def add_channel(request):
     if request.method == "POST":
         api_key = request.POST['api_key']
@@ -59,6 +66,24 @@ def add_channel(request):
         messages.success(request, "New channel added!")
         # return HttpResponse("New channel added!")
     
-        return redirect("index")
+        return redirect("youtube-index")
     else: 
         return render(request, "youtube/add_channel.html")
+    
+    
+    
+def switch(request):
+    """Switch from yoututbe to facebook."""
+    
+    if not DefaultApp.objects.filter(user=request.user).exists():
+        default_app = DefaultApp()
+        default_app.user = request.user
+        default_app.save()
+    default_app = DefaultApp.objects.filter(user=request.user).first()
+    if default_app.to_youtube == True:
+        default_app.to_youtube = False
+    else: 
+        default_app.to_youtube = True
+    print(default_app.to_youtube)
+    default_app.save()
+    return redirect("youtube-index")
