@@ -74,18 +74,6 @@ def add_channel(request):
     
 def switch_youtube(request):
     """Switch from yoututbe to facebook."""
-    
-    # if not DefaultApp.objects.filter(user=request.user).exists():
-    #     default_app = DefaultApp()
-    #     default_app.user = request.user
-    #     default_app.save()
-    # default_app = DefaultApp.objects.filter(user=request.user).first()
-    # if default_app.to_youtube == True:
-    #     default_app.to_youtube = False
-    # else: 
-    #     default_app.to_youtube = True
-    # print(default_app.to_youtube)
-    # default_app.save()
     return redirect("youtube-index")
 
 def switch_facebook(request):

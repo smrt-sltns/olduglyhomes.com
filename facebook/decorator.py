@@ -17,10 +17,6 @@ def custom_login_required(view_func):
             info(request, "Please login to continue!")
             return render(request, "login.html")
         creds = Creds.objects.filter(user=request.user)
-        # if not DefaultApp.objects.filter(user = request.user).exists():
-        #     DefaultApp.objects.create(user=user)
-        # default_app = DefaultApp.objects.filter(user=user).first()
-        # if default_app.to_youtube == False:
         if not creds.exists():
             return render(request, "register_token/APP_create_facebook_app.html")
         try: 
