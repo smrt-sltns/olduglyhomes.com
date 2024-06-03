@@ -24,8 +24,10 @@ def check_spend_limit_ad(user_id="3"):
     user associated 
     """
     over_spend_ads = []
-    days = AdRecordSpenddate.objects.get(user_id=user_id)
     user = User.objects.get(id=user_id)
+    if not AdRecordSpenddate.objects.filter(user=user).exists():
+        AdRecordSpenddate.objects.create(user=user)
+    days = AdRecordSpenddate.objects.filter(user=user).first()
     access_token = Creds.objects.get(user=user).LONGLIVED_ACCESS_TOKEN
     ads = AdRecord.objects.filter(user=user,is_active=True).all()
     today_date, last_month_date = one_month_old_dates(days_old=days.days)

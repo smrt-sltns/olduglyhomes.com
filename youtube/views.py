@@ -4,10 +4,10 @@ from .models import YoutubeCreds, Channel, Video, Comment, CommentReply
 from django.contrib.auth.models import User 
 from django.http import HttpResponse
 from django.contrib import messages
-from facebook.decorator import custom_login_required
+from facebook.decorator import custom_login_required, youtube_login_decorator
 from facebook.models import DefaultApp
 
-@custom_login_required
+@youtube_login_decorator
 def YoutubeIndex(request):
     """Display Channel and Video info in a HTML table."""
     channel_id = request.GET.get("channel_id", None)
@@ -37,7 +37,7 @@ def YoutubeIndex(request):
     return render(request, "youtube/index.html", context)
 
 
-@custom_login_required
+@youtube_login_decorator
 def add_channel(request):
     if request.method == "POST":
         api_key = request.POST['api_key']
@@ -72,18 +72,21 @@ def add_channel(request):
     
     
     
-def switch(request):
+def switch_youtube(request):
     """Switch from yoututbe to facebook."""
     
-    if not DefaultApp.objects.filter(user=request.user).exists():
-        default_app = DefaultApp()
-        default_app.user = request.user
-        default_app.save()
-    default_app = DefaultApp.objects.filter(user=request.user).first()
-    if default_app.to_youtube == True:
-        default_app.to_youtube = False
-    else: 
-        default_app.to_youtube = True
-    print(default_app.to_youtube)
-    default_app.save()
+    # if not DefaultApp.objects.filter(user=request.user).exists():
+    #     default_app = DefaultApp()
+    #     default_app.user = request.user
+    #     default_app.save()
+    # default_app = DefaultApp.objects.filter(user=request.user).first()
+    # if default_app.to_youtube == True:
+    #     default_app.to_youtube = False
+    # else: 
+    #     default_app.to_youtube = True
+    # print(default_app.to_youtube)
+    # default_app.save()
     return redirect("youtube-index")
+
+def switch_facebook(request):
+    return redirect('home')

@@ -35,15 +35,6 @@ def google_auth_callback(request):
             'client_secret': settings.GOOGLE_CLIENT_SECRET,
             'redirect_uri': settings.GOOGLE_REDIRECT_URI,
         }).json()
-        # print(all_token)
-        # id_token = all_token['id_token']
-        # refresh_token = all_token['refresh_token']
-        # decode_token = jwt.decode(id_token, algorithms=['RS256'], verify=False)
         print("ACCESS TOKEN : {}".format(all_token['access_token']))
-        # print("REFRESH TOKEN : {}".format(refresh_token))
-        # print("ID TOKEN : {}".format(id_token))
-        # print("DECODED ID TOKEN :: {}".format(decode_token))
-        # print("EMAIL : {}".format(decode_token['email']))
-        # print("NAME : {}".format(decode_token['name']))
         return HttpResponse('Spreadsheet created successfully')
     return HttpResponse('Authentication failed code missing ')

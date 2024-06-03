@@ -131,6 +131,9 @@ def sort(request, value):
     }
     flt = value_dir.get(value)
     spenddays = AdRecordSpenddate.objects.filter(user=request.user)
+    if not spenddays.exists():
+        AdRecordSpenddate.objects.create(user=request.user)
+        spenddays = AdRecordSpenddate.objects.filter(user=request.user)
     adrecords = AdRecord.objects.all().filter(user=request.user).order_by(flt).all()
     adaccount_is_set = Creds.objects.get(user=request.user).has_ad_accounts
     adrecords_by_campaign = adrecord_groups(adrecords=adrecords)

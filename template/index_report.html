@@ -93,10 +93,16 @@
                         <hr class="sidebar-divider">
                     </li>
                     <!-- Refresh button -->
-                    <li class="nav-item">
+                    <li class="nav-item ">
                         <a class="nav-link hideCommentBtn" href="{% url 'refresh' %}">
                             <i class="fas fa-sync-alt"></i>
                             Refresh
+                        </a>
+                    </li>
+                    <li class="nav-item" >
+                        <a class="nav-link btn-danger " style="border: 0.3px solid red;" href="{% url 'switch-youtube' %}" >
+                            <i class="fab fa-youtube"></i>
+                            Youtube
                         </a>
                     </li>
                     <!-- Add more elements here as needed -->
