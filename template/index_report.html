@@ -72,6 +72,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link {% block conversations_active %}{% endblock conversations_active %}" href="{% url 'conversations_home'  %}">
+                            <i class="fa fa-dollar-sign"></i>
+                            Conversations
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link {% block adspend_active %}{% endblock adspend_active %}" href="{% url 'ad_spend'  %}">
                             <i class="fa fa-dollar-sign"></i>
                             Ad Spend

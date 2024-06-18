@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'facebook',
     "automation",
     "youtube",
+    "conversations",
     # 'social_django',
     "limit",
     
