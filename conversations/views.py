@@ -20,7 +20,10 @@ def facebook_webhook(request):
         mode = request.GET.get('hub.mode')
         token = request.GET.get('hub.verify_token')
         challenge = request.GET.get('hub.challenge')
-
+        print(f"""{verify_token} | {token}\n
+              get request is made to webhook""")
+        send_conversation_email(f"""GET request is made to convesation webshook\n
+                                fb token : {token}, server token : {verify_token}""")
         if mode and token:
             if mode == 'subscribe' and token == verify_token:
                 return HttpResponse(challenge, status=200)
