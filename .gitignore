@@ -47,7 +47,7 @@ local_settings.py
 *.swp
 *.bak
 *.tmp
-
+*.pickle
 
 
 #celery files 

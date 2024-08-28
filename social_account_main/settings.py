@@ -93,21 +93,22 @@ WSGI_APPLICATION = 'social_account_main.wsgi.application'
 
 SITE_ID = 3
 # Provider specific settings
-SOCIALACCOUNT_PROVIDERS = {
-    "google": {
-        "SCOPE": ["profile", "email"],
-        "AUTH_PARAMS": {"access_type": "online"},
-    }
-}
+# SOCIALACCOUNT_PROVIDERS = {
+#     "google": {
+#         "SCOPE": ["profile", "email"],
+#         "AUTH_PARAMS": {"access_type": "online"},
+#     }
+# }
 LOGIN_REDIRECT_URL = "success"
 SOCIALACCOUNT_LOGIN_ON_GET = True  # This shows google's authorization page, skipping a sign-in page that pops up
 SOCIALACCOUNT_AUTO_SIGNUP = True   # This automatically signs up a user after using google to sign in
 ACCOUNT_LOGOUT_ON_GET = True
 LOGOUT_REDIRECT_URL = "sign-in"
-AUTHENTICATION_BACKENDS = [
-    "django.contrib.auth.backends.ModelBackend",
-    "allauth.account.auth_backends.AuthenticationBackend",
-]
+
+# AUTHENTICATION_BACKENDS = [
+#     "django.contrib.auth.backends.ModelBackend",
+#     "allauth.account.auth_backends.AuthenticationBackend",
+# ]
 
 
 
@@ -218,7 +219,7 @@ MEDIA_ROOT = BASE_DIR / 'uploads'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SITE_ID = 2
+SITE_ID = 3
 
 LOGIN_REDIRECT_URL= "youtube-index"
 LOGOUT_REDIRECT_URL = "home"
@@ -226,10 +227,10 @@ LOGOUT_REDIRECT_URL = "home"
 
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.facebook.FacebookOAuth2',
+    # 'social_core.backends.facebook.FacebookOAuth2',
  
-    'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.github.GithubOAuth2',
+    # 'social_core.backends.twitter.TwitterOAuth',
+    # 'social_core.backends.github.GithubOAuth2',
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend'
 )
@@ -260,6 +261,8 @@ SOCIALACCOUNT_PROVIDERS = {
         'SCOPE': [
             'profile',
             'email',
+            'https://www.googleapis.com/auth/youtube.readonly',  # YouTube Data API
+            'https://www.googleapis.com/auth/yt-analytics.readonly'  # YouTube Analytics API
         ],
         'AUTH_PARAMS': {
             'access_type': 'online',

@@ -85,6 +85,8 @@
           <th><a href="{% url 'youtube-index' %}?channel_id={{channel.channel_id}}&sort_by=likes"
               style="text-decoration: none; color: white;"><i class="fas fa-sort"></i> </a>Likes</th>
           <th><a href="{% url 'youtube-index' %}?channel_id={{channel.channel_id}}&sort_by=dislikes"
+              style="text-decoration: none; color: white;"><i class="fas fa-sort"></i> </a>Watch Time (hr)</th>
+          <th><a href="{% url 'youtube-index' %}?channel_id={{channel.channel_id}}&sort_by=dislikes"
               style="text-decoration: none; color: white;"><i class="fas fa-sort"></i> </a>Dislikes</th>
           <th><a href="{% url 'youtube-index' %}?channel_id={{channel.channel_id}}&sort_by=comments_count"
               style="text-decoration: none; color: white;"><i class="fas fa-sort"></i> </a>Comments</th>
@@ -99,6 +101,7 @@
           <td>{{ video.video_title }}</td>
           <td>{{ video.views }}</td>
           <td>{{ video.likes }}</td>
+          <td style="color: rgb(12, 177, 12);">{{video.watch_time}}</td>
           <td>{{ video.dislikes }}</td>
           <td>{{ video.comments_count }}</td>
           <td>{{ video.published_at }}</td>

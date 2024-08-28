@@ -44,11 +44,12 @@ class Video(models.Model):
     video_title = models.CharField(max_length=500, null=True, blank=True)
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
+    watch_time = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)
     comments_count = models.IntegerField(default=0) 
     published_at = models.CharField(max_length=100, null=True, blank=True) #youtube data 
     published_datetime = models.DateTimeField(null=True, blank=True)
-    store_at = models.DateTimeField(auto_now=True) #datetime when the video was capture by us 
+    store_at = models.DateTimeField(auto_now=True) # datetime when the video was capture by us 
     
     class Meta:
         verbose_name = "Video"
