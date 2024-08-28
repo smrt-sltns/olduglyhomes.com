@@ -3,7 +3,7 @@ asgiref==3.8.1
 async-generator==1.10
 async-timeout==4.0.3
 attrs==23.1.0
-# backports.zoneinfo==0.2.1
+backports.zoneinfo==0.2.1
 billiard==4.2.0
 cachetools==5.3.3
 celery==5.4.0
@@ -17,7 +17,8 @@ click-repl==0.3.0
 colorama==0.4.6
 cryptography==41.0.1
 defusedxml==0.7.1
-Django==4.2.11
+Django==4.2.15
+django-allauth==64.1.0
 django-celery-results==2.5.1
 django-sslserver==0.22
 exceptiongroup==1.1.1
