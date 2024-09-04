@@ -261,8 +261,6 @@ SOCIALACCOUNT_PROVIDERS = {
         'SCOPE': [
             'profile',
             'email',
-            'https://www.googleapis.com/auth/youtube.readonly',  # YouTube Data API
-            'https://www.googleapis.com/auth/yt-analytics.readonly'  # YouTube Analytics API
         ],
         'AUTH_PARAMS': {
             'access_type': 'online',
