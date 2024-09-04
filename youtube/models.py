@@ -88,3 +88,14 @@ class CommentReply(models.Model):
     def __str__(self):
         return f"{self.comment} | {self.video.video_title}"
     
+    
+class EmailRecord(models.Model):
+    """This models keeps track of mails send and stops from spamming"""
+    reason = models.TextField()
+    created_at = models.DateTimeField(auto_now=True)
+    email = models.EmailField()
+    
+    def __str__(self):
+        title = f"{self.email} | {self.created_at} | {self.reason[:100]}"
+        return title 
+    

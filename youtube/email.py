@@ -1,6 +1,11 @@
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from .models import EmailRecord
+from django.db.models import Q
+from datetime import date, datetime, timezone
+
+
 
 RECIPIENT_LIST = ["kundanpandey.dev@gmail.com", "georgeyoumansjr@gmail.com"]
 
@@ -23,3 +28,5 @@ def email_subscriber_change(previous_subs_count:int, current_subs_count:int, cha
         )
         email.content_subtype = 'html'
         email.send()
+        
+        

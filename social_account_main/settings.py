@@ -350,43 +350,43 @@ CELERY_BEAT_SCHEDULE = {
 
 #----------------------------------------------------------------------FACEBOOK--------------------------------------------------------------------
 
-      'add-every-1-day': {
-        'task': 'social_account_main.celery_task.task_every_1_day',
-        'schedule': timedelta(days=1),
-        'args': '',
-        'options': {
-            'expires': 120.0,
-        },
-      },
+    #   'add-every-1-day': {
+    #     'task': 'social_account_main.celery_task.task_every_1_day',
+    #     'schedule': timedelta(days=1),
+    #     'args': '',
+    #     'options': {
+    #         'expires': 120.0,
+    #     },
+    #   },
 
 
-      'add-every-2-hours': {
-        'task': 'social_account_main.celery_task.task_every_2_hours',
-        'schedule': timedelta(hours=1),
-        'args': '',
-        'options': {
-            'expires': 150.0,
-        },
-      },
+    #   'add-every-2-hours': {
+    #     'task': 'social_account_main.celery_task.task_every_2_hours',
+    #     'schedule': timedelta(hours=1),
+    #     'args': '',
+    #     'options': {
+    #         'expires': 150.0,
+    #     },
+    #   },
       
-      'task_save_new_fb_pages': {
-        'task': 'social_account_main.celery_task.task_save_new_fb_pages',
-        'schedule': timedelta(days=1),
-        'args': '',
-        'options': {
-            'expires': 300.0,
-        },
-      },
+    #   'task_save_new_fb_pages': {
+    #     'task': 'social_account_main.celery_task.task_save_new_fb_pages',
+    #     'schedule': timedelta(days=1),
+    #     'args': '',
+    #     'options': {
+    #         'expires': 300.0,
+    #     },
+    #   },
       
-      #update ads spend every 10 min 
-      'task_spend_limit': {
-        'task': 'social_account_main.celery_task.task_spend_limit',
-        'schedule': timedelta(minutes=20),
-        'args': '',
-        'options': {
-            'expires': 150.0,
-        },
-      },
+    #   #update ads spend every 10 min 
+    #   'task_spend_limit': {
+    #     'task': 'social_account_main.celery_task.task_spend_limit',
+    #     'schedule': timedelta(minutes=20),
+    #     'args': '',
+    #     'options': {
+    #         'expires': 150.0,
+    #     },
+    #   },
       
 #----------------------------------------------------------------------YOUTUBE--------------------------------------------------------------------
       
