@@ -43,10 +43,10 @@ INSTALLED_APPS = [
     'django_celery_results',
     
     # all auth configurations
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
     
     
 ]
