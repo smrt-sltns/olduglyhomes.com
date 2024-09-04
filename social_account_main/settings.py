@@ -40,13 +40,13 @@ INSTALLED_APPS = [
     
     # force https on social-oauth 
     # 'sslserver',
-    'django_celery_results',
+#    'django_celery_results',
     
     # all auth configurations
     'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
+   'allauth.account',
+  'allauth.socialaccount',
+ 'allauth.socialaccount.providers.google',
     
     
 ]
