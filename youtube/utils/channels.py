@@ -30,11 +30,6 @@ def videos(api_key, channel_id):
         channel_subscribers = channel['statistics']['subscriberCount']
 
         channel_data =[channel_id, channel_username, channel_subscribers]
-        # # Print channel details
-        # print(f"Channel ID: {channel_id}")
-        # print(f"Username: {channel_username}")
-        # print(f"Subscribers: {channel_subscribers}")
-        # print("---------------------------------------------------------")
 
         # Call the playlistItems.list method to retrieve the uploads playlist ID
         uploads_response = youtube.channels().list(
@@ -73,15 +68,6 @@ def videos(api_key, channel_id):
             video_comment_count = video['statistics'].get('commentCount', 0)
             video_like_count = video['statistics'].get('likeCount', 0)
             video_dislike_count = video['statistics'].get('dislikeCount', 0)
-
-            # print(f"Video ID: {video_id}")
-            # print(f"Title: {video_title}")
-            # print(f"Published At: {video_published_at}")
-            # print(f"View Count: {video_view_count}")
-            # print(f"Comment Count: {video_comment_count}")
-            # print(f"Like Count: {video_like_count}")
-            # print(f"Dislike Count: {video_dislike_count}")
-            # print("---------------------------------------------------------")
             row = [video_id, video_title, video_view_count,
                    video_like_count, video_dislike_count, 
                    video_comment_count, video_published_at]

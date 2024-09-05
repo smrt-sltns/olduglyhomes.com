@@ -25,6 +25,7 @@
           <h3 style="color: white;">{{channel.name}} | {{channel.subscribers}}</h3>
         </span>
         {% block dropdown %}
+        
         <div class="dropdown">
           <button type="button" class="btn btn-outline-white dropdown-toggle" data-toggle="dropdown">
             Channels
@@ -38,6 +39,9 @@
             <!-- Button after list elements -->
             <a class="btn btn-primary dropdown-item" href="{% url 'add_channel' %}" type="button">Add Channel</a>
           </div>
+        </div>
+        <div class="refresh" style="margin: auto 10px;">
+          <a href="" class="btn btn-warning">Refresh</a>
         </div>
         {% endblock %}
 
